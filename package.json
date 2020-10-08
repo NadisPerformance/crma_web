@@ -1,0 +1,25 @@
+{
+  "name": "learn-starter",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 4002",
+    "build": "next build",
+    "start": "next start -p 4002"
+  },
+  "dependencies": {
+    "apollo-cache-inmemory": "^1.6.5",
+    "apollo-client": "^2.6.8",
+    "apollo-link-context": "^1.0.20",
+    "apollo-link-http": "^1.5.17",
+    "graphql": "^15.0.0",
+    "graphql-tag": "^2.10.3",
+    "isomorphic-unfetch": "^3.0.0",
+    "js-cookie": "^2.2.1",
+    "next": "^9.3.5",
+    "react": "^16.13.1",
+    "react-apollo": "^3.1.5",
+    "react-bootstrap": "^1.0.1",
+    "react-dom": "^16.13.1"
+  }
+}

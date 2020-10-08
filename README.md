@@ -1,2 +1,12 @@
-# crma_web
-Car Rent Management web Application 
+# Install app
+
+```
+npm install
+
+npm run build
+```
+
+# start server
+```
+npm start
+```
