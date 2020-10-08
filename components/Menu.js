@@ -21,7 +21,7 @@ class Menu extends React.Component{
   <aside className="main-sidebar  elevation-4 sidebar-light-danger">
     <Link href="/" >
       <a className="brand-link" >
-      <img src="/logo.png" alt="AdminLTE Logo" className="brand-image  elevation-3"
+      <img src="/logo.png" alt="CRMA Logo" className="brand-image  elevation-3"
            style={{opacity: "1", width:"200px"}} />
       <span className="brand-text font-weight-light">&nbsp;</span>
       </a>
@@ -47,17 +47,7 @@ class Menu extends React.Component{
               </a>
             </Link>
           </li>
-          <li className={pathname.startsWith("/detections")?"nav-item has-treeview  menu-open":"nav-item has-treeview"}>
-            <Link href="/detections">
-              <a  className="nav-link" activeClassName="active">
-              <i className="nav-icon fa fa-eye"></i>
-              <p>
-                Détections
-              </p>
-              </a>
-            </Link>
-          </li>
-          <li className={pathname.startsWith("/rapports")?"nav-item has-treeview  menu-open":"nav-item has-treeview"} >
+          <li className={pathname.startsWith("/factures")?"nav-item has-treeview  menu-open":"nav-item has-treeview"} >
             <Link href="/rapports" >
               <a className="nav-link" activeClassName="active">
               <i className="nav-icon fas fa-copy"></i>
@@ -72,15 +62,7 @@ class Menu extends React.Component{
                 <Link href="/factures/in/" >
                   <a className="nav-link" activeClassName="active" >
                   <i className="fa fa-indent nav-icon"></i>
-                  <p>Factures entrantes</p>
-                  </a>
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link href="/factures/out/">
-                  <a  className="nav-link" activeClassName="active" >
-                    <i className="fa fa-outdent nav-icon"></i>
-                    <p>Factures sortantes</p>
+                  <p>Liste des factures</p>
                   </a>
                 </Link>
               </li>
@@ -123,36 +105,8 @@ class Menu extends React.Component{
               </li>
             </ul>
           </li>
-          <li className={pathname.startsWith("/fournisseurs")?"nav-item has-treeview  menu-open":"nav-item has-treeview"} >
-            <Link href="/fournisseurs" >
-              <a className="nav-link" activeClassName="active">
-              <i className="nav-icon fas fa-users"></i>
-              <p>
-                Fournisseurs
-                <i className="right fas fa-angle-left"></i>
-              </p>
-              </a>
-            </Link>
-            <ul className="nav nav-treeview">
-              <li className="nav-item">
-                <Link href="/fournisseurs/" >
-                  <a className="nav-link" activeClassName="active" >
-                  <i className="fa fa-users nav-icon"></i>
-                  <p>Fournisseurs</p>
-                  </a>
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link href="/fournisseurs/add/">
-                  <a  className="nav-link" activeClassName="active" >
-                    <i className="fa fa-user-plus nav-icon"></i>
-                    <p> Nouveau fournisseur</p>
-                  </a>
-                </Link>
-              </li>
-            </ul>
-          </li>
-          <li className={pathname.startsWith("/cameras") || pathname.startsWith("/arches")?"nav-item has-treeview  menu-open":"nav-item has-treeview"}>
+
+          <li className={pathname.startsWith("/users") ?"nav-item has-treeview  menu-open":"nav-item has-treeview"}>
             <Link href="/configuration" >
               <a  className="nav-link" activeClassName="active" >
               <i className="nav-icon fa fa-cogs"></i>
