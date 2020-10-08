@@ -1,12 +1,16 @@
-# Install app
+## Install app
 
 ```
 npm install
+```
 
+## start dev server
+```
+npm run dev
+```
+
+## start dev server
+```
 npm run build
-```
-
-# start server
-```
 npm start
 ```
