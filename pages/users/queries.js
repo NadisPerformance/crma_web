@@ -9,6 +9,10 @@ export const get_users = gql`
             email
             firstname
             lastname
+            role{
+              id
+              title
+            }
         }
     }
   }

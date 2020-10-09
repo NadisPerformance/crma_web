@@ -47,10 +47,66 @@ class Menu extends React.Component{
               </a>
             </Link>
           </li>
-          <li className={pathname.startsWith("/factures")?"nav-item has-treeview  menu-open":"nav-item has-treeview"} >
-            <Link href="/rapports" >
+          <li className={pathname.startsWith("/bookings")?"nav-item has-treeview  menu-open":"nav-item has-treeview"} >
+            <Link href="/bookings" >
+              <a className="nav-link" activeclassname="active" >
+              <i class="fas fa-history nav-icon"></i>
+                <p>Réservations
+                <i className="right fas fa-angle-left"></i>
+                </p>
+              </a>
+            </Link>
+            <ul className="nav nav-treeview">
+              <li className="nav-item">
+                <Link href="/bookings/list/" >
+                  <a className="nav-link" activeclassname="active" >
+                  <i className="fa fa-indent nav-icon"></i>
+                  <p>Liste des réservations</p>
+                  </a>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link href="/bookings/add/">
+                  <a  className="nav-link" activeclassname="active" >
+                    <i className="fa fa-plus nav-icon"></i>
+                    <p>Nouvelle réservation </p>
+                  </a>
+                </Link>
+              </li>
+            </ul>
+          </li>
+          <li className={pathname.startsWith("/rentals")?"nav-item has-treeview  menu-open":"nav-item has-treeview"} >
+            <Link href="/rentals" >
+              <a className="nav-link" activeclassname="active" >
+                <i className="nav-icon fas fa-copy"></i>
+                <p>Locations
+                <i className="right fas fa-angle-left"></i>
+                </p>
+              </a>
+            </Link>
+            <ul className="nav nav-treeview">
+              <li className="nav-item">
+                <Link href="/rentals/list/" >
+                  <a className="nav-link" activeclassname="active" >
+                  <i className="nav-icon fas fa-copy"></i>
+                  <p>Liste des locations</p>
+                  </a>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link href="/rentals/add/">
+                  <a  className="nav-link" activeclassname="active" >
+                    <i className="fa fa-plus nav-icon"></i>
+                    <p>Nouvelle location </p>
+                  </a>
+                </Link>
+              </li>
+            </ul>
+          </li>
+          <li className={pathname.startsWith("/bills")?"nav-item has-treeview  menu-open":"nav-item has-treeview"} >
+            <Link href="/bills" >
               <a className="nav-link" activeclassname="active">
-              <i className="nav-icon fas fa-copy"></i>
+              <i class="fa fa-file-invoice nav-icon"></i>
               <p>
                 Factures
                 <i className="right fas fa-angle-left"></i>
@@ -59,15 +115,15 @@ class Menu extends React.Component{
             </Link>
             <ul className="nav nav-treeview">
               <li className="nav-item">
-                <Link href="/factures/in/" >
+                <Link href="/bills/list/" >
                   <a className="nav-link" activeclassname="active" >
-                  <i className="fa fa-indent nav-icon"></i>
+                  <i class="fa fa-file-invoice nav-icon"></i>
                   <p>Liste des factures</p>
                   </a>
                 </Link>
               </li>
               <li className="nav-item">
-                <Link href="/factures/add/">
+                <Link href="/bills/add/">
                   <a  className="nav-link" activeclassname="active" >
                     <i className="fa fa-plus nav-icon"></i>
                     <p>Nouvelle facture</p>
@@ -105,7 +161,7 @@ class Menu extends React.Component{
               </li>
             </ul>
           </li>
-          <li className={pathname.startsWith("/clients")?"nav-item has-treeview  menu-open":"nav-item has-treeview"} >
+          <li className={pathname.startsWith("/cars")?"nav-item has-treeview  menu-open":"nav-item has-treeview"} >
             <Link href="/cars" >
               <a className="nav-link" activeclassname="active" >
               <i className="fas fa-car nav-icon"></i>
@@ -117,18 +173,18 @@ class Menu extends React.Component{
             </Link>
             <ul className="nav nav-treeview">
               <li className="nav-item">
-                <Link href="/cars/add" >
-                  <a className="nav-link" activeclassname="active" >
-                  <i className="fas fa-car nav-icon"></i>
-                  <p>Ajouter</p>
+                <Link href="/cars/list/">
+                  <a  className="nav-link" activeclassname="active" >
+                    <i className="fas fa-car nav-icon"></i>
+                    <p> Liste</p>
                   </a>
                 </Link>
               </li>
               <li className="nav-item">
-                <Link href="/cars/list/">
-                  <a  className="nav-link" activeclassname="active" >
-                    <i className="fa fa-user-plus nav-icon"></i>
-                    <p> Liste</p>
+                <Link href="/cars/add" >
+                  <a className="nav-link" activeclassname="active" >
+                  <i className="fa fa-plus nav-icon"></i>
+                  <p>Ajouter</p>
                   </a>
                 </Link>
               </li>
@@ -162,18 +218,10 @@ class Menu extends React.Component{
                 </Link>
               </li>
               <li className="nav-item">
-                <Link href="/users/list" >
+                <Link href="/brands/list" >
                   <a className="nav-link" activeclassname="active" >
-                  <i class="fab fa-bandcamp nav-icon"></i>
+                  <i className="fab fa-bandcamp nav-icon"></i>
                     <p>Marques</p>
-                  </a>
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link href="/users/list" >
-                  <a className="nav-link" activeclassname="active" >
-                  <i class="fas fa-history nav-icon"></i>
-                    <p>Reservations</p>
                   </a>
                 </Link>
               </li>

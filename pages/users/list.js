@@ -53,9 +53,11 @@ class List extends React.Component {
                       <thead>
                         <tr>
                           <th>#ID</th>
-                          <th>Email</th>
-                          <th>Nom</th>
-                          <th>Prénom</th>
+                          <th>Nom complet</th>
+                          <th>CNI</th>
+                          <th>E-mail</th>
+                          <th>Téléphone</th>
+                          <th>Rôle</th>
                           <th>Actions</th>
                         </tr>
                       </thead>
@@ -66,9 +68,11 @@ class List extends React.Component {
                             return (
                               <tr key={user.id}>
                                 <td>{user.id}</td>
+                                <td>{user.gender} {user.firstname} {user.lastname}</td>
+                                <td>{user.cni}</td>
                                 <td>{user.email}</td>
-                                <td>{user.firstname}</td>
-                                <td>{user.lastname}</td>
+                                <td>{user.phone}</td>
+                                <td>{user.role.title}</td>
                                 <td>
                                   <Link href={"/users/view?userId="+user.id} >
                                     <a style={{margin:3}}
