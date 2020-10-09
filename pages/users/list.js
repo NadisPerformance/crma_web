@@ -3,19 +3,19 @@ import Link from 'next/link'
 import React from 'react'
 import AdminLayout from '../../components/AdminLayout'
 import {get_users} from './queries'
-import { Query } from 'react-apollo' 
+import { Query } from 'react-apollo'
 import withData from '../../lib/withData'
 import {Table} from 'react-bootstrap'
-import Page from '../../components/Page' 
+import Page from '../../components/Page'
 import Card from '../../components/Card'
 import withAuth from '../../lib/withAuth'
- 
+
 class List extends React.Component {
   constructor (props) {
-    super(props) 
-    this.fariane= [{title:"Acceuil",path:"/"},{title:"Users",path:"/users/"}]  
+    super(props)
+    this.fariane= [{title:"Acceuil",path:"/"},{title:"Users",path:"/users/"}]
     this.onDelete = this.onDelete.bind(this)
-  }  
+  }
   renderHeader(){
 
   }
@@ -26,7 +26,7 @@ class List extends React.Component {
               <div className="card-tools">
                     <Link href="/users/add" >
                       <a className="btn btn-success btn-xs" >
-                        <i className="fa fa-plus"></i> Nouveau utilisateur 
+                        <i className="fa fa-plus"></i> Nouveau utilisateur
                       </a>
                     </Link>
                 </div>
@@ -36,7 +36,7 @@ class List extends React.Component {
     window.flash('L\'utilisateur a bien été supprimée.', 'success')
     //this.props.history.push("/users/");
   }
-  render() {    
+  render() {
     return (
       <AdminLayout>
         <Page title="Utilisateurs" fariane={this.fariane}>
@@ -46,9 +46,9 @@ class List extends React.Component {
                 if (loading) return <div>Chargement en cours ...</div>
                 if (error) {
                   console.log(error)
-                  return <div>Error</div> 
-                }    
-                return ( 
+                  return <div>Error</div>
+                }
+                return (
                      <Table striped bordered hover size="sm">
                       <thead>
                         <tr>
@@ -59,39 +59,39 @@ class List extends React.Component {
                           <th>Actions</th>
                         </tr>
                       </thead>
-                      <tbody> 
+                      <tbody>
                         {
                           data.users.edges.map((edge, index)=>{
                             let user = edge.node
                             return (
-                              <tr key={user.id}> 
-                                <td>{user.id}</td> 
+                              <tr key={user.id}>
+                                <td>{user.id}</td>
                                 <td>{user.email}</td>
-                                <td>{user.nom}</td>
-                                <td>{user.prenom}</td>
+                                <td>{user.firstname}</td>
+                                <td>{user.lastname}</td>
                                 <td>
                                   <Link href={"/users/view?userId="+user.id} >
                                     <a style={{margin:3}}
                                     className="btn btn-info btn-sm" >
                                     <i className="fa fa-eye"></i>
                                     </a>
-                                  </Link> 
+                                  </Link>
                                   <Link href={"/users/edit?userId="+user.id} >
                                     <a  style={{margin:3}}
                                     className="btn btn-success btn-sm" >
                                     <i className="fa fa-pen-alt"></i>
                                     </a>
-                                  </Link> 
+                                  </Link>
                                 </td>
                               </tr>
                             )
                           })
                         }
                       </tbody>
-                    </Table>  
+                    </Table>
                 )
               }}
-              </Query> 
+              </Query>
           </Card>
         </Page>
       </AdminLayout>

@@ -7,8 +7,8 @@ export const get_users = gql`
         node{
             id
             email
-            nom
-            prenom 
+            firstname
+            lastname
         }
     }
   }
@@ -19,9 +19,9 @@ export const get_user = gql`
 query get_user($userId:ID!){
   user(id:$userId){
     id
-    nom
-    prenom
-    email 
+    firstname
+    lastname
+    email
   }
 }
 `
@@ -29,8 +29,8 @@ export const update_user = gql`
   mutation update_user($id: ID!, $data:UserInput!)  {
     updateUser(id:$id,data:$data){
         id
-        nom
-        prenom
+        firstname
+        lastname
         email
     }
   }
@@ -52,8 +52,8 @@ export const login_user = gql`
     	token
     	user{
     		id
-    		nom
-    		prenom
+    		firstname
+    		lastname
     		email
     	}
     }
@@ -68,8 +68,8 @@ export const signup_user = gql`
     	token
     	user{
     		id
-    		nom
-    		prenom
+    		firstname
+    		lastname
     		email
     	}
     }
@@ -84,8 +84,8 @@ export const forgotPassword_user = gql`
     	token
     	user{
     		id
-    		nom
-    		prenom
+    		firstname
+    		lastname
     		email
     	}
     }
