@@ -52,25 +52,25 @@ class NavBar extends React.Component{
         <div className="dropdown-menu dropdown-menu-lg dropdown-menu-right">
         </div>
       </li> 
-      <li class="nav-item dropdown user-menu">
-        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-          <img src="https://cloud.mabroka.ma/50_20200313_236671_avatar.png" class="user-image img-circle elevation-2" alt="BELABED Mohammed" />
-          <span class="d-none d-md-inline">{user.nom +" "+user.prenom}</span>
+      <li className="nav-item dropdown user-menu">
+        <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+          <img src="https://cloud.mabroka.ma/50_20200313_236671_avatar.png" className="user-image img-circle elevation-2" alt="BELABED Mohammed" />
+          <span className="d-none d-md-inline">{user.nom +" "+user.prenom}</span>
         </a>
-        <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+        <ul className="dropdown-menu dropdown-menu-lg dropdown-menu-right">
            
-          <li class="user-header bg-primary">
-            <img src="https://cloud.mabroka.ma/50_20200313_236671_avatar.png" class="img-circle elevation-2" alt="BELABED Mohammed" />
+          <li className="user-header bg-primary">
+            <img src="https://cloud.mabroka.ma/50_20200313_236671_avatar.png" className="img-circle elevation-2" alt="BELABED Mohammed" />
 
             <p>
               {user.nom +" "+user.prenom} - Administrateur 
             </p>
           </li>  
-          <li class="user-footer">
+          <li className="user-footer">
             <Link href="/my-profile" >
               <a className="btn btn-default btn-flat" >Mon profil</a>
             </Link>
-            <a onClick={()=>this._logout()} class="btn btn-default btn-flat float-right" >Se déconnecter</a>
+            <a onClick={()=>this._logout()} className="btn btn-default btn-flat float-right" >Se déconnecter</a>
           </li>
         </ul>
       </li>

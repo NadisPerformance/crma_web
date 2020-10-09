@@ -137,7 +137,6 @@
     display: none;
     list-style: none;
     padding: 0;
-
     > .nav-item {
       > .nav-link {
         > .nav-icon {
@@ -638,6 +637,7 @@
     .nav-treeview,
     > .nav-treeview {
       background: rgba($white, .05);
+      margin-left:0.8rem;
 
       .nav-item {
         > .nav-link {
