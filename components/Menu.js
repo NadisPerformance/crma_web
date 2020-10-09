@@ -105,7 +105,35 @@ class Menu extends React.Component{
               </li>
             </ul>
           </li>
-
+          <li className={pathname.startsWith("/clients")?"nav-item has-treeview  menu-open":"nav-item has-treeview"} >
+            <Link href="/cars" >
+              <a className="nav-link" activeclassname="active" >
+              <i className="fas fa-car nav-icon"></i>
+                <p>
+                  Véhicules
+                  <i className="right fas fa-angle-left"></i>
+                </p>
+              </a>
+            </Link>
+            <ul className="nav nav-treeview">
+              <li className="nav-item">
+                <Link href="/cars/add" >
+                  <a className="nav-link" activeclassname="active" >
+                  <i className="fas fa-car nav-icon"></i>
+                  <p>Ajouter</p>
+                  </a>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link href="/cars/list/">
+                  <a  className="nav-link" activeclassname="active" >
+                    <i className="fa fa-user-plus nav-icon"></i>
+                    <p> Liste</p>
+                  </a>
+                </Link>
+              </li>
+            </ul>
+          </li>
           <li className={pathname.startsWith("/users") ?"nav-item has-treeview  menu-open":"nav-item has-treeview"}>
             <Link href="/configuration" >
               <a  className="nav-link" activeclassname="active" >
@@ -138,14 +166,6 @@ class Menu extends React.Component{
                   <a className="nav-link" activeclassname="active" >
                   <i class="fab fa-bandcamp nav-icon"></i>
                     <p>Marques</p>
-                  </a>
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link href="/users/list" >
-                  <a className="nav-link" activeclassname="active" >
-                  <i className="fas fa-car nav-icon"></i>
-                    <p>Voitures</p>
                   </a>
                 </Link>
               </li>
