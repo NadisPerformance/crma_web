@@ -60,11 +60,23 @@ class View extends React.Component {
                               <tbody>
                                 <tr>
                                   <th style={{width:"50%"}}>Nom:</th>
-                                  <td>{data.user.nom}</td>
+                                  <td>{data.user.firstname}</td>
                                 </tr>
                                 <tr>
                                   <th style={{width:"50%"}} >Prénom:</th>
-                                  <td>{data.user.prenom}</td>
+                                  <td>{data.user.lastname}</td>
+                                </tr>
+                                <tr>
+                                  <th style={{width:"50%"}}>Civilisation:</th>
+                                  <td>{data.user.gender}</td>
+                                </tr>
+                                <tr>
+                                  <th style={{width:"50%"}} >CNI:</th>
+                                  <td>{data.user.cni}</td>
+                                </tr>
+                                <tr>
+                                  <th style={{width:"50%"}}>Adresse:</th>
+                                  <td>{data.user.address}</td>
                                 </tr>
                                 <tr>
                                   <th>Email:</th>
@@ -72,8 +84,12 @@ class View extends React.Component {
                                 </tr>
                                 <tr>
                                   <th>Téléphone:</th>
-                                  <td>{"data.user.telephone"}</td>
-                                </tr> 
+                                  <td>{data.user.phone}</td>
+                                </tr>
+                                <tr>
+                                  <th style={{width:"50%"}} >Mot de passe:</th>
+                                  <td>{data.user.password}</td>
+                                </tr>
                               </tbody>
                           </table>
                       </Col>  

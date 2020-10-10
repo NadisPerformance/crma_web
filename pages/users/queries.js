@@ -6,13 +6,18 @@ export const get_users = gql`
     edges{
         node{
             id
-            email
             firstname
             lastname
+            gender
+            cni
+            address
+            email
+            phone
             role{
               id
               title
             }
+            password
         }
     }
   }
@@ -25,7 +30,16 @@ query get_user($userId:ID!){
     id
     firstname
     lastname
+    gender
+    cni
+    address
     email
+    phone
+    role{
+      id
+      title
+    }
+    password
   }
 }
 `

@@ -173,7 +173,7 @@ class Menu extends React.Component{
             </Link>
             <ul className="nav nav-treeview">
               <li className="nav-item">
-                <Link href="/cars/list/">
+                <Link href="/cars/list">
                   <a  className="nav-link" activeclassname="active" >
                     <i className="fas fa-car nav-icon"></i>
                     <p> Liste</p>

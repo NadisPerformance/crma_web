@@ -22,17 +22,43 @@ class UserForm extends React.Component{
     this.onChange()
   }
   setNom(value){
-    this.state.user.nom = value
+    this.state.user.lastname = value
     this.setState({user:this.state.user})
     this.onChange(); 
   } 
   setPrenom(value){
-    this.state.user.prenom = value
+    this.state.user.firstname = value
+    this.setState({user:this.state.user})
+    this.onChange(); 
+  }
+  setGender(value){
+    this.state.user.gender = value
     this.setState({user:this.state.user})
     this.onChange(); 
   } 
+  setCNI(value){
+    this.state.user.cni = value
+    this.setState({user:this.state.user})
+    this.onChange(); 
+  } 
+  setAddress(value){
+    this.state.user.address = value
+    this.setState({user:this.state.user})
+    this.onChange(); 
+  } 
+   
   setEmail(value){
     this.state.user.email = value
+    this.setState({user:this.state.user})
+    this.onChange(); 
+  }
+  setTelephone(value){
+    this.state.user.phone = value
+    this.setState({user:this.state.user})
+    this.onChange();
+  }
+  setRole(value){
+    this.state.user.role = value
     this.setState({user:this.state.user})
     this.onChange(); 
   } 
@@ -41,11 +67,7 @@ class UserForm extends React.Component{
     this.setState({user:this.state.user})
     this.onChange(); 
   } 
-  setTelephone(value){
-    this.state.user.telephone = value
-    this.setState({user:this.state.user})
-    this.onChange(); 
-  }
+
   onChange(){ 
     if(this.props.onChange)
       this.props.onChange(this.state.user)
@@ -59,15 +81,35 @@ class UserForm extends React.Component{
               }} >  
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Nom:</Form.Label>
-            <Form.Control value={user.nom} type="text" onChange={(event)=>this.setNom(event.target.value)} placeholder="Nom" />
+            <Form.Control value={user.lastname} type="text" onChange={(event)=>this.setLastname(event.target.value)} placeholder="Nom" />
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Prénom:</Form.Label>
-            <Form.Control value={user.prenom} type="text" onChange={(event)=>this.setPrenom(event.target.value)} placeholder="Prénom" />
+            <Form.Control value={user.firstname} type="text" onChange={(event)=>this.setFirstname(event.target.value)} placeholder="Prénom" />
+          </Form.Group>
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Civilisation:</Form.Label>
+            <Form.Control value={user.gender} type="text" onChange={(event)=>this.setGender(event.target.value)} placeholder="Civilisation" />
+          </Form.Group>
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>CNI:</Form.Label>
+            <Form.Control value={user.cni} type="text" onChange={(event)=>this.setCNI(event.target.value)} placeholder="CNI" />
+          </Form.Group>
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Adresse:</Form.Label>
+            <Form.Control value={user.address} type="text" onChange={(event)=>this.setAddress(event.target.value)} placeholder="Adresse " />
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Email:</Form.Label>
             <Form.Control value={user.email} type="text" onChange={(event)=>this.setEmail(event.target.value)} placeholder="Adresse email" />
+          </Form.Group>
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Téléphone:</Form.Label>
+            <Form.Control value={user.phone} type="text" onChange={(event)=>this.setPhone(event.target.value)} placeholder="Téléphone" />
+          </Form.Group>
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Rôle:</Form.Label>
+            <Form.Control value={user.role} type="text" onChange={(event)=>this.setRole(event.target.value)} placeholder="Rôle" />
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Mot de passe:</Form.Label>
@@ -90,10 +132,6 @@ class UserForm extends React.Component{
               </InputGroup.Text>
             </InputGroup.Prepend>
             </InputGroup>
-          </Form.Group>
-          <Form.Group controlId="formBasicEmail">
-            <Form.Label>Téléphone:</Form.Label>
-            <Form.Control value={user.telephone} type="text" onChange={(event)=>this.setTelephone(event.target.value)} placeholder="Numéro de téléphone" />
           </Form.Group>
           <div className="text-right" style={{margin:10}}>
                 <Button   variant="primary" type="submit">

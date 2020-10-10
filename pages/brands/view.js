@@ -24,12 +24,12 @@ class View extends React.Component {
     this.props.history.push("/brands/");
   }
   header(){ 
-    const { userId } = this.state
+    const { brandId } = this.state
     return <React.Fragment>
-             <h3 className="card-title">{"Utilisateur #"+userId}</h3>
+             <h3 className="card-title">{"Marque #"+brandId}</h3>
 
                 <div className="card-tools">
-                    <Link href={"/users/edit?userId="+userId} >
+                    <Link href={"/brands/edit?brandId="+brandId} >
                        <a className="btn btn-success btn-sm" data-toggle="tooltip" title="" data-original-title="Nouvelle" >
                         <i className="fa fa-pen-alt"></i> Modifier
                         </a> 
@@ -38,12 +38,12 @@ class View extends React.Component {
           </React.Fragment>
   }
   render() {   
-    const {userId} = this.state
+    const {brandId} = this.state
     return (
       <AdminLayout>
-        <Page title="Utilisateurs" fariane={this.fariane}>
+        <Page title="Marques" fariane={this.fariane}>
           <Card header={this.header()} >
-            <Query query={get_user} variables={{userId}} pollInterval={3000} >
+            <Query query={get_brand} variables={{brandId}} pollInterval={3000} >
               {({ loading, error, data }) => {
                 if (loading) return <div>Chargement en cours ...</div>
                 if (error) {
@@ -51,29 +51,17 @@ class View extends React.Component {
                   return <div>Error</div> 
                 }   
                 console.log(data) 
-                if(!data.user)
-                  return "User not found"
+                if(!data.brand)
+                  return " Brand not found"
                 return (  
                   <Row className="col-sm-12">
                       <Col className="col-sm-6 table-responsive">
                           <table className="table">
                               <tbody>
                                 <tr>
-                                  <th style={{width:"50%"}}>Nom:</th>
-                                  <td>{data.user.nom}</td>
+                                  <th style={{width:"50%"}}>Nom de la marque:</th>
+                                  <td>{data.brand.name}</td>
                                 </tr>
-                                <tr>
-                                  <th style={{width:"50%"}} >Prénom:</th>
-                                  <td>{data.user.prenom}</td>
-                                </tr>
-                                <tr>
-                                  <th>Email:</th>
-                                  <td>{data.user.email}</td>
-                                </tr>
-                                <tr>
-                                  <th>Téléphone:</th>
-                                  <td>{"data.user.telephone"}</td>
-                                </tr> 
                               </tbody>
                           </table>
                       </Col>  
@@ -82,7 +70,7 @@ class View extends React.Component {
                              <tbody> 
                                 <tr>
                                   <th style={{width:"50%"}}>Date de création:</th>
-                                  <td>{false && new Date(data.user.createdAt).toLocaleString()}</td>
+                                  <td>{false && new Date(data.brand.createdAt).toLocaleString()}</td>
                                 </tr>  
                               </tbody>
                           </table>
