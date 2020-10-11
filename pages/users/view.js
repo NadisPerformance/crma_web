@@ -3,27 +3,27 @@ import Link from 'next/link'
 import React from 'react'
 import AdminLayout from '../../components/AdminLayout'
 import {get_user} from './queries'
-import { Query } from 'react-apollo' 
+import { Query } from 'react-apollo'
 import withData from '../../lib/withData'
 import {Table, Row,Col} from 'react-bootstrap'
 import Page from '../../components/Page'
-import Card from '../../components/Card' 
+import Card from '../../components/Card'
 import { withRouter } from 'next/router'
 class View extends React.Component {
   constructor (props) {
-    super(props)   
+    super(props)
     const { userId } = this.props.router.query
     this.state={
       userId: userId
     }
-    this.fariane= [{title:"Acceuil",path:"/"},{title:"Users",path:"/users/"}]  
+    this.fariane= [{title:"Acceuil",path:"/"},{title:"Users",path:"/users/"}]
     this.onDelete = this.onDelete.bind(this)
-  } 
+  }
   onDelete(){
     window.flash('L\'utilisateur a bien été supprimée.', 'success')
     this.props.history.push("/users/");
   }
-  header(){ 
+  header(){
     const { userId } = this.state
     return <React.Fragment>
              <h3 className="card-title">{"Utilisateur #"+userId}</h3>
@@ -32,12 +32,12 @@ class View extends React.Component {
                     <Link href={"/users/edit?userId="+userId} >
                        <a className="btn btn-success btn-sm" data-toggle="tooltip" title="" data-original-title="Nouvelle" >
                         <i className="fa fa-pen-alt"></i> Modifier
-                        </a> 
+                        </a>
                     </Link>
                 </div>
           </React.Fragment>
   }
-  render() {   
+  render() {
     const {userId} = this.state
     return (
       <AdminLayout>
@@ -48,12 +48,12 @@ class View extends React.Component {
                 if (loading) return <div>Chargement en cours ...</div>
                 if (error) {
                   console.log(error)
-                  return <div>Error</div> 
-                }   
-                console.log(data) 
+                  return <div>Error</div>
+                }
+                console.log(data)
                 if(!data.user)
                   return "User not found"
-                return (  
+                return (
                   <Row className="col-sm-12">
                       <Col className="col-sm-6 table-responsive">
                           <table className="table">
@@ -86,27 +86,28 @@ class View extends React.Component {
                                   <th>Téléphone:</th>
                                   <td>{data.user.phone}</td>
                                 </tr>
-                                <tr>
-                                  <th style={{width:"50%"}} >Mot de passe:</th>
-                                  <td>{data.user.password}</td>
-                                </tr>
+
                               </tbody>
                           </table>
-                      </Col>  
+                      </Col>
                       <Col className="col-sm-6 table-responsive">
                           <table className="table">
-                             <tbody> 
+                             <tbody>
                                 <tr>
                                   <th style={{width:"50%"}}>Date de création:</th>
                                   <td>{false && new Date(data.user.createdAt).toLocaleString()}</td>
-                                </tr>  
+                                </tr>
+                                <tr>
+                                  <th style={{width:"50%"}} >Rôle:</th>
+                                  <td>{data.user.role && data.user.role.title}</td>
+                                </tr>
                               </tbody>
                           </table>
-                      </Col> 
-                  </Row>  
+                      </Col>
+                  </Row>
                 )
               }}
-              </Query> 
+              </Query>
           </Card>
         </Page>
       </AdminLayout>

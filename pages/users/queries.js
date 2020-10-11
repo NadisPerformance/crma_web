@@ -62,6 +62,15 @@ export const create_user = gql`
   }
 
 `
+export const delete_user = gql`
+  mutation delete_user($id: ID!)  {
+    deleteUser(id:$id){
+        statut_code
+        message
+    }
+  }
+
+`
 export const login_user = gql`
   mutation login_user($email:String!,$password:String!)  {
     login(email:$email, password:$password){
