@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import React from 'react'
 import AdminLayout from '../../components/AdminLayout'
-import {get_cars} from './queries'
+import {get_customers} from './queries'
 import { Query } from 'react-apollo'
 import withData from '../../lib/withData'
 import {Table} from 'react-bootstrap'
@@ -13,35 +13,35 @@ import withAuth from '../../lib/withAuth'
 class List extends React.Component {
   constructor (props) {
     super(props)
-    this.fariane= [{title:"Acceuil",path:"/"},{title:"Cars",path:"/cars/"}]
+    this.fariane= [{title:"Acceuil",path:"/"},{title:"Clients",path:"/customers/"}]
     this.onDelete = this.onDelete.bind(this)
   }
   renderHeader(){
 
   }
   header(){
-    console.log(this.props.car)
+    console.log(this.props.customer)
     return (<React.Fragment>
-             <h3 className="card-title">Véhicules</h3>
+             <h3 className="card-title">Marques</h3>
               <div className="card-tools">
-                    <Link href="/cars/add" >
+                    <Link href="/customers/add" >
                       <a className="btn btn-success btn-xs" >
-                        <i className="fa fa-plus"></i> Nouveau véhicule
+                        <i className="fa fa-plus"></i> Nouvelle marque
                       </a>
                     </Link>
                 </div>
           </React.Fragment>)
   }
   onDelete(){
-    window.flash('Le véhicule a bien été supprimée.', 'success')
-    //this.props.history.push("/cars/");
+    window.flash('Le client a bien été supprimé.', 'success')
+    //this.props.history.push("/users/");
   }
   render() {
     return (
       <AdminLayout>
-        <Page title="Véhicules" fariane={this.fariane}>
+        <Page title="Clients" fariane={this.fariane}>
           <Card header={this.header()} >
-            <Query query={get_cars} pollInterval={3000} >
+            <Query query={get_customers} pollInterval={3000} >
               {({ loading, error, data }) => {
                 if (loading) return <div>Chargement en cours ...</div>
                 if (error) {
@@ -53,40 +53,36 @@ class List extends React.Component {
                       <thead>
                         <tr>
                           <th>#ID</th>
-                          <th>Marque</th>
-                          <th>Model</th>
-                          <th>Catégorie</th>
-                          <th>Prix journal</th>
-                          <th>Couleur</th>
-                          <th>Immatriculation</th>
-                          <th>Chassis number</th>
-                          <th>Status</th>
+                          <th>Nom complet</th>
+                          <th>CNI</th>
+                          <th>Permit de conduite</th>
+                          <th>Adresse</th>
+                          <th>Téléphone</th>
+                          <th>E-mail</th>
                           <th>Actions</th>
                         </tr>
                       </thead>
                       <tbody>
                         {
-                          data.cars.edges.map((edge, index)=>{
-                            let car = edge.node
+                          data.customers.edges.map((edge, index)=>{
+                            let customer = edge.node
                             return (
-                              <tr key={car.id}>
-                                <td>{car.id}</td>
-                                <td>{car.brand.name}</td>
-                                <td>{car.model_date} {car.model}</td>
-                                <td>{car.category.categoryId}</td>
-                                <td>{car.price}</td>
-                                <td>{car.color.colorId}</td>
-                                <td>{car.plate_number}</td>
-                                <td>{car.chassis_number}</td>
-                                <td>{car.status.statusId}</td>
+                              <tr key={customer.id}>
+                                <td>{customer.id}</td>
+                                <td>{customer.gender} {customer.firstname} {customer.lastname}</td>
+                                <td>{customer.cni}</td>
+                                <td>{customer.driver_license}</td>
+                                <td>{customer.address}</td>
+                                <td>{customer.phone}</td>
+                                <td>{customer.email}</td>
                                 <td>
-                                  <Link href={"/cars/view?carId="+car.id} >
+                                  <Link href={"/customers/view?customerId="+customer.id} >
                                     <a style={{margin:3}}
                                     className="btn btn-info btn-sm" >
                                     <i className="fa fa-eye"></i>
                                     </a>
                                   </Link>
-                                  <Link href={"/cars/edit?carId="+car.id} >
+                                  <Link href={"/customers/edit?customerId="+customer.id} >
                                     <a  style={{margin:3}}
                                     className="btn btn-success btn-sm" >
                                     <i className="fa fa-pen-alt"></i>

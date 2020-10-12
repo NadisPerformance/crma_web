@@ -73,12 +73,12 @@ class List extends React.Component {
                                 <td>{car.id}</td>
                                 <td>{car.brand.name}</td>
                                 <td>{car.model_date} {car.model}</td>
-                                <td>{car.category.categoryId}</td>
+                                <td>{"car.category.categoryId"}</td>
                                 <td>{car.price}</td>
-                                <td>{car.color.colorId}</td>
+                                <td>{"car.color.colorId"}</td>
                                 <td>{car.plate_number}</td>
                                 <td>{car.chassis_number}</td>
-                                <td>{car.status.statusId}</td>
+                                <td>{"car.status.statusId"}</td>
                                 <td>
                                   <Link href={"/cars/view?carId="+car.id} >
                                     <a style={{margin:3}}

@@ -2,38 +2,38 @@ import Head from 'next/head'
 import Link from 'next/link'
 import React from 'react'
 import AdminLayout from '../../components/AdminLayout'
-import {get_car, update_car} from './queries'
+import {get_customer, update_customer} from './queries'
 import { Query, Mutation } from 'react-apollo' 
 import withData from '../../lib/withData'
 import {Table, Row,Col} from 'react-bootstrap'
 import Page from '../../components/Page'
 import Card from '../../components/Card' 
 import { withRouter } from 'next/router'
-import CarForm from './CarForm'
+import CustomerForm from './CustomerForm'
 import Router from 'next/router'
 
 class Edit extends React.Component {
   constructor (props) {
     super(props)   
-    const { carId } = this.props.router.query
+    const { customerId } = this.props.router.query
     this.state={
-      carId: carId,
-      car:null
+      customerId: customerId,
+      customer:null
     }
-    this.fariane= [{title:"Acceuil",path:"/"},{title:"Véhicules",path:"/cars/"}]  
+    this.fariane= [{title:"Acceuil",path:"/"},{title:"Clients",path:"/customers/"}]  
     this.onDelete = this.onDelete.bind(this)
   } 
   onDelete(){
-    window.flash('Le véhicule a bien été supprimé.', 'success')
-    this.props.history.push("/cars/");
+    window.flash('Le Client a bien été supprimée.', 'success')
+    this.props.history.push("/customers/");
   }
   header(){ 
-    const { carId } = this.state
+    const { customerId } = this.state
     return <React.Fragment>
-             <h3 className="card-title">{"Utilisateur #"+carId}</h3>
+             <h3 className="card-title">{"Client #"+customerId}</h3>
 
                 <div className="card-tools">
-                    <Link href={"/cars/edit/"+carId} >
+                    <Link href={"/customers/edit/"+customerId} >
                        <a className="btn btn-success btn-sm" data-toggle="tooltip" title="" data-original-title="Nouveau" >
                         <i className="fa fa-pen-alt"></i> Modifier
                         </a> 
@@ -42,15 +42,13 @@ class Edit extends React.Component {
           </React.Fragment>
   }
   render() {   
-    let {carId, car} = this.state
-    if(car){
-      delete car.id
-      delete car.brand
-    }
+    let {customerId, customer} = this.state
+    if(customer)
+      delete customer.id
     return (
       <AdminLayout>
-        <Page title="Vehicules" fariane={this.fariane}>
-            <Query query={get_car} variables={{carId}} _pollInterval={3000} >
+        <Page title="Marques" fariane={this.fariane}>
+            <Query query={get_customer} variables={{customerId}} _pollInterval={3000} >
               {({ loading, error, data }) => {
                 if (loading) return <div>Chargement en cours ...</div>
                 if (error) {
@@ -58,32 +56,30 @@ class Edit extends React.Component {
                   return <div>Error</div> 
                 }   
                 console.log(data) 
-                if(!data.car)
-                  return "Car not found"
-                if(this.state.car == null){
-                    delete data.car.__typename
-                    car = this.state.car = data.car 
+                if(!data.customer)
+                  return "Customer not found"
+                if(this.state.customer == null){
+                    delete data.customer.__typename
+                    customer = this.state.customer = data.customer 
                 }
-                delete this.state.car.brand
                 //console.log(user)
                 return (  
-                    <Mutation mutation={update_car} variables={{id:carId,data:this.state.car}} >
+                    <Mutation mutation={update_customer} variables={{id:customerId,data:this.state.customer}} >
                       {postMutation => 
-                      <CarForm 
-                      car={car}
+                      <CustomerForm 
+                        customer={customer}
                         onSubmit={(event)=>{
                           //alert("hello")
                           event.preventDefault(); 
                           //console.log(user)
-
                           postMutation().then((result)=>{
                             //this.props.history.goBack();
                             //console.log(result)
-                            alert('Le véhicule a bien été modifié.', 'success')
-                            Router.push("/cars/view?carId="+result.data.updateCar.id);
+                            alert('Le Client a bien été modifié.', 'success')
+                            Router.push("/customer/view?customerId="+result.data.updateCustomer.id);
                           })
                         }} 
-                        onChange={(car)=>this.setState({car:car})}
+                        onChange={(customer)=>this.setState({customer:customer})}
                          />
                       } 
                     </Mutation>

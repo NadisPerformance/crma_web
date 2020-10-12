@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import React from 'react'
 import AdminLayout from '../../components/AdminLayout'
-import {get_car} from './queries'
+import {get_rental} from './queries'
 import { Query } from 'react-apollo' 
 import withData from '../../lib/withData'
 import {Table, Row,Col} from 'react-bootstrap'
@@ -12,16 +12,16 @@ import { withRouter } from 'next/router'
 class View extends React.Component {
   constructor (props) {
     super(props)   
-    const { carId } = this.props.router.query
+    const { rentalId } = this.props.router.query
     this.state={
-      carId: carId
+      carId: rentalId
     }
-    this.fariane= [{title:"Acceuil",path:"/"},{title:"Cars",path:"/cars/"}]  
+    this.fariane= [{title:"Acceuil",path:"/"},{title:"Locations",path:"/rental/"}]  
     this.onDelete = this.onDelete.bind(this)
   } 
   onDelete(){
-    window.flash('Le véhicule a bien été supprimée.', 'success')
-    this.props.history.push("/cars/");
+    window.flash('La location a bien été supprimée.', 'success')
+    this.props.history.push("/rentals/");
   }
   header(){ 
     const { carId } = this.state
@@ -59,7 +59,7 @@ class View extends React.Component {
                           <table className="table">
                               <tbody> 
                                 <tr>
-                                  <th style={{width:"50%"}}>Marque:</th>
+                                  <th style={{width:"50%"}} >Marque:</th>
                                   <td>{data.car.brand.name}</td>
                                 </tr>
                                 <tr>
@@ -80,7 +80,7 @@ class View extends React.Component {
                                 </tr>
                                 <tr>
                                   <th style={{width:"50%"}} >Catégorie:</th>
-                                  <td>{data.car.category.title}</td>
+                                  <td>{"data.car.category.name"}</td>
                                 </tr>
                                 <tr>
                                   <th style={{width:"50%"}}>Prix:</th>
@@ -88,7 +88,7 @@ class View extends React.Component {
                                 </tr>
                                 <tr>
                                   <th style={{width:"50%"}}>Couleur:</th>
-                                  <td>{data.car.color.name}</td>
+                                  <td>{"data.car.color.name"}</td>
                                 </tr>
                                 <tr>
                                   <th style={{width:"50%"}}>Status:</th>

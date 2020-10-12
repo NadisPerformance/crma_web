@@ -50,7 +50,7 @@ class Menu extends React.Component{
           <li className={pathname.startsWith("/bookings")?"nav-item has-treeview  menu-open":"nav-item has-treeview"} >
             <Link href="/bookings" >
               <a className="nav-link" activeclassname="active" >
-              <i class="fas fa-history nav-icon"></i>
+              <i className="fas fa-history nav-icon"></i>
                 <p>Réservations
                 <i className="right fas fa-angle-left"></i>
                 </p>
@@ -106,7 +106,7 @@ class Menu extends React.Component{
           <li className={pathname.startsWith("/bills")?"nav-item has-treeview  menu-open":"nav-item has-treeview"} >
             <Link href="/bills" >
               <a className="nav-link" activeclassname="active">
-              <i class="fa fa-file-invoice nav-icon"></i>
+              <i className="fa fa-file-invoice nav-icon"></i>
               <p>
                 Factures
                 <i className="right fas fa-angle-left"></i>
@@ -117,7 +117,7 @@ class Menu extends React.Component{
               <li className="nav-item">
                 <Link href="/bills/list/" >
                   <a className="nav-link" activeclassname="active" >
-                  <i class="fa fa-file-invoice nav-icon"></i>
+                  <i className="fa fa-file-invoice nav-icon"></i>
                   <p>Liste des factures</p>
                   </a>
                 </Link>
@@ -144,7 +144,7 @@ class Menu extends React.Component{
             </Link>
             <ul className="nav nav-treeview">
               <li className="nav-item">
-                <Link href="/clients/" >
+                <Link href="/customers/list" >
                   <a className="nav-link" activeclassname="active" >
                   <i className="fa fa-users nav-icon"></i>
                   <p>Clients</p>
@@ -152,7 +152,7 @@ class Menu extends React.Component{
                 </Link>
               </li>
               <li className="nav-item">
-                <Link href="/clients/add/">
+                <Link href="/customers/add/">
                   <a  className="nav-link" activeclassname="active" >
                     <i className="fa fa-user-plus nav-icon"></i>
                     <p> Nouveau client</p>

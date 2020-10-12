@@ -19,14 +19,6 @@ export const get_cars = gql`
               id
               name
             }
-            category{
-              id
-              title
-            }
-            color{
-              id
-              name
-            }
         }
     }
   }
@@ -50,14 +42,6 @@ query get_car($carId:ID!){
           id
           name
         }
-        category{
-          id
-          title
-        }
-        color{
-          id
-          name
-        }
   }
 }
 `
@@ -65,27 +49,15 @@ export const update_car = gql`
   mutation update_car($id: ID!, $data:CarInput!)  {
     updateCar(id:$id,data:$data){
         id
-        plate_number
-        brandId
-        model
-        model_date
-        categoryId
-        price
-        colorId
-        chassis_number
-        statusId
-        brand{
-          id
-          name
-        }
-        category{
-          id
-          title
-        }
-        color{
-          id
-          name
-        }
+            plate_number
+            brandId
+            model
+            model_date
+            categoryId
+            price
+            colorId
+            chassis_number
+            statusId
     }
   }
 

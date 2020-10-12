@@ -1,10 +1,6 @@
 import React from 'react'
-import {Form, Row,Col, Button, InputGroup} from 'react-bootstrap' 
-import BrandSelectInput from '../brands/SelectInput'
-import CategorySelectInput from '../categories/SelectInput'
-import ColorSelectInput from '../colors/SelectInput'
-
-class CarForm extends React.Component{
+import {Form, Row,Col, Button, InputGroup} from 'react-bootstrap'  
+class UserForm extends React.Component{
   constructor (props) {
     super(props)  
     this.state = {
@@ -19,7 +15,8 @@ class CarForm extends React.Component{
         chassis_number:"", 
         availability:"", 
         statusId:"", 
-      }
+      },
+      show_password:false
     } 
   } 
   componentDidMount(){
@@ -29,54 +26,59 @@ class CarForm extends React.Component{
     }
     this.onChange()
   }
+  set(value){
+    this.state.car.lastname = value
+    this.setState({car:this.state.car})
+    this.onChange(); 
+  } 
   setBrandId(value){
-    this.state.car.brandId = value
+    this.state.car.firstname = value
     this.setState({car:this.state.car})
     this.onChange(); 
   }
   setModel(value){
-    this.state.car.model = value
+    this.state.car.firstname = value
     this.setState({car:this.state.car})
     this.onChange(); 
   }
   setModel_date(value){
-    this.state.car.model_date = value
+    this.state.car.gender = value
     this.setState({car:this.state.car})
     this.onChange(); 
   } 
   setCategoryId(value){
-    this.state.car.categoryId = value
+    this.state.car.cni = value
     this.setState({car:this.state.car})
     this.onChange(); 
   } 
   setPrice(value){
-    this.state.car.price = value
+    this.state.car.address = value
     this.setState({car:this.state.car})
     this.onChange(); 
   } 
    
   setColorId(value){
-    this.state.car.colorId = value
+    this.state.car.email = value
     this.setState({car:this.state.car})
     this.onChange(); 
   }
   setPlate_number(value){
-    this.state.car.plate_number = value
+    this.state.car.phone = value
     this.setState({car:this.state.car})
     this.onChange();
   }
   setChassis_number(value){
-    this.state.car.chassis_number = value
+    this.state.car.role = value
     this.setState({car:this.state.car})
     this.onChange(); 
   } 
   setAvailability(value){
-    this.state.car.availability = value
+    this.state.car.password = value
     this.setState({car:this.state.car})
     this.onChange(); 
   } 
   setStatusId(value){
-    this.state.car.statusId = value
+    this.state.car.password = value
     this.setState({car:this.state.car})
     this.onChange(); 
   }
@@ -92,9 +94,9 @@ class CarForm extends React.Component{
                 if(this.props.onSubmit)
                   this.props.onSubmit(event)
               }} >  
-          <Form.Group controlId="formBasicBrandId">
+          <Form.Group controlId="formBasicEmail">
             <Form.Label>Marque:</Form.Label>
-            <BrandSelectInput onChange={(selectedId)=>this.setBrandId(selectedId)} />
+            <Form.Control value={car.brandId} type="text" onChange={(event)=>this.setBrandId(event.target.value)} placeholder="Marque" />
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Modéle:</Form.Label>
@@ -106,7 +108,7 @@ class CarForm extends React.Component{
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Catégorie:</Form.Label>
-            <CategorySelectInput onChange={(selectedId)=>this.setCategoryId(selectedId)} />
+            <Form.Control value={car.categoryId} type="text" onChange={(event)=>this.setCategoryId(event.target.value)} placeholder="Civilisation" />
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Prix journal:</Form.Label>
@@ -114,7 +116,7 @@ class CarForm extends React.Component{
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Couleur:</Form.Label>
-            <ColorSelectInput onChange={(selectedId)=>this.setColorId(selectedId)} />
+            <Form.Control value={car.colorId} type="text" onChange={(event)=>this.setColorId(event.target.value)} placeholder="Couleur " />
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Immatriculation:</Form.Label>
@@ -151,4 +153,4 @@ const styles ={
   }
 }
 
-export default CarForm; 
+export default UserForm; 
