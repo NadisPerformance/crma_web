@@ -1,12 +1,12 @@
 import React from 'react'
-import {Form, Row,Col, Button, InputGroup} from 'react-bootstrap'  
+import {Form, Row,Col, Button, InputGroup} from 'react-bootstrap'
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css"
 import moment from 'moment'
 
 class RentalForm extends React.Component{
   constructor (props) {
-    super(props)  
+    super(props)
     this.state = {
       rental:{
         carId:"",
@@ -16,54 +16,54 @@ class RentalForm extends React.Component{
         date_end:""
       },
       show_password:false
-    } 
-  } 
+    }
+  }
   componentDidMount(){
-    const {rental} = this.props 
-    if(rental){ 
-      this.state.rental = rental  
+    const {rental} = this.props
+    if(rental){
+      this.state.rental = rental
     }
     this.onChange()
   }
   setCarId(value){
     this.state.rental.carId = value*1
     this.setState({rental:this.state.rental})
-    this.onChange(); 
+    this.onChange();
   }
-  
+
   setCustomerId(value){
     this.state.rental.customerId = value*1
     this.setState({rental:this.state.rental})
-    this.onChange(); 
-  } 
+    this.onChange();
+  }
   setSecondDriverId(value){
     this.state.rental.second_driverId = value*1
     this.setState({rental:this.state.rental})
-    this.onChange(); 
-  } 
+    this.onChange();
+  }
   setDateBegin(value){
     this.state.rental.date_begin = value
     this.setState({rental:this.state.rental})
-    this.onChange(); 
-  } 
-   
+    this.onChange();
+  }
+
   setDateEnd(value){
     this.state.rental.date_end = value
     this.setState({rental:this.state.rental})
-    this.onChange(); 
+    this.onChange();
   }
 
-  onChange(){ 
+  onChange(){
     if(this.props.onChange)
       this.props.onChange(this.state.rental)
   }
-  render () {  
-    const {rental, show_password} = this.state 
+  render () {
+    const {rental, show_password} = this.state
     return (
        <Form onSubmit={(event)=>{
                 if(this.props.onSubmit)
                   this.props.onSubmit(event)
-              }} >  
+              }} >
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Client:</Form.Label>
             <Form.Control value={rental.customerId} type="text" onChange={(event)=>this.setCustomerId(event.target.value)} placeholder="Client" />
@@ -78,27 +78,29 @@ class RentalForm extends React.Component{
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Date de début:</Form.Label>
-            <DatePicker 
-              selected={moment(rental.date_begin).format("MM/DD/YYYY")}
+            <DatePicker
+              selected={Date.parse(moment(rental.date_begin).toDate())}
               onChange={date => this.setDateBegin(date)}
               isClearable
-              placeholderText="I have been cleared!"
+              dateFormat="d/MM/yyyy"
+              placeholderText="Date début"
             />
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Date de fin:</Form.Label>
             <DatePicker
-              selected={moment(rental.date_end).format("MM/DD/YYYY")}
+              selected={Date.parse(moment(rental.date_end).toDate())}
               onChange={date => this.setDateEnd(date)}
               isClearable
-              placeholderText="I have been cleared!"
+              dateFormat="d/MM/yyyy"
+              placeholderText="Date début"
             />
           </Form.Group>
           <div className="text-right" style={{margin:10}}>
                 <Button   variant="primary" type="submit">
                   Enregistrer
                 </Button>
-          </div> 
+          </div>
        </Form>
     )
   }
@@ -113,4 +115,4 @@ const styles ={
   }
 }
 
-export default RentalForm; 
+export default RentalForm;

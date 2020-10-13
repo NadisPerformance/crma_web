@@ -3,11 +3,11 @@ import Link from 'next/link'
 import React from 'react'
 import AdminLayout from '../../components/AdminLayout'
 import {get_rental} from './queries'
-import { Query } from 'react-apollo' 
+import { Query } from 'react-apollo'
 import withData from '../../lib/withData'
 import {Table, Row,Col,Tab,Tabs} from 'react-bootstrap'
 import Page from '../../components/Page'
-import Card from '../../components/Card' 
+import Card from '../../components/Card'
 import { withRouter } from 'next/router'
 import RentalTab from './Tabs/RentalTab'
 import CustomerTab from './Tabs/CustomerTab'
@@ -16,33 +16,33 @@ import CarTab from './Tabs/CarTab'
 
 class View extends React.Component {
   constructor (props) {
-    super(props)   
+    super(props)
     const { rentalId } = this.props.router.query
     this.state={
       rentalId: rentalId
     }
-    this.fariane= [{title:"Acceuil",path:"/"},{title:"Locations",path:"/rental/"}]  
+    this.fariane= [{title:"Acceuil",path:"/"},{title:"Locations",path:"/rental/"}]
     this.onDelete = this.onDelete.bind(this)
-  } 
+  }
   onDelete(){
     window.flash('La location a bien été supprimée.', 'success')
     this.props.history.push("/rentals/");
   }
-  header(){ 
+  header(){
     const { rentalId } = this.state
     return <React.Fragment>
-             <h3 className="card-title">{"Utilisateur #"+rentalId}</h3>
+             <h3 className="card-title">{"Location #"+rentalId}</h3>
 
                 <div className="card-tools">
                     <Link href={"/rentals/edit?rentalId="+rentalId} >
                        <a className="btn btn-success btn-sm" data-toggle="tooltip" title="" data-original-title="Nouvelle" >
                         <i className="fa fa-pen-alt"></i> Modifier
-                        </a> 
+                        </a>
                     </Link>
                 </div>
           </React.Fragment>
   }
-  render() {   
+  render() {
     const {rentalId} = this.state
     return (
       <AdminLayout>
@@ -53,26 +53,36 @@ class View extends React.Component {
                 if (loading) return <div>Chargement en cours ...</div>
                 if (error) {
                   console.log(error)
-                  return <div>Error</div> 
-                }   
-                console.log(data) 
+                  return <div>Error</div>
+                }
+                console.log(data)
                 if(!data.rental)
                   return "Rental not found"
-                return ( 
-                  <Tabs defaultActiveKey="rental" id="uncontrolled-tab-example">
-                    <Tab eventKey="rental" title="Location">
+                return (
+                  <React.Fragment>
+                  <br/>
+                  <Tabs variant="pills"  defaultActiveKey="rental" id="uncontrolled-tab-example" style={{backgroundColor:'#f4f6f9',marginLeft:'3px',paddingBottom:'2px'}}>
+                    <Tab eventKey="rental" title="Location" >
                        <RentalTab rental={data.rental} />
+                    </Tab>
+                    <Tab eventKey="before_rental" title="Début de location">
+                       <RentalTab rental={data.rental} />
+                    </Tab>
+                    <Tab eventKey="after_rental" title="Fin de location">
+                      <CustomerTab customer={data.rental.customer} />
                     </Tab>
                     <Tab eventKey="customer" title="Client">
                       <CustomerTab customer={data.rental.customer} />
                     </Tab>
+
                     <Tab eventKey="car" title="Véhicule" >
                       <CarTab car={data.rental.car} />
                     </Tab>
                   </Tabs>
+                  </React.Fragment>
                 )
               }}
-              </Query> 
+              </Query>
           </Card>
         </Page>
       </AdminLayout>

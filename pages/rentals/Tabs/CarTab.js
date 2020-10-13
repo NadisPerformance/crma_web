@@ -1,18 +1,20 @@
 import React from 'react'
 import {Table, Row,Col} from 'react-bootstrap'
- 
+
 import { withRouter } from 'next/router'
 class Add extends React.Component {
   constructor (props) {
-    super(props)   
+    super(props)
   }
-  render() {   
+  render() {
     let {car} = this.props
+    if (!car)
+      return null
     return (
         <Row className="col-sm-12">
             <Col className="col-sm-6 table-responsive">
                 <table className="table">
-                    <tbody> 
+                    <tbody>
                         <tr>
                             <th style={{width:"50%"}} >Immatriculation:</th>
                             <td>{car.plate_number}</td>
@@ -44,7 +46,7 @@ class Add extends React.Component {
                     </tbody>
                 </table>
             </Col>
-        </Row> 
+        </Row>
     )
   }
 }
