@@ -1,0 +1,33 @@
+import React from 'react'
+import {Table, Row,Col} from 'react-bootstrap'
+import moment from 'moment'
+ 
+import { withRouter } from 'next/router'
+class Add extends React.Component {
+  constructor (props) {
+    super(props)   
+  }
+  render() {   
+    let {rental} = this.props
+    return (
+        <Row className="col-sm-12">
+            <Col className="col-sm-6 table-responsive">
+                <table className="table">
+                    <tbody> 
+                        <tr>
+                            <th style={{width:"50%"}} >Date de début:</th>
+                            <td>{moment(rental.date_begin).format("DD/MM/YYYY")}</td>
+                        </tr>
+                        <tr>
+                            <th style={{width:"50%"}} >Date de fin:</th>
+                            <td>{moment(rental.date_end).format("DD/MM/YYYY")}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </Col>
+        </Row> 
+    )
+  }
+}
+
+export default withRouter(Add)

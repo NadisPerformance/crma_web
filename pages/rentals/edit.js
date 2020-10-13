@@ -60,27 +60,28 @@ class Edit extends React.Component {
                   return "Rental not found"
                 if(this.state.rental == null){
                     delete data.rental.__typename
-                    user = this.state.rental = data.rental 
+                    rental = this.state.rental = data.rental 
                 }
                 //console.log(user)
                 return (  
                     <Mutation mutation={update_rental} variables={{id:rentalId,data:this.state.rental}} >
                       {postMutation => 
                       <RentalForm 
-                      rental={rental}
-                        onSubmit={(event)=>{
-                          //alert("hello")
-                          event.preventDefault(); 
-                          //console.log(user)
-                          postMutation().then((result)=>{
-                            //this.props.history.goBack();
-                            //console.log(result)
-                            alert('L\'utilisateur a bien été modifié.', 'success')
-                            Router.push("/rentals/view?rentalId="+result.data.updateRental.id);
-                          })
-                        }} 
+                        rental={rental}
+                          onSubmit={(event)=>{
+                            //alert("hello")
+                            event.preventDefault(); 
+                            //console.log(user)
+                            postMutation().then((result)=>{
+                              //this.props.history.goBack();
+                              //console.log(result)
+                              alert('La location a bien été modifié.', 'success')
+                              Router.push("/rentals/view?rentalId="+result.data.updateRental.id);
+                            })
+                          }
+                        } 
                         onChange={(rental)=>this.setState({rental:rental})}
-                         />
+                      />
                       } 
                     </Mutation>
                 )

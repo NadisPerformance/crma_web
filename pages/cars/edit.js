@@ -65,6 +65,8 @@ class Edit extends React.Component {
                     car = this.state.car = data.car 
                 }
                 delete this.state.car.brand
+                delete this.state.car.color
+                delete this.state.car.category
                 //console.log(user)
                 return (  
                     <Mutation mutation={update_car} variables={{id:carId,data:this.state.car}} >

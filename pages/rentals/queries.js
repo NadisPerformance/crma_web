@@ -12,6 +12,16 @@ export const get_rentals = gql`
             second_driverId
             date_begin
             date_end
+            customer{
+              id
+              firstname
+              lastname
+              gender
+            }
+            car{
+              id
+              plate_number
+            }
             
         }
     }
@@ -22,36 +32,57 @@ export const get_rentals = gql`
 export const get_rental = gql`
 query get_rental($rentalId:ID!){
   rental(id:$rentalId){
+    id
+    bookingId
+    carId
+    customerId
+    second_driverId
+    date_begin
+    date_end
+    customer{
+      id
+      firstname
+      lastname
+      gender
+      cni
+      phone 
+      email
+      address
+      city
+    }
+    car{
+      id
+      plate_number
+      model
+      model_date
+      price
+      chassis_number
+      category{
         id
-        plate_number
-        brandId
-        model
-        model_date
-        categoryId
-        price
-        colorId
-        chassis_number
-        statusId
-        brand{
-          id
-          name
-        }
+        title
+      }
+      brand{
+        id
+        name
+      }
+      color{
+        id 
+        name
+      }
+    }
   }
 }
 `
 export const update_rental = gql`
   mutation update_rental($id: ID!, $data:RentalInput!)  {
     updateRental(id:$id,data:$data){
-        id
-            plate_number
-            brandId
-            model
-            model_date
-            categoryId
-            price
-            colorId
-            chassis_number
-            statusId
+      id
+      bookingId
+      carId
+      customerId
+      second_driverId
+      date_begin
+      date_end
     }
   }
 

@@ -9,6 +9,9 @@ import {Table} from 'react-bootstrap'
 import Page from '../../components/Page'
 import Card from '../../components/Card'
 import withAuth from '../../lib/withAuth'
+import RentalDeleteButton from './DeleteButton'
+import moment from 'moment'
+
 
 class List extends React.Component {
   constructor (props) {
@@ -26,7 +29,7 @@ class List extends React.Component {
               <div className="card-tools">
                     <Link href="/rentals/add" >
                       <a className="btn btn-success btn-xs" >
-                        <i className="fa fa-plus"></i> Nouvelle locations
+                        <i className="fa fa-plus"></i> Nouvelle location
                       </a>
                     </Link>
                 </div>
@@ -41,7 +44,7 @@ class List extends React.Component {
       <AdminLayout>
         <Page title="Locations" fariane={this.fariane}>
           <Card header={this.header()} >
-            <Query query={get_rental} pollInterval={3000} >
+            <Query query={get_rentals} pollInterval={3000} >
               {({ loading, error, data }) => {
                 if (loading) return <div>Chargement en cours ...</div>
                 if (error) {
@@ -53,14 +56,10 @@ class List extends React.Component {
                       <thead>
                         <tr>
                           <th>#ID</th>
-                          <th>Marque</th>
-                          <th>Model</th>
-                          <th>Catégorie</th>
-                          <th>Prix journal</th>
-                          <th>Couleur</th>
-                          <th>Immatriculation</th>
-                          <th>Chassis number</th>
-                          <th>Status</th>
+                          <th>Date de début</th>
+                          <th>Date de fin</th>
+                          <th>Client</th>
+                          <th>Véhicule</th>
                           <th>Actions</th>
                         </tr>
                       </thead>
@@ -71,14 +70,10 @@ class List extends React.Component {
                             return (
                               <tr key={rental.id}>
                                 <td>{rental.id}</td>
-                                <td>{rental.brand.name}</td>
-                                <td>{rental.model_date} {car.model}</td>
-                                <td>{rental.category.categoryId}</td>
-                                <td>{car.price}</td>
-                                <td>{rental.color.colorId}</td>
-                                <td>{rental.plate_number}</td>
-                                <td>{rental.chassis_number}</td>
-                                <td>{rental.status.statusId}</td>
+                                <td>{moment(rental.date_begin).format("DD/MM/YYYY")}</td>
+                                <td>{moment(rental.date_end).format("DD/MM/YYYY")} </td>
+                                <td> {rental.customer.gender} {rental.customer.lastname} {rental.customer.firstname}</td>
+                                <td>{rental.car.plate_number}</td>
                                 <td>
                                   <Link href={"/rentals/view?rentalId="+rental.id} >
                                     <a style={{margin:3}}

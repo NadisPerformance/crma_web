@@ -1,138 +1,98 @@
 import React from 'react'
 import {Form, Row,Col, Button, InputGroup} from 'react-bootstrap'  
+import DatePicker from 'react-datepicker'
+import "react-datepicker/dist/react-datepicker.css"
+import moment from 'moment'
+
 class RentalForm extends React.Component{
   constructor (props) {
     super(props)  
     this.state = {
-      car:{
-        brandId:"", 
-        model:"", 
-        model_date:"", 
-        categoryId:"", 
-        price:"", 
-        colorId:"", 
-        plate_number:"", 
-        chassis_number:"", 
-        availability:"", 
-        statusId:"", 
+      rental:{
+        carId:"",
+        customerId:"",
+        second_driverId:"",
+        date_begin:"",
+        date_end:""
       },
       show_password:false
     } 
   } 
   componentDidMount(){
-    const {car} = this.props 
-    if(car){ 
-      this.state.car = car  
+    const {rental} = this.props 
+    if(rental){ 
+      this.state.rental = rental  
     }
     this.onChange()
   }
-  set(value){
-    this.state.car.lastname = value
-    this.setState({car:this.state.car})
-    this.onChange(); 
-  } 
-  setBrandId(value){
-    this.state.car.firstname = value
-    this.setState({car:this.state.car})
+  setCarId(value){
+    this.state.rental.carId = value*1
+    this.setState({rental:this.state.rental})
     this.onChange(); 
   }
-  setModel(value){
-    this.state.car.firstname = value
-    this.setState({car:this.state.car})
-    this.onChange(); 
-  }
-  setModel_date(value){
-    this.state.car.gender = value
-    this.setState({car:this.state.car})
+  
+  setCustomerId(value){
+    this.state.rental.customerId = value*1
+    this.setState({rental:this.state.rental})
     this.onChange(); 
   } 
-  setCategoryId(value){
-    this.state.car.cni = value
-    this.setState({car:this.state.car})
+  setSecondDriverId(value){
+    this.state.rental.second_driverId = value*1
+    this.setState({rental:this.state.rental})
     this.onChange(); 
   } 
-  setPrice(value){
-    this.state.car.address = value
-    this.setState({car:this.state.car})
+  setDateBegin(value){
+    this.state.rental.date_begin = value
+    this.setState({rental:this.state.rental})
     this.onChange(); 
   } 
    
-  setColorId(value){
-    this.state.car.email = value
-    this.setState({car:this.state.car})
-    this.onChange(); 
-  }
-  setPlate_number(value){
-    this.state.car.phone = value
-    this.setState({car:this.state.car})
-    this.onChange();
-  }
-  setChassis_number(value){
-    this.state.car.role = value
-    this.setState({car:this.state.car})
-    this.onChange(); 
-  } 
-  setAvailability(value){
-    this.state.car.password = value
-    this.setState({car:this.state.car})
-    this.onChange(); 
-  } 
-  setStatusId(value){
-    this.state.car.password = value
-    this.setState({car:this.state.car})
+  setDateEnd(value){
+    this.state.rental.date_end = value
+    this.setState({rental:this.state.rental})
     this.onChange(); 
   }
 
   onChange(){ 
     if(this.props.onChange)
-      this.props.onChange(this.state.car)
+      this.props.onChange(this.state.rental)
   }
   render () {  
-    const {car, show_password} = this.state 
+    const {rental, show_password} = this.state 
     return (
        <Form onSubmit={(event)=>{
                 if(this.props.onSubmit)
                   this.props.onSubmit(event)
               }} >  
           <Form.Group controlId="formBasicEmail">
-            <Form.Label>Marque:</Form.Label>
-            <Form.Control value={car.brandId} type="text" onChange={(event)=>this.setBrandId(event.target.value)} placeholder="Marque" />
+            <Form.Label>Client:</Form.Label>
+            <Form.Control value={rental.customerId} type="text" onChange={(event)=>this.setCustomerId(event.target.value)} placeholder="Client" />
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
-            <Form.Label>Modéle:</Form.Label>
-            <Form.Control value={car.model} type="text" onChange={(event)=>this.setModel(event.target.value)} placeholder="Modéle" />
+            <Form.Label>Véhicule:</Form.Label>
+            <Form.Control value={rental.carId} type="text" onChange={(event)=>this.setCarId(event.target.value)} placeholder="Véhicule" />
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
-            <Form.Label>Date du modéle:</Form.Label>
-            <Form.Control value={car.model_date} type="text" onChange={(event)=>this.setModel_date(event.target.value)} placeholder="Date du modéle" />
+            <Form.Label>Deuxiéme conducteur:</Form.Label>
+            <Form.Control value={rental.second_driverId} type="text" onChange={(event)=>this.setSecondDriverId(event.target.value)} placeholder="Deuxiéme conducteur" />
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
-            <Form.Label>Catégorie:</Form.Label>
-            <Form.Control value={car.categoryId} type="text" onChange={(event)=>this.setCategoryId(event.target.value)} placeholder="Civilisation" />
+            <Form.Label>Date de début:</Form.Label>
+            <DatePicker 
+              selected={moment(rental.date_begin).format("MM/DD/YYYY")}
+              onChange={date => this.setDateBegin(date)}
+              isClearable
+              placeholderText="I have been cleared!"
+            />
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
-            <Form.Label>Prix journal:</Form.Label>
-            <Form.Control value={car.price} type="text" onChange={(event)=>this.setPrice(event.target.value)} placeholder="Prix journal" />
-          </Form.Group>
-          <Form.Group controlId="formBasicEmail">
-            <Form.Label>Couleur:</Form.Label>
-            <Form.Control value={car.colorId} type="text" onChange={(event)=>this.setColorId(event.target.value)} placeholder="Couleur " />
-          </Form.Group>
-          <Form.Group controlId="formBasicEmail">
-            <Form.Label>Immatriculation:</Form.Label>
-            <Form.Control value={car.plate_number} type="text" onChange={(event)=>this.setPlate_number(event.target.value)} placeholder="Immatriculation" />
-          </Form.Group>
-          <Form.Group controlId="formBasicEmail">
-            <Form.Label>Numéro de chassis:</Form.Label>
-            <Form.Control value={car.chassis_number} type="text" onChange={(event)=>this.setChassis_number(event.target.value)} placeholder="Numéro de chassis" />
-          </Form.Group>
-          <Form.Group controlId="formBasicEmail">
-            <Form.Label>Disponibilité:</Form.Label>
-            <Form.Control value={car.availability} type="text" onChange={(event)=>this.setAvailability(event.target.value)} placeholder="Disponibilité" />
-          </Form.Group>
-          <Form.Group controlId="formBasicEmail">
-            <Form.Label>Status:</Form.Label>
-            <Form.Control value={car.statusId} type="text" onChange={(event)=>this.setStatusId(event.target.value)} placeholder="Status" />
+            <Form.Label>Date de fin:</Form.Label>
+            <DatePicker
+              selected={moment(rental.date_end).format("MM/DD/YYYY")}
+              onChange={date => this.setDateEnd(date)}
+              isClearable
+              placeholderText="I have been cleared!"
+            />
           </Form.Group>
           <div className="text-right" style={{margin:10}}>
                 <Button   variant="primary" type="submit">
@@ -153,4 +113,4 @@ const styles ={
   }
 }
 
-export default UserForm; 
+export default RentalForm; 

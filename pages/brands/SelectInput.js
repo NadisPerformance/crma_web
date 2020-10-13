@@ -19,12 +19,12 @@ class SelectInput extends React.Component{
     }
   }
   setSelectedId(value){
-    this.setState({selectedId:value})
+    this.setState({selectedId:value*1})
     this.onChange(value)
   }
   onChange(value){
     if(this.props.onChange)
-      this.props.onChange(value)
+      this.props.onChange(value*1)
   }
   render () {
     const {selectedId} = this.state

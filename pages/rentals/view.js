@@ -5,16 +5,21 @@ import AdminLayout from '../../components/AdminLayout'
 import {get_rental} from './queries'
 import { Query } from 'react-apollo' 
 import withData from '../../lib/withData'
-import {Table, Row,Col} from 'react-bootstrap'
+import {Table, Row,Col,Tab,Tabs} from 'react-bootstrap'
 import Page from '../../components/Page'
 import Card from '../../components/Card' 
 import { withRouter } from 'next/router'
+import RentalTab from './Tabs/RentalTab'
+import CustomerTab from './Tabs/CustomerTab'
+import CarTab from './Tabs/CarTab'
+
+
 class View extends React.Component {
   constructor (props) {
     super(props)   
     const { rentalId } = this.props.router.query
     this.state={
-      carId: rentalId
+      rentalId: rentalId
     }
     this.fariane= [{title:"Acceuil",path:"/"},{title:"Locations",path:"/rental/"}]  
     this.onDelete = this.onDelete.bind(this)
@@ -24,12 +29,12 @@ class View extends React.Component {
     this.props.history.push("/rentals/");
   }
   header(){ 
-    const { carId } = this.state
+    const { rentalId } = this.state
     return <React.Fragment>
-             <h3 className="card-title">{"Utilisateur #"+carId}</h3>
+             <h3 className="card-title">{"Utilisateur #"+rentalId}</h3>
 
                 <div className="card-tools">
-                    <Link href={"/cars/edit?carId="+carId} >
+                    <Link href={"/rentals/edit?rentalId="+rentalId} >
                        <a className="btn btn-success btn-sm" data-toggle="tooltip" title="" data-original-title="Nouvelle" >
                         <i className="fa fa-pen-alt"></i> Modifier
                         </a> 
@@ -38,12 +43,12 @@ class View extends React.Component {
           </React.Fragment>
   }
   render() {   
-    const {carId} = this.state
+    const {rentalId} = this.state
     return (
       <AdminLayout>
-        <Page title="Véhicules" fariane={this.fariane}>
+        <Page title="Locations" fariane={this.fariane}>
           <Card header={this.header()} >
-            <Query query={get_car} variables={{carId}} pollInterval={3000} >
+            <Query query={get_rental} variables={{rentalId}} pollInterval={3000} >
               {({ loading, error, data }) => {
                 if (loading) return <div>Chargement en cours ...</div>
                 if (error) {
@@ -51,63 +56,20 @@ class View extends React.Component {
                   return <div>Error</div> 
                 }   
                 console.log(data) 
-                if(!data.car)
-                  return "Car not found"
-                return (  
-                  <Row className="col-sm-12">
-                      <Col className="col-sm-6 table-responsive">
-                          <table className="table">
-                              <tbody> 
-                                <tr>
-                                  <th style={{width:"50%"}} >Marque:</th>
-                                  <td>{data.car.brand.name}</td>
-                                </tr>
-                                <tr>
-                                  <th style={{width:"50%"}} >Modéle:</th>
-                                  <td>{data.car.model}</td>
-                                </tr>
-                                <tr>
-                                  <th style={{width:"50%"}}>Date du modéle:</th>
-                                  <td>{data.car.model_date}</td>
-                                </tr>
-                                <tr>
-                                  <th style={{width:"50%"}}>Immatriculation:</th>
-                                  <td>{data.car.plate_number}</td>
-                                </tr>
-                                <tr>
-                                  <th style={{width:"50%"}}>Numéro de chassis:</th>
-                                  <td>{data.car.chassis_number}</td>
-                                </tr>
-                                <tr>
-                                  <th style={{width:"50%"}} >Catégorie:</th>
-                                  <td>{"data.car.category.name"}</td>
-                                </tr>
-                                <tr>
-                                  <th style={{width:"50%"}}>Prix:</th>
-                                  <td>{data.car.price}</td>
-                                </tr>
-                                <tr>
-                                  <th style={{width:"50%"}}>Couleur:</th>
-                                  <td>{"data.car.color.name"}</td>
-                                </tr>
-                                <tr>
-                                  <th style={{width:"50%"}}>Status:</th>
-                                  <td>{"data.car.status.title"}</td>
-                                </tr>
-                              </tbody>
-                          </table>
-                      </Col>  
-                      <Col className="col-sm-6 table-responsive">
-                          <table className="table">
-                             <tbody> 
-                                <tr>
-                                  <th style={{width:"50%"}}>Date de création:</th>
-                                  <td>{false && new Date(data.car.createdAt).toLocaleString()}</td>
-                                </tr>  
-                              </tbody>
-                          </table>
-                      </Col> 
-                  </Row>  
+                if(!data.rental)
+                  return "Rental not found"
+                return ( 
+                  <Tabs defaultActiveKey="rental" id="uncontrolled-tab-example">
+                    <Tab eventKey="rental" title="Location">
+                       <RentalTab rental={data.rental} />
+                    </Tab>
+                    <Tab eventKey="customer" title="Client">
+                      <CustomerTab customer={data.rental.customer} />
+                    </Tab>
+                    <Tab eventKey="car" title="Véhicule" >
+                      <CarTab car={data.rental.car} />
+                    </Tab>
+                  </Tabs>
                 )
               }}
               </Query> 

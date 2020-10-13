@@ -10,7 +10,7 @@ import {Table, Row,Col} from 'react-bootstrap'
 import Page from '../../components/Page'
 import Card from '../../components/Card' 
 import { withRouter } from 'next/router'
-import CarForm from './CarForm'
+import RentalForm from './RentalForm'
 class Add extends React.Component {
   constructor (props) {
     super(props)   
@@ -44,7 +44,7 @@ class Add extends React.Component {
         <Page title="Véhicules" fariane={this.fariane}>
             <Mutation mutation={create_rental} variables={{data:this.state.rental}} >
               {postMutation => 
-                 <CarForm 
+                 <RentalForm 
                   rental={rental}
                     onSubmit={(event)=>{
                           //alert("hello")
@@ -53,7 +53,7 @@ class Add extends React.Component {
                           postMutation().then((result)=>{
                             //this.props.history.goBack();
                             alert('Le véhicule a bien été crée.', 'success')
-                            Router.push("/rental/view?rentalId="+result.data.createRental.id);
+                            Router.push("/rentals/view?rentalId="+result.data.createRental.id);
                           })
                         }} 
                         onChange={(rental)=>this.setState({rental:rental})}
