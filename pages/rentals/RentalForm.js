@@ -1,6 +1,6 @@
 import React from 'react'
 import {Form, Row,Col, Button, InputGroup} from 'react-bootstrap'  
-class UserForm extends React.Component{
+class RentalForm extends React.Component{
   constructor (props) {
     super(props)  
     this.state = {

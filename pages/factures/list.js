@@ -2,46 +2,46 @@ import Head from 'next/head'
 import Link from 'next/link'
 import React from 'react'
 import AdminLayout from '../../components/AdminLayout'
-import {get_rentals} from './queries'
+import {get_users} from './queries'
 import { Query } from 'react-apollo'
 import withData from '../../lib/withData'
 import {Table} from 'react-bootstrap'
 import Page from '../../components/Page'
 import Card from '../../components/Card'
 import withAuth from '../../lib/withAuth'
-
+import UserDeleteButton from './DeleteButton'
 class List extends React.Component {
   constructor (props) {
     super(props)
-    this.fariane= [{title:"Acceuil",path:"/"},{title:"Locations",path:"/rental/"}]
+    this.fariane= [{title:"Acceuil",path:"/"},{title:"Users",path:"/users/"}]
     this.onDelete = this.onDelete.bind(this)
   }
   renderHeader(){
 
   }
   header(){
-    console.log(this.props.rental)
+    console.log(this.props.user)
     return (<React.Fragment>
-             <h3 className="card-title">Locations</h3>
+             <h3 className="card-title">Utilisateurs</h3>
               <div className="card-tools">
-                    <Link href="/rentals/add" >
+                    <Link href="/users/add" >
                       <a className="btn btn-success btn-xs" >
-                        <i className="fa fa-plus"></i> Nouvelle locations
+                        <i className="fa fa-plus"></i> Nouveau utilisateur
                       </a>
                     </Link>
                 </div>
           </React.Fragment>)
   }
   onDelete(){
-    window.flash('La location a bien été supprimée.', 'success')
-    //this.props.history.push("/cars/");
+    window.flash('L\'utilisateur a bien été supprimée.', 'success')
+    //this.props.history.push("/users/");
   }
   render() {
     return (
       <AdminLayout>
-        <Page title="Locations" fariane={this.fariane}>
+        <Page title="Utilisateurs" fariane={this.fariane}>
           <Card header={this.header()} >
-            <Query query={get_rental} pollInterval={3000} >
+            <Query query={get_users} pollInterval={3000} >
               {({ loading, error, data }) => {
                 if (loading) return <div>Chargement en cours ...</div>
                 if (error) {
@@ -53,46 +53,40 @@ class List extends React.Component {
                       <thead>
                         <tr>
                           <th>#ID</th>
-                          <th>Marque</th>
-                          <th>Model</th>
-                          <th>Catégorie</th>
-                          <th>Prix journal</th>
-                          <th>Couleur</th>
-                          <th>Immatriculation</th>
-                          <th>Chassis number</th>
-                          <th>Status</th>
+                          <th>Nom complet</th>
+                          <th>CNI</th>
+                          <th>E-mail</th>
+                          <th>Téléphone</th>
+                          <th>Rôle</th>
                           <th>Actions</th>
                         </tr>
                       </thead>
                       <tbody>
                         {
-                          data.rentals.edges.map((edge, index)=>{
-                            let rental = edge.node
+                          data.users.edges.map((edge, index)=>{
+                            let user = edge.node
                             return (
-                              <tr key={rental.id}>
-                                <td>{rental.id}</td>
-                                <td>{rental.brand.name}</td>
-                                <td>{rental.model_date} {car.model}</td>
-                                <td>{rental.category.categoryId}</td>
-                                <td>{car.price}</td>
-                                <td>{rental.color.colorId}</td>
-                                <td>{rental.plate_number}</td>
-                                <td>{rental.chassis_number}</td>
-                                <td>{rental.status.statusId}</td>
+                              <tr key={user.id}>
+                                <td>{user.id}</td>
+                                <td>{user.gender} {user.firstname} {user.lastname}</td>
+                                <td>{user.cni}</td>
+                                <td>{user.email}</td>
+                                <td>{user.phone}</td>
+                                <td>{user.role.title}</td>
                                 <td>
-                                  <Link href={"/rentals/view?rentalId="+rental.id} >
+                                  <Link href={"/users/view?userId="+user.id} >
                                     <a style={{margin:3}}
                                     className="btn btn-info btn-sm" >
                                     <i className="fa fa-eye"></i>
                                     </a>
                                   </Link>
-                                  <Link href={"/rentals/edit?rentalId="+rental.id} >
+                                  <Link href={"/users/edit?userId="+user.id} >
                                     <a  style={{margin:3}}
                                     className="btn btn-success btn-sm" >
                                     <i className="fa fa-pen-alt"></i>
                                     </a>
                                   </Link>
-                                  <RentalDeleteButton rentalId={rental.id} />
+                                  <UserDeleteButton userId={user.id} />
                                 </td>
                               </tr>
                             )

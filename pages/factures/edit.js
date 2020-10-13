@@ -2,39 +2,39 @@ import Head from 'next/head'
 import Link from 'next/link'
 import React from 'react'
 import AdminLayout from '../../components/AdminLayout'
-import {get_customer, update_customer} from './queries'
+import {get_user, update_user} from './queries'
 import { Query, Mutation } from 'react-apollo' 
 import withData from '../../lib/withData'
 import {Table, Row,Col} from 'react-bootstrap'
 import Page from '../../components/Page'
 import Card from '../../components/Card' 
 import { withRouter } from 'next/router'
-import CustomerForm from './CustomerForm'
+import UserForm from './UserForm'
 import Router from 'next/router'
 
 class Edit extends React.Component {
   constructor (props) {
     super(props)   
-    const { customerId } = this.props.router.query
+    const { userId } = this.props.router.query
     this.state={
-      customerId: customerId,
-      customer:null
+      userId: userId,
+      user:null
     }
-    this.fariane= [{title:"Acceuil",path:"/"},{title:"Clients",path:"/customers/"}]  
+    this.fariane= [{title:"Acceuil",path:"/"},{title:"Users",path:"/users/"}]  
     this.onDelete = this.onDelete.bind(this)
   } 
   onDelete(){
-    window.flash('Le Client a bien été supprimée.', 'success')
-    this.props.history.push("/customers/");
+    window.flash('L\'utilisateur a bien été supprimée.', 'success')
+    this.props.history.push("/users/");
   }
   header(){ 
-    const { customerId } = this.state
+    const { userId } = this.state
     return <React.Fragment>
-             <h3 className="card-title">{"Client #"+customerId}</h3>
+             <h3 className="card-title">{"Utilisateur #"+userId}</h3>
 
                 <div className="card-tools">
-                    <Link href={"/customers/edit/"+customerId} >
-                       <a className="btn btn-success btn-sm" data-toggle="tooltip" title="" data-original-title="Nouveau" >
+                    <Link href={"/users/edit/"+userId} >
+                       <a className="btn btn-success btn-sm" data-toggle="tooltip" title="" data-original-title="Nouvelle" >
                         <i className="fa fa-pen-alt"></i> Modifier
                         </a> 
                     </Link>
@@ -42,13 +42,13 @@ class Edit extends React.Component {
           </React.Fragment>
   }
   render() {   
-    let {customerId, customer} = this.state
-    if(customer)
-      delete customer.id
+    let {userId, user} = this.state
+    if(user)
+      delete user.id
     return (
       <AdminLayout>
-        <Page title="Marques" fariane={this.fariane}>
-            <Query query={get_customer} variables={{customerId}} _pollInterval={3000} >
+        <Page title="Utilisateurs" fariane={this.fariane}>
+            <Query query={get_user} variables={{userId}} _pollInterval={3000} >
               {({ loading, error, data }) => {
                 if (loading) return <div>Chargement en cours ...</div>
                 if (error) {
@@ -56,18 +56,18 @@ class Edit extends React.Component {
                   return <div>Error</div> 
                 }   
                 console.log(data) 
-                if(!data.customer)
-                  return "Customer not found"
-                if(this.state.customer == null){
-                    delete data.customer.__typename
-                    customer = this.state.customer = data.customer 
+                if(!data.user)
+                  return "User not found"
+                if(this.state.user == null){
+                    delete data.user.__typename
+                    user = this.state.user = data.user 
                 }
                 //console.log(user)
                 return (  
-                    <Mutation mutation={update_customer} variables={{id:customerId,data:this.state.customer}} >
+                    <Mutation mutation={update_user} variables={{id:userId,data:this.state.user}} >
                       {postMutation => 
-                      <CustomerForm 
-                        customer={customer}
+                      <UserForm 
+                        user={user}
                         onSubmit={(event)=>{
                           //alert("hello")
                           event.preventDefault(); 
@@ -75,11 +75,11 @@ class Edit extends React.Component {
                           postMutation().then((result)=>{
                             //this.props.history.goBack();
                             //console.log(result)
-                            alert('Le Client a bien été modifié.', 'success')
-                            Router.push("/customers/view?customerId="+result.data.updateCustomer.id);
+                            alert('L\'utilisateur a bien été modifié.', 'success')
+                            Router.push("/users/view?userId="+result.data.updateUser.id);
                           })
                         }} 
-                        onChange={(customer)=>this.setState({customer:customer})}
+                        onChange={(user)=>this.setState({user:user})}
                          />
                       } 
                     </Mutation>

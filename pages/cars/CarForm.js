@@ -94,7 +94,7 @@ class CarForm extends React.Component{
               }} >  
           <Form.Group controlId="formBasicBrandId">
             <Form.Label>Marque:</Form.Label>
-            <BrandSelectInput onChange={(selectedId)=>this.setBrandId(selectedId)} />
+            <BrandSelectInput selectedId={car.brandId} onChange={(selectedId)=>this.setBrandId(selectedId)} />
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Modéle:</Form.Label>
@@ -106,15 +106,15 @@ class CarForm extends React.Component{
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Catégorie:</Form.Label>
-            <CategorySelectInput onChange={(selectedId)=>this.setCategoryId(selectedId)} />
+            <CategorySelectInput  selectedId={car.categoryId}  onChange={(selectedId)=>this.setCategoryId(selectedId)} />
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
-            <Form.Label>Prix journal:</Form.Label>
+            <Form.Label>Prix de location:</Form.Label>
             <Form.Control value={car.price} type="text" onChange={(event)=>this.setPrice(event.target.value)} placeholder="Prix journal" />
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Couleur:</Form.Label>
-            <ColorSelectInput onChange={(selectedId)=>this.setColorId(selectedId)} />
+            <ColorSelectInput  selectedId={car.colorId}  onChange={(selectedId)=>this.setColorId(selectedId)} />
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Immatriculation:</Form.Label>

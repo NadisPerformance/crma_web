@@ -9,6 +9,7 @@ import {Table} from 'react-bootstrap'
 import Page from '../../components/Page'
 import Card from '../../components/Card'
 import withAuth from '../../lib/withAuth'
+import CarDeleteButton from './DeleteButton'
 
 class List extends React.Component {
   constructor (props) {
@@ -73,12 +74,12 @@ class List extends React.Component {
                                 <td>{car.id}</td>
                                 <td>{car.brand.name}</td>
                                 <td>{car.model_date} {car.model}</td>
-                                <td>{car.category.categoryId}</td>
+                                <td>{car.category.title}</td>
                                 <td>{car.price}</td>
-                                <td>{car.color.colorId}</td>
+                                <td>{car.color && car.color.name}</td>
                                 <td>{car.plate_number}</td>
                                 <td>{car.chassis_number}</td>
-                                <td>{car.status.statusId}</td>
+                                <td>{"car.status.statusId"}</td>
                                 <td>
                                   <Link href={"/cars/view?carId="+car.id} >
                                     <a style={{margin:3}}
@@ -92,6 +93,7 @@ class List extends React.Component {
                                     <i className="fa fa-pen-alt"></i>
                                     </a>
                                   </Link>
+                                  <CarDeleteButton carId={car.id} />
                                 </td>
                               </tr>
                             )

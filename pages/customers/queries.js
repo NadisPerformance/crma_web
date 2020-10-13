@@ -72,6 +72,16 @@ export const create_customer = gql`
 
 `
 
+export const delete_customer = gql`
+  mutation delete_customer($id: ID!)  {
+    deleteCustomer(id:$id){
+        statut_code
+        message
+    }
+  }
+
+`
+
 export default () => {
 return "Show page working ! ";
 }

@@ -98,3 +98,13 @@ export const create_car = gql`
   }
 
 `
+
+export const delete_car = gql`
+  mutation delete_car($id: ID!)  {
+    deleteCar(id:$id){
+        statut_code
+        message
+    }
+  }
+
+`

@@ -1,33 +1,27 @@
 import gql from 'graphql-tag'
 
-export const get_cars = gql`
+export const get_rentals = gql`
 {
-  cars {
+  rentals {
     edges{
         node{
             id
-            plate_number
-            brandId
-            model
-            model_date
-            categoryId
-            price
-            colorId
-            chassis_number
-            statusId
-            brand{
-              id
-              name
-            }
+            bookingId
+            carId
+            customerId
+            second_driverId
+            date_begin
+            date_end
+            
         }
     }
   }
 }
 `
 
-export const get_car = gql`
-query get_car($carId:ID!){
-    car(id:$carId){
+export const get_rental = gql`
+query get_rental($rentalId:ID!){
+  rental(id:$rentalId){
         id
         plate_number
         brandId
@@ -45,9 +39,9 @@ query get_car($carId:ID!){
   }
 }
 `
-export const update_car = gql`
-  mutation update_car($id: ID!, $data:CarInput!)  {
-    updateCar(id:$id,data:$data){
+export const update_rental = gql`
+  mutation update_rental($id: ID!, $data:RentalInput!)  {
+    updateRental(id:$id,data:$data){
         id
             plate_number
             brandId
@@ -62,10 +56,20 @@ export const update_car = gql`
   }
 
 `
-export const create_car = gql`
-  mutation update_car($data:CarInput!)  {
-    createCar(data:$data){
+export const create_rental = gql`
+  mutation update_rental($data:RentalInput!)  {
+    createRental(data:$data){
         id
+    }
+  }
+
+`
+
+export const delete_rental = gql`
+  mutation delete_rental($id: ID!)  {
+    deleteRental(id:$id){
+        statut_code
+        message
     }
   }
 

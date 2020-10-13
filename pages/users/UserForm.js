@@ -111,7 +111,7 @@ class UserForm extends React.Component{
           </Form.Group>
           <Form.Group controlId="formBasicRoleId">
             <Form.Label>Rôle:</Form.Label>
-            <RoleSelectInput onChange={(selectedId)=>this.setRoleId(selectedId)} />
+            <RoleSelectInput  selectedId={user.roleId}  onChange={(selectedId)=>this.setRoleId(selectedId)} />
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Mot de passe:</Form.Label>
