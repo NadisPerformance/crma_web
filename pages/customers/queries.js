@@ -40,6 +40,46 @@ query get_customer($customerId:ID!){
     email
     phone
     company_name
+    createdAt
+    updatedAt
+    rentals{
+      id
+      date_begin
+      date_end
+      car{
+        id
+        plate_number
+      }
+    }
+    bookings{
+      id
+      date_begin
+      date_end
+      montant_avance
+      car{
+        id
+        plate_number
+      }
+    }
+  }
+}
+`
+export const get_customer_to_update = gql`
+query get_customer_to_update($customerId:ID!){
+  customer(id:$customerId){
+    id
+    firstname
+    lastname
+    birthday
+    gender
+    cni
+    type
+    driver_license
+    city
+    address
+    email
+    phone
+    company_name
   }
 }
 `

@@ -95,7 +95,11 @@ class View extends React.Component {
                              <tbody>
                                 <tr>
                                   <th style={{width:"50%"}}>Date de création:</th>
-                                  <td>{false && new Date(data.user.createdAt).toLocaleString()}</td>
+                                  <td>{ new Date(data.user.createdAt).toLocaleString()}</td>
+                                </tr>
+                                <tr>
+                                  <th style={{width:"50%"}}>Dernière modification:</th>
+                                  <td>{ new Date(data.user.updatedAt).toLocaleString()}</td>
                                 </tr>
                                 <tr>
                                   <th style={{width:"50%"}} >Rôle:</th>

@@ -27,6 +27,10 @@ export const get_cars = gql`
               id
               name
             }
+            status{
+              id
+              title
+            }
         }
     }
   }
@@ -46,6 +50,8 @@ query get_car($carId:ID!){
         colorId
         chassis_number
         statusId
+        createdAt
+        updatedAt
         brand{
           id
           name
@@ -58,9 +64,31 @@ query get_car($carId:ID!){
           id
           name
         }
+        status{
+          id
+          title
+        }
   }
 }
 `
+
+export const get_car_to_update = gql`
+query get_car_to_update($carId:ID!){
+    car(id:$carId){
+        id
+        plate_number
+        brandId
+        model
+        model_date
+        categoryId
+        price
+        colorId
+        chassis_number
+        statusId
+  }
+}
+`
+
 export const update_car = gql`
   mutation update_car($id: ID!, $data:CarInput!)  {
     updateCar(id:$id,data:$data){

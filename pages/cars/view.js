@@ -3,41 +3,44 @@ import Link from 'next/link'
 import React from 'react'
 import AdminLayout from '../../components/AdminLayout'
 import {get_car} from './queries'
-import { Query } from 'react-apollo' 
+import { Query } from 'react-apollo'
 import withData from '../../lib/withData'
-import {Table, Row,Col} from 'react-bootstrap'
+import {Table, Row,Col, Tabs, Tab} from 'react-bootstrap'
 import Page from '../../components/Page'
-import Card from '../../components/Card' 
+import Card from '../../components/Card'
 import { withRouter } from 'next/router'
+import CarTab from './Tabs/CarTab'
+import CarInsurancesTab from './Tabs/CarInsurancesTab'
+import TechnicalControlsTab from './Tabs/TechnicalControlsTab'
 class View extends React.Component {
   constructor (props) {
-    super(props)   
+    super(props)
     const { carId } = this.props.router.query
     this.state={
       carId: carId
     }
-    this.fariane= [{title:"Acceuil",path:"/"},{title:"Cars",path:"/cars/"}]  
+    this.fariane= [{title:"Acceuil",path:"/"},{title:"Véhicules",path:"/cars/"}]
     this.onDelete = this.onDelete.bind(this)
-  } 
+  }
   onDelete(){
     window.flash('Le véhicule a bien été supprimée.', 'success')
     this.props.history.push("/cars/");
   }
-  header(){ 
+  header(){
     const { carId } = this.state
     return <React.Fragment>
-             <h3 className="card-title">{"Utilisateur #"+carId}</h3>
+             <h3 className="card-title">{"Véhicule #"+carId}</h3>
 
                 <div className="card-tools">
                     <Link href={"/cars/edit?carId="+carId} >
                        <a className="btn btn-success btn-sm" data-toggle="tooltip" title="" data-original-title="Nouvelle" >
                         <i className="fa fa-pen-alt"></i> Modifier
-                        </a> 
+                        </a>
                     </Link>
                 </div>
           </React.Fragment>
   }
-  render() {   
+  render() {
     const {carId} = this.state
     return (
       <AdminLayout>
@@ -48,69 +51,26 @@ class View extends React.Component {
                 if (loading) return <div>Chargement en cours ...</div>
                 if (error) {
                   console.log(error)
-                  return <div>Error</div> 
-                }   
-                console.log(data) 
+                  return <div>Error</div>
+                }
+                console.log(data)
                 if(!data.car)
                   return "Car not found"
-                return (  
-                  <Row className="col-sm-12">
-                      <Col className="col-sm-6 table-responsive">
-                          <table className="table">
-                              <tbody> 
-                                <tr>
-                                  <th style={{width:"50%"}}>Marque:</th>
-                                  <td>{data.car.brand.name}</td>
-                                </tr>
-                                <tr>
-                                  <th style={{width:"50%"}} >Modéle:</th>
-                                  <td>{data.car.model}</td>
-                                </tr>
-                                <tr>
-                                  <th style={{width:"50%"}}>Date du modéle:</th>
-                                  <td>{data.car.model_date}</td>
-                                </tr>
-                                <tr>
-                                  <th style={{width:"50%"}}>Immatriculation:</th>
-                                  <td>{data.car.plate_number}</td>
-                                </tr>
-                                <tr>
-                                  <th style={{width:"50%"}}>Numéro de chassis:</th>
-                                  <td>{data.car.chassis_number}</td>
-                                </tr>
-                                <tr>
-                                  <th style={{width:"50%"}} >Catégorie:</th>
-                                  <td>{data.car.category.title}</td>
-                                </tr>
-                                <tr>
-                                  <th style={{width:"50%"}}>Prix:</th>
-                                  <td>{data.car.price}</td>
-                                </tr>
-                                <tr>
-                                  <th style={{width:"50%"}}>Couleur:</th>
-                                  <td>{data.car.color.name}</td>
-                                </tr>
-                                <tr>
-                                  <th style={{width:"50%"}}>Status:</th>
-                                  <td>{"data.car.status.title"}</td>
-                                </tr>
-                              </tbody>
-                          </table>
-                      </Col>  
-                      <Col className="col-sm-6 table-responsive">
-                          <table className="table">
-                             <tbody> 
-                                <tr>
-                                  <th style={{width:"50%"}}>Date de création:</th>
-                                  <td>{false && new Date(data.car.createdAt).toLocaleString()}</td>
-                                </tr>  
-                              </tbody>
-                          </table>
-                      </Col> 
-                  </Row>  
+                return (
+                  <Tabs   defaultActiveKey="car" id="uncontrolled-tab-example" style={{backgroundColor:'#f4f6f9',margin:'3px',paddingBottom:'2px'}}>
+                    <Tab eventKey="car" title="Véhicule" >
+                       <CarTab car={data.car} />
+                    </Tab>
+                    <Tab eventKey="car_insurance" title="Assurance" >
+                       <CarInsurancesTab car_insurances={data.car.car_insurances} />
+                    </Tab>
+                    <Tab eventKey="technical_control" title="Contrôle technique" >
+                       <TechnicalControlsTab technical_controls={data.car.technical_controls} />
+                    </Tab>
+                  </Tabs>
                 )
               }}
-              </Query> 
+              </Query>
           </Card>
         </Page>
       </AdminLayout>

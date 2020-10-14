@@ -1,64 +1,64 @@
 import React from 'react'
-import {Form, Row,Col, Button, InputGroup} from 'react-bootstrap' 
+import {Form, Row,Col, Button, InputGroup} from 'react-bootstrap'
 import BrandSelectInput from '../brands/SelectInput'
 import CategorySelectInput from '../categories/SelectInput'
 import ColorSelectInput from '../colors/SelectInput'
 
 class CarForm extends React.Component{
   constructor (props) {
-    super(props)  
+    super(props)
     this.state = {
       car:{
-        brandId:"", 
-        model:"", 
-        model_date:"", 
-        categoryId:"", 
-        price:"", 
-        colorId:"", 
-        plate_number:"", 
-        chassis_number:"", 
-        availability:"", 
-        statusId:"", 
+        brandId:"",
+        model:"",
+        model_date:"",
+        categoryId:"",
+        price:"",
+        colorId:"",
+        plate_number:"",
+        chassis_number:"",
+        availability:"",
+        statusId:"",
       }
-    } 
-  } 
+    }
+  }
   componentDidMount(){
-    const {car} = this.props 
-    if(car){ 
-      this.state.car = car  
+    const {car} = this.props
+    if(car){
+      this.state.car = car
     }
     this.onChange()
   }
   setBrandId(value){
     this.state.car.brandId = value
     this.setState({car:this.state.car})
-    this.onChange(); 
+    this.onChange();
   }
   setModel(value){
     this.state.car.model = value
     this.setState({car:this.state.car})
-    this.onChange(); 
+    this.onChange();
   }
   setModel_date(value){
     this.state.car.model_date = value
     this.setState({car:this.state.car})
-    this.onChange(); 
-  } 
+    this.onChange();
+  }
   setCategoryId(value){
     this.state.car.categoryId = value
     this.setState({car:this.state.car})
-    this.onChange(); 
-  } 
+    this.onChange();
+  }
   setPrice(value){
     this.state.car.price = value
     this.setState({car:this.state.car})
-    this.onChange(); 
-  } 
-   
+    this.onChange();
+  }
+
   setColorId(value){
     this.state.car.colorId = value
     this.setState({car:this.state.car})
-    this.onChange(); 
+    this.onChange();
   }
   setPlate_number(value){
     this.state.car.plate_number = value
@@ -68,36 +68,36 @@ class CarForm extends React.Component{
   setChassis_number(value){
     this.state.car.chassis_number = value
     this.setState({car:this.state.car})
-    this.onChange(); 
-  } 
+    this.onChange();
+  }
   setAvailability(value){
     this.state.car.availability = value
     this.setState({car:this.state.car})
-    this.onChange(); 
-  } 
+    this.onChange();
+  }
   setStatusId(value){
     this.state.car.statusId = value
     this.setState({car:this.state.car})
-    this.onChange(); 
+    this.onChange();
   }
 
-  onChange(){ 
+  onChange(){
     if(this.props.onChange)
       this.props.onChange(this.state.car)
   }
-  render () {  
-    const {car, show_password} = this.state 
+  render () {
+    const {car, show_password} = this.state
     return (
        <Form onSubmit={(event)=>{
                 if(this.props.onSubmit)
                   this.props.onSubmit(event)
-              }} >  
+              }} >
           <Form.Group controlId="formBasicBrandId">
             <Form.Label>Marque:</Form.Label>
             <BrandSelectInput selectedId={car.brandId} onChange={(selectedId)=>this.setBrandId(selectedId)} />
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
-            <Form.Label>Modéle:</Form.Label>
+            <Form.Label>Modèle:</Form.Label>
             <Form.Control value={car.model} type="text" onChange={(event)=>this.setModel(event.target.value)} placeholder="Modéle" />
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
@@ -125,10 +125,6 @@ class CarForm extends React.Component{
             <Form.Control value={car.chassis_number} type="text" onChange={(event)=>this.setChassis_number(event.target.value)} placeholder="Numéro de chassis" />
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
-            <Form.Label>Disponibilité:</Form.Label>
-            <Form.Control value={car.availability} type="text" onChange={(event)=>this.setAvailability(event.target.value)} placeholder="Disponibilité" />
-          </Form.Group>
-          <Form.Group controlId="formBasicEmail">
             <Form.Label>Status:</Form.Label>
             <Form.Control value={car.statusId} type="text" onChange={(event)=>this.setStatusId(event.target.value)} placeholder="Status" />
           </Form.Group>
@@ -136,7 +132,7 @@ class CarForm extends React.Component{
                 <Button   variant="primary" type="submit">
                   Enregistrer
                 </Button>
-          </div> 
+          </div>
        </Form>
     )
   }
@@ -151,4 +147,4 @@ const styles ={
   }
 }
 
-export default CarForm; 
+export default CarForm;

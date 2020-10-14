@@ -40,6 +40,8 @@ query get_user($userId:ID!){
       title
     }
     password
+    createdAt
+    updatedAt
   }
 }
 `

@@ -55,7 +55,7 @@ class List extends React.Component {
                         <tr>
                           <th>#ID</th>
                           <th>Marque</th>
-                          <th>Model</th>
+                          <th>Modèle</th>
                           <th>Catégorie</th>
                           <th>Prix journal</th>
                           <th>Couleur</th>
@@ -79,7 +79,7 @@ class List extends React.Component {
                                 <td>{car.color && car.color.name}</td>
                                 <td>{car.plate_number}</td>
                                 <td>{car.chassis_number}</td>
-                                <td>{"car.status.statusId"}</td>
+                                <td>{car.status && car.status.title}</td>
                                 <td>
                                   <Link href={"/cars/view?carId="+car.id} >
                                     <a style={{margin:3}}
