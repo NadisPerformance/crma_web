@@ -60,8 +60,7 @@ class View extends React.Component {
                   return "Rental not found"
                 return (
                   <React.Fragment>
-                  <br/>
-                  <Tabs variant="pills"  defaultActiveKey="rental" id="uncontrolled-tab-example" style={{backgroundColor:'#f4f6f9',marginLeft:'3px',paddingBottom:'2px'}}>
+                  <Tabs   defaultActiveKey="rental" id="uncontrolled-tab-example" style={{backgroundColor:'#f4f6f9',margin:'3px',paddingBottom:'2px'}}>
                     <Tab eventKey="rental" title="Location" >
                        <RentalTab rental={data.rental} />
                     </Tab>
