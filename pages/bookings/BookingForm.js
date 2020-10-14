@@ -3,6 +3,8 @@ import {Form, Row,Col, Button, InputGroup} from 'react-bootstrap'
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css"
 import moment from 'moment'
+import CustomerSelectInput  from '../customers/SelectInput'
+import CarSelectInput  from '../cars/SelectInput'
 
 class BookingForm extends React.Component{
   constructor (props) {
@@ -65,11 +67,11 @@ class BookingForm extends React.Component{
               }} >
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Client:</Form.Label>
-            <Form.Control value={booking.customerId} type="text" onChange={(event)=>this.setCustomerId(event.target.value)} placeholder="Client" />
+            <CustomerSelectInput  selectedId={booking.customerId}  onChange={(selectedId)=>this.setCustomerId(selectedId)} />
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Véhicule:</Form.Label>
-            <Form.Control value={booking.carId} type="text" onChange={(event)=>this.setCarId(event.target.value)} placeholder="Véhicule" />
+            <CarSelectInput  selectedId={booking.carId}  onChange={(selectedId)=>this.setCarId(selectedId)} />
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Montant payé à l'avance:</Form.Label>

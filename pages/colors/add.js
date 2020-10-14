@@ -3,34 +3,34 @@ import Link from 'next/link'
 import Router from 'next/router'
 import React from 'react'
 import AdminLayout from '../../components/AdminLayout'
-import { create_customer} from './queries'
+import { create_color} from './queries'
 import { Query, Mutation } from 'react-apollo' 
 import withData from '../../lib/withData'
 import {Table, Row,Col} from 'react-bootstrap'
 import Page from '../../components/Page'
 import Card from '../../components/Card' 
 import { withRouter } from 'next/router'
-import CustomerForm from './CustomerForm'
+import ColorForm from './ColorForm'
 class Add extends React.Component {
   constructor (props) {
     super(props)   
     this.state={ 
-      customer:null
+      color:null
     }
-    this.fariane= [{title:"Acceuil",path:"/"},{title:"Clients",path:"/customers/list"}]  
+    this.fariane= [{title:"Acceuil",path:"/"},{title:"Couleurs",path:"/colors/"}]  
     this.onDelete = this.onDelete.bind(this)
   } 
   onDelete(){
-    window.flash('Le client a bien été supprimée.', 'success')
-    this.props.history.push("/customers/");
+    window.flash('L\'utilisateur a bien été supprimée.', 'success')
+    this.props.history.push("/colorss/");
   }
   header(){  
     return <React.Fragment>
-             <h3 className="card-title">{"Nouveau client "}</h3>
+             <h3 className="card-title">{"Nouveau véhicule "}</h3>
 
                 <div className="card-tools">
-                    <Link href={"/customers/add"} >
-                       <a className="btn btn-success btn-sm" data-toggle="tooltip" title="" data-original-title="Nouveau" >
+                    <Link href={"/cars/add"} >
+                       <a className="btn btn-success btn-sm" data-toggle="tooltip" title="" data-original-title="Nouvelle" >
                         <i className="fa fa-pen-alt"></i> Nouveau
                         </a> 
                     </Link>
@@ -38,25 +38,25 @@ class Add extends React.Component {
           </React.Fragment>
   }
   render() {   
-    let {customer} = this.state
+    let {color} = this.state
     return (
       <AdminLayout>
-        <Page title="Utilisateurs" fariane={this.fariane}>
-            <Mutation mutation={create_customer} variables={{data:this.state.customer}} >
+        <Page title="Véhicules" fariane={this.fariane}>
+            <Mutation mutation={create_color} variables={{data:this.state.color}} >
               {postMutation => 
-                 <CustomerForm 
-                 customer={customer}
+                 <ColorForm 
+                 color={color}
                     onSubmit={(event)=>{
                           //alert("hello")
                           event.preventDefault(); 
-                          //console.log(user)
+                          //console.log(car)
                           postMutation().then((result)=>{
                             //this.props.history.goBack();
-                            alert('L\'utilisateur a bien été crée.', 'success')
-                            Router.push("/customers/view?customerId="+result.data.createCustomer.id);
+                            alert('Le véhicule a bien été crée.', 'success')
+                            Router.push("/colors/view?colorId="+result.data.createColor.id);
                           })
                         }} 
-                        onChange={(customer)=>this.setState({customer:customer})}
+                        onChange={(color)=>this.setState({color:color})}
                          />
               } 
           </Mutation> 

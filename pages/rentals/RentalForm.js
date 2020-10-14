@@ -3,6 +3,8 @@ import {Form, Row,Col, Button, InputGroup} from 'react-bootstrap'
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css"
 import moment from 'moment'
+import CustomerSelectInput  from '../customers/SelectInput'
+import CarSelectInput  from '../cars/SelectInput'
 
 class RentalForm extends React.Component{
   constructor (props) {
@@ -26,19 +28,16 @@ class RentalForm extends React.Component{
     this.onChange()
   }
   setCarId(value){
-    this.state.rental.carId = value*1
-    this.setState({rental:this.state.rental})
+    this.setState(state => (state.rental.carId = value *1, state))
     this.onChange();
   }
 
   setCustomerId(value){
-    this.state.rental.customerId = value*1
-    this.setState({rental:this.state.rental})
+    this.setState(state => (state.rental.customerId = value *1, state))
     this.onChange();
   }
   setSecondDriverId(value){
-    this.state.rental.second_driverId = value*1
-    this.setState({rental:this.state.rental})
+    this.setState(state => (state.rental.second_driverId = value *1, state))
     this.onChange();
   }
   setDateBegin(value){
@@ -66,15 +65,15 @@ class RentalForm extends React.Component{
               }} >
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Client:</Form.Label>
-            <Form.Control value={rental.customerId} type="text" onChange={(event)=>this.setCustomerId(event.target.value)} placeholder="Client" />
+            <CustomerSelectInput  selectedId={rental.customerId}  onChange={(selectedId)=>this.setCustomerId(selectedId)} />
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Véhicule:</Form.Label>
-            <Form.Control value={rental.carId} type="text" onChange={(event)=>this.setCarId(event.target.value)} placeholder="Véhicule" />
+            <CarSelectInput  selectedId={rental.carId}  onChange={(selectedId)=>this.setCarId(selectedId)} />
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Deuxiéme conducteur:</Form.Label>
-            <Form.Control value={rental.second_driverId} type="text" onChange={(event)=>this.setSecondDriverId(event.target.value)} placeholder="Deuxiéme conducteur" />
+            <CustomerSelectInput  selectedId={rental.second_driverId}  onChange={(selectedId)=>this.setSecondDriverId(selectedId)} />
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Date de début:</Form.Label><br/>

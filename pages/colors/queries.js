@@ -12,3 +12,28 @@ export const get_colors = gql`
   }
 }
 `
+export const get_color = gql`
+query get_color($colorId:ID!){
+  color(id:$colorId){
+    id
+    name
+  }
+}
+`
+export const update_color = gql`
+  mutation update_color($id: ID!, $data:ColorInput!)  {
+    updateColor(id:$id,data:$data){
+        id
+        name
+    }
+  }
+
+`
+export const create_color = gql`
+  mutation update_color($data:ColorInput!)  {
+    createColor(data:$data){
+        id
+    }
+  }
+
+`

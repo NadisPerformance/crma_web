@@ -30,7 +30,7 @@ class Edit extends React.Component {
   header(){
     const { rentalId } = this.state
     return <React.Fragment>
-             <h3 className="card-title">{"Utilisateur #"+rentalId}</h3>
+             <h3 className="card-title">{"Location #"+rentalId}</h3>
 
                 <div className="card-tools">
                     <Link href={"/rentals/edit/"+rentalId} >
@@ -47,7 +47,7 @@ class Edit extends React.Component {
       delete rental.id
     return (
       <AdminLayout>
-        <Page title="Utilisateurs" fariane={this.fariane}>
+        <Page title="Locations" fariane={this.fariane}>
             <Query query={get_rental} variables={{rentalId}} _pollInterval={3000} >
               {({ loading, error, data }) => {
                 if (loading) return <div>Chargement en cours ...</div>

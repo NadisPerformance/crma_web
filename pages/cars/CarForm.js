@@ -3,6 +3,7 @@ import {Form, Row,Col, Button, InputGroup} from 'react-bootstrap'
 import BrandSelectInput from '../brands/SelectInput'
 import CategorySelectInput from '../categories/SelectInput'
 import ColorSelectInput from '../colors/SelectInput'
+import StatusSelectInput from '../statuss/SelectInput'
 
 class CarForm extends React.Component{
   constructor (props) {
@@ -126,7 +127,7 @@ class CarForm extends React.Component{
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Status:</Form.Label>
-            <Form.Control value={car.statusId} type="text" onChange={(event)=>this.setStatusId(event.target.value)} placeholder="Status" />
+            <StatusSelectInput  selectedId={car.statusId}  onChange={(selectedId)=>this.setStatusId(selectedId)} />
           </Form.Group>
           <div className="text-right" style={{margin:10}}>
                 <Button   variant="primary" type="submit">

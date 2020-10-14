@@ -1,11 +1,17 @@
 import React from 'react'
-import {Form, Row,Col, Button, InputGroup} from 'react-bootstrap'  
+import {Form, Row,Col, Button, InputGroup} from 'react-bootstrap' 
+import moment from 'moment'
+import DatePicker from 'react-datepicker'
+import "react-datepicker/dist/react-datepicker.css"
+
+
 class CustomerForm extends React.Component{
   constructor (props) {
     super(props)  
     this.state = {
       customer:{
         name:""
+        
       }
     } 
   } 
@@ -85,9 +91,22 @@ class CustomerForm extends React.Component{
     const {customer, show_password} = this.state 
     return (
        <Form onSubmit={(event)=>{
-                if(this.props.onSubmit)
-                  this.props.onSubmit(event)
-              }} >  
+          if(this.props.onSubmit)
+            this.props.onSubmit(event)
+          }} >  
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Type:</Form.Label>
+            <Form.Control value={customer.type} onChange={(event)=>this.setType(event.target.value)} as="select">
+              <option value="0">Particulier</option>
+              <option value="1">Société</option>
+            </Form.Control>
+          </Form.Group>
+          { customer.type ==true &&
+            <Form.Group controlId="formBasicEmail">
+              <Form.Label>Société:</Form.Label>
+              <Form.Control value={customer.company_name} type="text" onChange={(event)=>this.setCompany_name(event.target.value)} placeholder="Société" />
+            </Form.Group>
+          }
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Nom:</Form.Label>
             <Form.Control value={customer.lastname} type="text" onChange={(event)=>this.setLastname(event.target.value)} placeholder="Nom " />
@@ -97,8 +116,14 @@ class CustomerForm extends React.Component{
             <Form.Control value={customer.firstname} type="text" onChange={(event)=>this.setFirstname(event.target.value)} placeholder="Prenom " />
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
-            <Form.Label>Anniversaire:</Form.Label>
-            <Form.Control value={customer.birthday} type="text" onChange={(event)=>this.setBirthday(event.target.value)} placeholder="Anniversaire " />
+            <Form.Label>Date de naissance:</Form.Label><br/>
+            <DatePicker
+              selected={Date.parse(moment(customer.birthday).toDate())}
+              onChange={date => this.setBirthday(date)}
+              isClearable
+              dateFormat="d/MM/yyyy"
+              placeholderText="Date de naissance"
+            />
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Civilité:</Form.Label>
@@ -111,10 +136,6 @@ class CustomerForm extends React.Component{
           <Form.Group controlId="formBasicEmail">
             <Form.Label>CNI:</Form.Label>
             <Form.Control value={customer.cni} type="text" onChange={(event)=>this.setCNI(event.target.value)} placeholder="CNI " />
-          </Form.Group>
-          <Form.Group controlId="formBasicEmail">
-            <Form.Label>Type:</Form.Label>
-            <Form.Control value={customer.type} type="text" onChange={(event)=>this.setType(event.target.value)} placeholder="Type " />
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Permis de conduite:</Form.Label>
@@ -135,10 +156,6 @@ class CustomerForm extends React.Component{
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Téléphone:</Form.Label>
             <Form.Control value={customer.phone} type="text" onChange={(event)=>this.setPhone(event.target.value)} placeholder="Téléphone " />
-          </Form.Group>
-          <Form.Group controlId="formBasicEmail">
-            <Form.Label>Société:</Form.Label>
-            <Form.Control value={customer.company_name} type="text" onChange={(event)=>this.setCompany_name(event.target.value)} placeholder="Société" />
           </Form.Group>
           <div className="text-right" style={{margin:10}}>
                 <Button   variant="primary" type="submit">

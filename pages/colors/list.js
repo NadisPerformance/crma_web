@@ -2,30 +2,29 @@ import Head from 'next/head'
 import Link from 'next/link'
 import React from 'react'
 import AdminLayout from '../../components/AdminLayout'
-import {get_customers} from './queries'
+import {get_colors} from './queries'
 import { Query } from 'react-apollo'
 import withData from '../../lib/withData'
 import {Table} from 'react-bootstrap'
 import Page from '../../components/Page'
 import Card from '../../components/Card'
 import withAuth from '../../lib/withAuth'
-import CustomerDeleteButton from './DeleteButton'
 
 class List extends React.Component {
   constructor (props) {
     super(props)
-    this.fariane= [{title:"Acceuil",path:"/"},{title:"Clients",path:"#"}]
+    this.fariane= [{title:"Acceuil",path:"/"},{title:"Colors",path:"/colors/"}]
     this.onDelete = this.onDelete.bind(this)
   }
   renderHeader(){
 
   }
   header(){
-    console.log(this.props.customer)
+    console.log(this.props.color)
     return (<React.Fragment>
              <h3 className="card-title">Marques</h3>
               <div className="card-tools">
-                    <Link href="/customers/add" >
+                    <Link href="/colors/add" >
                       <a className="btn btn-success btn-xs" >
                         <i className="fa fa-plus"></i> Nouvelle marque
                       </a>
@@ -34,15 +33,15 @@ class List extends React.Component {
           </React.Fragment>)
   }
   onDelete(){
-    window.flash('Le client a bien été supprimé.', 'success')
+    window.flash('L\'utilisateur a bien été supprimée.', 'success')
     //this.props.history.push("/users/");
   }
   render() {
     return (
       <AdminLayout>
-        <Page title="Clients" fariane={this.fariane}>
+        <Page title="Marques" fariane={this.fariane}>
           <Card header={this.header()} >
-            <Query query={get_customers} pollInterval={3000} >
+            <Query query={get_colors} pollInterval={3000} >
               {({ loading, error, data }) => {
                 if (loading) return <div>Chargement en cours ...</div>
                 if (error) {
@@ -54,42 +53,32 @@ class List extends React.Component {
                       <thead>
                         <tr>
                           <th>#ID</th>
-                          <th>Nom complet</th>
-                          <th>CNI</th>
-                          <th>Permit de conduite</th>
-                          <th>Adresse</th>
-                          <th>Téléphone</th>
-                          <th>E-mail</th>
+                          <th>Nom</th>
                           <th>Actions</th>
                         </tr>
                       </thead>
                       <tbody>
                         {
-                          data.customers.edges.map((edge, index)=>{
-                            let customer = edge.node
+                          data.colors.edges.map((edge, index)=>{
+                            let color = edge.node
                             return (
-                              <tr key={customer.id}>
-                                <td>{customer.id}</td>
-                                <td>{customer.gender} {customer.firstname} {customer.lastname}</td>
-                                <td>{customer.cni}</td>
-                                <td>{customer.driver_license}</td>
-                                <td>{customer.address}</td>
-                                <td>{customer.phone}</td>
-                                <td>{customer.email}</td>
+                              <tr key={color.id}>
+                                <td>{color.id}</td>
+                                <td>{color.name}</td>
                                 <td>
-                                  <Link href={"/customers/view?customerId="+customer.id} >
+                                  <Link href={"/colors/view?colorId="+color.id} >
                                     <a style={{margin:3}}
                                     className="btn btn-info btn-sm" >
                                     <i className="fa fa-eye"></i>
                                     </a>
                                   </Link>
-                                  <Link href={"/customers/edit?customerId="+customer.id} >
+                                  <Link href={"/colors/edit?colorId="+color.id} >
                                     <a  style={{margin:3}}
                                     className="btn btn-success btn-sm" >
                                     <i className="fa fa-pen-alt"></i>
                                     </a>
                                   </Link>
-                                  <CustomerDeleteButton customerId={customer.id} />
+                                  
                                 </td>
                               </tr>
                             )

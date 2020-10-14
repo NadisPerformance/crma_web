@@ -20,7 +20,7 @@ class Edit extends React.Component {
       customerId: customerId,
       customer:null
     }
-    this.fariane= [{title:"Acceuil",path:"/"},{title:"Clients",path:"/customers/"}]
+    this.fariane= [{title:"Acceuil",path:"/"},{title:"Clients",path:"/customers/list"}]
     this.onDelete = this.onDelete.bind(this)
   }
   onDelete(){
@@ -47,7 +47,7 @@ class Edit extends React.Component {
       delete customer.id
     return (
       <AdminLayout>
-        <Page title="Marques" fariane={this.fariane}>
+        <Page title="Clients" fariane={this.fariane}>
             <Query query={get_customer_to_update} variables={{customerId}} _pollInterval={3000} >
               {({ loading, error, data }) => {
                 if (loading) return <div>Chargement en cours ...</div>
