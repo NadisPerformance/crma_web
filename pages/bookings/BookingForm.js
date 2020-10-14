@@ -4,14 +4,13 @@ import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css"
 import moment from 'moment'
 
-class RentalForm extends React.Component{
+class BookingForm extends React.Component{
   constructor (props) {
     super(props)
     this.state = {
-      rental:{
+      booking:{
         carId:"",
         customerId:"",
-        second_driverId:"",
         date_begin:"",
         date_end:""
       },
@@ -19,46 +18,46 @@ class RentalForm extends React.Component{
     }
   }
   componentDidMount(){
-    const {rental} = this.props
-    if(rental){
-      this.state.rental = rental
+    const {booking} = this.props
+    if(booking){
+      this.state.booking = booking
     }
     this.onChange()
   }
   setCarId(value){
-    this.state.rental.carId = value*1
-    this.setState({rental:this.state.rental})
+    this.state.booking.carId = value*1
+    this.setState({booking:this.state.booking})
     this.onChange();
   }
 
   setCustomerId(value){
-    this.state.rental.customerId = value*1
-    this.setState({rental:this.state.rental})
+    this.state.booking.customerId = value*1
+    this.setState({booking:this.state.booking})
     this.onChange();
   }
-  setSecondDriverId(value){
-    this.state.rental.second_driverId = value*1
-    this.setState({rental:this.state.rental})
+  setMontantAvance(value){
+    this.state.booking.montant_avance = value*1
+    this.setState({booking:this.state.booking})
     this.onChange();
   }
   setDateBegin(value){
-    this.state.rental.date_begin = value
-    this.setState({rental:this.state.rental})
+    this.state.booking.date_begin = value
+    this.setState({booking:this.state.booking})
     this.onChange();
   }
 
   setDateEnd(value){
-    this.state.rental.date_end = value
-    this.setState({rental:this.state.rental})
+    this.state.booking.date_end = value
+    this.setState({booking:this.state.booking})
     this.onChange();
   }
 
   onChange(){
     if(this.props.onChange)
-      this.props.onChange(this.state.rental)
+      this.props.onChange(this.state.booking)
   }
   render () {
-    const {rental, show_password} = this.state
+    const {booking, show_password} = this.state
     return (
        <Form onSubmit={(event)=>{
                 if(this.props.onSubmit)
@@ -66,20 +65,20 @@ class RentalForm extends React.Component{
               }} >
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Client:</Form.Label>
-            <Form.Control value={rental.customerId} type="text" onChange={(event)=>this.setCustomerId(event.target.value)} placeholder="Client" />
+            <Form.Control value={booking.customerId} type="text" onChange={(event)=>this.setCustomerId(event.target.value)} placeholder="Client" />
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Véhicule:</Form.Label>
-            <Form.Control value={rental.carId} type="text" onChange={(event)=>this.setCarId(event.target.value)} placeholder="Véhicule" />
+            <Form.Control value={booking.carId} type="text" onChange={(event)=>this.setCarId(event.target.value)} placeholder="Véhicule" />
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
-            <Form.Label>Deuxiéme conducteur:</Form.Label>
-            <Form.Control value={rental.second_driverId} type="text" onChange={(event)=>this.setSecondDriverId(event.target.value)} placeholder="Deuxiéme conducteur" />
+            <Form.Label>Montant payé à l'avance:</Form.Label>
+            <Form.Control value={booking.montant_avance} type="text" onChange={(event)=>this.setMontantAvance(event.target.value)} placeholder="Montant payé à l'avance" />
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Date de début:</Form.Label><br/>
             <DatePicker
-              selected={Date.parse(moment(rental.date_begin).toDate())}
+              selected={Date.parse(moment(booking.date_begin).toDate())}
               onChange={date => this.setDateBegin(date)}
               isClearable
               dateFormat="d/MM/yyyy"
@@ -89,7 +88,7 @@ class RentalForm extends React.Component{
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Date de fin:</Form.Label><br/>
             <DatePicker
-              selected={Date.parse(moment(rental.date_end).toDate())}
+              selected={Date.parse(moment(booking.date_end).toDate())}
               onChange={date => this.setDateEnd(date)}
               isClearable
               dateFormat="d/MM/yyyy"
@@ -115,4 +114,4 @@ const styles ={
   }
 }
 
-export default RentalForm;
+export default BookingForm;
