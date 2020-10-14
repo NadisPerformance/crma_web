@@ -68,6 +68,20 @@ query get_car($carId:ID!){
           id
           title
         }
+        car_insurances{
+          id
+          date_begin
+          date_end
+          insurance{
+            id
+            name
+          }
+        }
+        technical_controls{
+          id
+          date_begin
+          date_end
+        }
   }
 }
 `
