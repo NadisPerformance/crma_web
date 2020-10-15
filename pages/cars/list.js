@@ -14,7 +14,7 @@ import CarDeleteButton from './DeleteButton'
 class List extends React.Component {
   constructor (props) {
     super(props)
-    this.fariane= [{title:"Acceuil",path:"/"},{title:"Cars",path:"/cars/"}]
+    this.fariane= [{title:"Acceuil",path:"/"},{title:"Véhicules",path:"/cars/"}]
     this.onDelete = this.onDelete.bind(this)
   }
   renderHeader(){
@@ -54,11 +54,9 @@ class List extends React.Component {
                       <thead>
                         <tr>
                           <th>#ID</th>
-                          <th>Marque</th>
-                          <th>Modèle</th>
-                          <th>Catégorie</th>
-                          <th>Prix journal</th>
-                          <th>Couleur</th>
+                          <th>Photo</th>
+                          <th>Marque et Modèle</th>
+                          <th>Prix de location</th>
                           <th>Immatriculation</th>
                           <th>Chassis number</th>
                           <th>Status</th>
@@ -72,11 +70,13 @@ class List extends React.Component {
                             return (
                               <tr key={car.id}>
                                 <td>{car.id}</td>
-                                <td>{car.brand.name}</td>
-                                <td>{car.model_date} {car.model}</td>
-                                <td>{car.category.title}</td>
-                                <td>{car.price}</td>
-                                <td>{car.color && car.color.name}</td>
+                                <td>
+                                  {car.picture &&
+                                    <img src={car.picture_url}  height="100px" />
+                                  }
+                                </td>
+                                <td>{car.brand.name}  {car.model} - {car.model_date}</td>
+                                <td>{car.price} Dhs</td>
                                 <td>{car.plate_number}</td>
                                 <td>{car.chassis_number}</td>
                                 <td>{car.status && car.status.title}</td>

@@ -81,7 +81,11 @@ class CarForm extends React.Component{
     this.setState({car:this.state.car})
     this.onChange();
   }
-
+  setPictureFile(file){
+     this.state.car.picture_file = file
+     this.setState({car:this.state.car})
+     this.onChange() ;
+  }
   onChange(){
     if(this.props.onChange)
       this.props.onChange(this.state.car)
@@ -93,6 +97,12 @@ class CarForm extends React.Component{
                 if(this.props.onSubmit)
                   this.props.onSubmit(event)
               }} >
+          <Form.Group controlId="formBasicEmail">
+              <Form.Label>Photo du véhicule:</Form.Label>
+              <Form.Control type="file"
+                onChange={({target: {validity,files: [file],},})=>this.setPictureFile(file)}
+                 />
+          </Form.Group>
           <Form.Group controlId="formBasicBrandId">
             <Form.Label>Marque:</Form.Label>
             <BrandSelectInput selectedId={car.brandId} onChange={(selectedId)=>this.setBrandId(selectedId)} />

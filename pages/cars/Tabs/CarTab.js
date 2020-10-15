@@ -16,6 +16,15 @@ class CarTab extends React.Component {
               <table className="table">
                   <tbody>
                     <tr>
+                      <td colspan="2">
+                      <center>
+                      {car.picture &&
+                        <img src={car.picture_url} height="150px" />
+                      }
+                      </center>
+                      </td>
+                    </tr>
+                    <tr>
                       <th style={{width:"50%"}}>Marque:</th>
                       <td>{car.brand && car.brand.name}</td>
                     </tr>
