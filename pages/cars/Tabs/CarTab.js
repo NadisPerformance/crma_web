@@ -24,7 +24,7 @@ class CarTab extends React.Component {
                       <td>{car.model}</td>
                     </tr>
                     <tr>
-                      <th style={{width:"50%"}}>Date du modéle:</th>
+                      <th style={{width:"50%"}}>Date du modèle:</th>
                       <td>{car.model_date}</td>
                     </tr>
                     <tr>
@@ -55,7 +55,7 @@ class CarTab extends React.Component {
                    <td>{car.color && car.color.name}</td>
                  </tr>
                  <tr>
-                   <th style={{width:"50%"}}>Status:</th>
+                   <th style={{width:"50%"}}>Statut:</th>
                    <td>{car.status && car.status.title}</td>
                  </tr>
                     <tr>
