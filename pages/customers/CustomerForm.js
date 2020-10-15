@@ -1,5 +1,5 @@
 import React from 'react'
-import {Form, Row,Col, Button, InputGroup} from 'react-bootstrap' 
+import {Form, Row,Col, Button, InputGroup} from 'react-bootstrap'
 import moment from 'moment'
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css"
@@ -7,93 +7,93 @@ import "react-datepicker/dist/react-datepicker.css"
 
 class CustomerForm extends React.Component{
   constructor (props) {
-    super(props)  
+    super(props)
     this.state = {
       customer:{
         name:""
-        
+
       }
-    } 
-  } 
+    }
+  }
   componentDidMount(){
-    const {customer} = this.props 
-    if(customer){ 
-      this.state.customer = customer  
+    const {customer} = this.props
+    if(customer){
+      this.state.customer = customer
     }
     this.onChange()
   }
   setFirstname(value){
     this.state.customer.firstname = value
     this.setState({customer:this.state.customer})
-    this.onChange(); 
-  } 
+    this.onChange();
+  }
   setLastname(value){
     this.state.customer.lastname = value
     this.setState({customer:this.state.customer})
-    this.onChange(); 
-  } 
+    this.onChange();
+  }
   setBirthday(value){
     this.state.customer.birthday = value
     this.setState({customer:this.state.customer})
-    this.onChange(); 
-  } 
+    this.onChange();
+  }
   setGender(value){
     this.state.customer.gender = value
     this.setState({customer:this.state.customer})
-    this.onChange(); 
-  } 
+    this.onChange();
+  }
   setCNI(value){
     this.state.customer.cni = value
     this.setState({customer:this.state.customer})
-    this.onChange(); 
-  } 
+    this.onChange();
+  }
   setType(value){
-    this.state.customer.type = value
+    this.state.customer.type = value  * 1
     this.setState({customer:this.state.customer})
-    this.onChange(); 
-  } 
+    this.onChange();
+  }
   setDriver_license(value){
     this.state.customer.driver_license = value
     this.setState({customer:this.state.customer})
-    this.onChange(); 
-  } 
+    this.onChange();
+  }
   setCity(value){
     this.state.customer.city = value
     this.setState({customer:this.state.customer})
-    this.onChange(); 
-  } 
+    this.onChange();
+  }
   setAddress(value){
     this.state.customer.address = value
     this.setState({customer:this.state.customer})
-    this.onChange(); 
-  } 
+    this.onChange();
+  }
   setEmail(value){
     this.state.customer.email = value
     this.setState({customer:this.state.customer})
-    this.onChange(); 
-  } 
+    this.onChange();
+  }
   setPhone(value){
     this.state.customer.phone = value
     this.setState({customer:this.state.customer})
-    this.onChange(); 
-  } 
+    this.onChange();
+  }
   setCompany_name(value){
     this.state.customer.company_name = value
     this.setState({customer:this.state.customer})
-    this.onChange(); 
-  } 
-  
-  onChange(){ 
+    this.onChange();
+  }
+
+  onChange(){
     if(this.props.onChange)
       this.props.onChange(this.state.customer)
   }
-  render () {  
-    const {customer, show_password} = this.state 
+  render () {
+    const {customer, show_password} = this.state
     return (
        <Form onSubmit={(event)=>{
           if(this.props.onSubmit)
             this.props.onSubmit(event)
-          }} >  
+          }} >
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Type:</Form.Label>
             <Form.Control value={customer.type} onChange={(event)=>this.setType(event.target.value)} as="select">
@@ -101,7 +101,7 @@ class CustomerForm extends React.Component{
               <option value="1">Société</option>
             </Form.Control>
           </Form.Group>
-          { customer.type ==true &&
+          { customer.type ==1 &&
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Société:</Form.Label>
               <Form.Control value={customer.company_name} type="text" onChange={(event)=>this.setCompany_name(event.target.value)} placeholder="Société" />
@@ -112,7 +112,7 @@ class CustomerForm extends React.Component{
             <Form.Control value={customer.lastname} type="text" onChange={(event)=>this.setLastname(event.target.value)} placeholder="Nom " />
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
-            <Form.Label>Prenom:</Form.Label>
+            <Form.Label>Prénom:</Form.Label>
             <Form.Control value={customer.firstname} type="text" onChange={(event)=>this.setFirstname(event.target.value)} placeholder="Prenom " />
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
@@ -161,7 +161,7 @@ class CustomerForm extends React.Component{
                 <Button   variant="primary" type="submit">
                   Enregistrer
                 </Button>
-          </div> 
+          </div>
        </Form>
     )
   }
@@ -176,4 +176,4 @@ const styles ={
   }
 }
 
-export default CustomerForm; 
+export default CustomerForm;
