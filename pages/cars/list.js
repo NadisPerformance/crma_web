@@ -75,7 +75,7 @@ class List extends React.Component {
                                     <img src={car.picture_url}  height="100px" />
                                   }
                                 </td>
-                                <td>{car.brand.name}  {car.model} - {car.model_date}</td>
+                                <td>{car.brand && car.brand.name}  {car.model} - {car.model_date}</td>
                                 <td>{car.price} Dhs</td>
                                 <td>{car.plate_number}</td>
                                 <td>{car.chassis_number}</td>

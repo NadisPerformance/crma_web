@@ -72,7 +72,7 @@ class List extends React.Component {
                                 <td>{rental.id}</td>
                                 <td>{moment(rental.date_begin).format("DD/MM/YYYY")}</td>
                                 <td>{moment(rental.date_end).format("DD/MM/YYYY")} </td>
-                                <td> {rental.customer.gender} {rental.customer.lastname} {rental.customer.firstname}</td>
+                                <td> {rental.customer && rental.customer.gender + " "+rental.customer.lastname+" "+rental.customer.firstname}</td>
                                 <td>{rental.car.plate_number}</td>
                                 <td>
                                   <Link href={"/rentals/view?rentalId="+rental.id} >

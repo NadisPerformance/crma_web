@@ -46,8 +46,9 @@ class SelectInput extends React.Component{
               defaultValue={value:brand.id, label:brand.name}
 
           }
-          if(!this.state.selectedId &&  data.brands.edges[0] )
+          if(selectedId==0 &&  data.brands.edges[0] ){
             this.setSelectedId(data.brands.edges[0].node.id)
+          }
           return (
             <Select
                className="basic-single"
