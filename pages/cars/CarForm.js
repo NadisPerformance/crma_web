@@ -18,7 +18,7 @@ class CarForm extends React.Component{
         colorId:"",
         plate_number:"",
         chassis_number:"",
-        availability:"",
+        
         statusId:"",
       }
     }
@@ -31,7 +31,7 @@ class CarForm extends React.Component{
     this.onChange()
   }
   setBrandId(value){
-    this.state.car.brandId = value
+    this.state.car.brandId = value*1
     this.setState({car:this.state.car})
     this.onChange();
   }
@@ -41,23 +41,23 @@ class CarForm extends React.Component{
     this.onChange();
   }
   setModel_date(value){
-    this.state.car.model_date = value
+    this.state.car.model_date = value*1
     this.setState({car:this.state.car})
     this.onChange();
   }
   setCategoryId(value){
-    this.state.car.categoryId = value
+    this.state.car.categoryId = value*1
     this.setState({car:this.state.car})
     this.onChange();
   }
   setPrice(value){
-    this.state.car.price = value
+    this.state.car.price = value*1
     this.setState({car:this.state.car})
     this.onChange();
   }
 
   setColorId(value){
-    this.state.car.colorId = value
+    this.state.car.colorId = value*1
     this.setState({car:this.state.car})
     this.onChange();
   }
@@ -72,12 +72,12 @@ class CarForm extends React.Component{
     this.onChange();
   }
   setAvailability(value){
-    this.state.car.availability = value
+    this.state.car.availability = value*1
     this.setState({car:this.state.car})
     this.onChange();
   }
   setStatusId(value){
-    this.state.car.statusId = value
+    this.state.car.statusId = value*1
     this.setState({car:this.state.car})
     this.onChange();
   }
