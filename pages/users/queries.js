@@ -45,6 +45,24 @@ query get_user($userId:ID!){
   }
 }
 `
+
+export const get_user_to_update = gql`
+query get_user_to_update($userId:ID!){
+  user(id:$userId){
+    id
+    firstname
+    lastname
+    gender
+    cni
+    address
+    email
+    phone
+    roleId
+    password 
+  }
+}
+`
+
 export const update_user = gql`
   mutation update_user($id: ID!, $data:UserInput!)  {
     updateUser(id:$id,data:$data){
