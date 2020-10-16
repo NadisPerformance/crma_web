@@ -10,6 +10,7 @@ class CustomerForm extends React.Component{
     super(props)
     this.state = {
       customer:{
+        gender:"M.",
         lastname:"",
         firstname:"",
         birthday:"",
@@ -95,7 +96,7 @@ class CustomerForm extends React.Component{
       this.props.onChange(this.state.customer)
   }
   render () {
-    const {customer, show_password} = this.state
+    const {customer} = this.state
     return (
        <Form onSubmit={(event)=>{
           if(this.props.onSubmit)

@@ -75,7 +75,7 @@ class Edit extends React.Component {
                           postMutation().then((result)=>{
                             //this.props.history.goBack();
                             //console.log(result)
-                            alert('Le Client a bien été modifié.', 'success')
+                            alert('Le client a bien été modifié.', 'success')
                             Router.push("/customers/view?customerId="+result.data.updateCustomer.id);
                           })
                         }}
