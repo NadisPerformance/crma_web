@@ -14,6 +14,7 @@ class BookingsTab extends React.Component {
       return <p><center>Aucune réservation effectuée par le client.</center></p>
     return (
       <Row className="col-sm-12">
+      { bookings.length>0 &&
       <Table striped bordered hover size="sm">
        <thead>
          <tr>
@@ -54,6 +55,8 @@ class BookingsTab extends React.Component {
          }
        </tbody>
      </Table>
+      }
+      {bookings.length==0 && <p style={{margin:'5px'}}>Aucune réservation effectuée par le client.</p>}
       </Row>
     )
   }

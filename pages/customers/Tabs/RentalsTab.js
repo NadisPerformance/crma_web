@@ -14,6 +14,7 @@ class RentalsTab extends React.Component {
       return <p><center>Aucune location effectuée par le client.</center></p>
     return (
       <Row className="col-sm-12">
+      { rentals.length > 0 &&
       <Table striped bordered hover size="sm">
        <thead>
          <tr>
@@ -54,6 +55,9 @@ class RentalsTab extends React.Component {
          }
        </tbody>
      </Table>
+     }
+     {rentals.length==0 && <p style={{margin:'5px'}}>Aucune location effectuée par le client.</p>}
+
       </Row>
     )
   }
