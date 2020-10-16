@@ -12,7 +12,7 @@ import { withRouter } from 'next/router'
 import BookingTab from './Tabs/BookingTab'
 import CustomerTab from './Tabs/CustomerTab'
 import CarTab from './Tabs/CarTab'
-
+import BookingDeleteButton from './DeleteButton'
 
 class View extends React.Component {
   constructor (props) {
@@ -21,11 +21,11 @@ class View extends React.Component {
     this.state={
       bookingId: bookingId
     }
-    this.fariane= [{title:"Acceuil",path:"/"},{title:"Réservations",path:"/booking/"}]
+    this.fariane= [{title:"Acceuil",path:"/"},{title:"Réservations",path:"/bookings/list"}]
     this.onDelete = this.onDelete.bind(this)
   }
   onDelete(){
-    window.flash('La location a bien été supprimée.', 'success')
+    window.flash('La réservation a bien été supprimée.', 'success')
     this.props.history.push("/bookings/");
   }
   header(){
@@ -39,6 +39,7 @@ class View extends React.Component {
                         <i className="fa fa-pen-alt"></i> Modifier
                         </a>
                     </Link>
+                    <BookingDeleteButton bookingId={bookingId} />
                 </div>
           </React.Fragment>
   }
@@ -46,7 +47,7 @@ class View extends React.Component {
     const {bookingId} = this.state
     return (
       <AdminLayout>
-        <Page title="Locations" fariane={this.fariane}>
+        <Page title="Réservations" fariane={this.fariane}>
           <Card header={this.header()} >
             <Query query={get_booking} variables={{bookingId}} pollInterval={3000} >
               {({ loading, error, data }) => {
@@ -61,7 +62,7 @@ class View extends React.Component {
                 return (
                   <React.Fragment>
                   <br/>
-                  <Tabs variant="pills"  defaultActiveKey="booking" id="uncontrolled-tab-example" style={{backgroundColor:'#f4f6f9',marginLeft:'3px',paddingBottom:'2px'}}>
+                  <Tabs  defaultActiveKey="booking" id="uncontrolled-tab-example" style={{backgroundColor:'#f4f6f9',marginLeft:'3px',paddingBottom:'2px'}}>
                     <Tab eventKey="booking" title="Location" >
                        <BookingTab booking={data.booking} />
                     </Tab>

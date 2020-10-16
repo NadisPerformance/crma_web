@@ -9,6 +9,7 @@ import {Table, Row,Col} from 'react-bootstrap'
 import Page from '../../components/Page'
 import Card from '../../components/Card'
 import { withRouter } from 'next/router'
+import UserDeleteButton from './DeleteButton'
 class View extends React.Component {
   constructor (props) {
     super(props)
@@ -34,6 +35,7 @@ class View extends React.Component {
                         <i className="fa fa-pen-alt"></i> Modifier
                         </a>
                     </Link>
+                    <UserDeleteButton userId={userId} />
                 </div>
           </React.Fragment>
   }

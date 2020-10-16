@@ -11,13 +11,12 @@ class RentalForm extends React.Component{
     super(props)
     this.state = {
       rental:{
-        carId:"",
-        customerId:"",
-        second_driverId:"",
+        carId:0,
+        customerId:0,
+        second_driverId:0,
         date_begin:"",
         date_end:""
-      },
-      show_password:false
+      }
     }
   }
   componentDidMount(){

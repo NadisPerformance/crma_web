@@ -12,6 +12,7 @@ import { withRouter } from 'next/router'
 import CarTab from './Tabs/CarTab'
 import CarInsurancesTab from './Tabs/CarInsurancesTab'
 import TechnicalControlsTab from './Tabs/TechnicalControlsTab'
+import CarDeleteButton from './DeleteButton'
 class View extends React.Component {
   constructor (props) {
     super(props)
@@ -37,6 +38,7 @@ class View extends React.Component {
                         <i className="fa fa-pen-alt"></i> Modifier
                         </a>
                     </Link>
+                    <CarDeleteButton carId={carId} />
                 </div>
           </React.Fragment>
   }

@@ -18,7 +18,7 @@ class DeleteButton extends React.Component {
   }
   onDelete(){
     window.flash('La location a bien été supprimée.', 'success')
-    this.props.history.push("/rentals/");
+    this.props.history.push("/rentals/list");
   }
   render() {
     let {rentalId} = this.props
@@ -27,14 +27,13 @@ class DeleteButton extends React.Component {
           {postMutation =>
             <a  style={{margin:3}}
               onClick={(event)=>{
-                alert("hello")
                 event.preventDefault();
                 //console.log(user)
                 postMutation().then((result)=>{
                   //this.props.history.goBack();
                   //console.log(result)
                   if (result.data.deleteRental.statut_code==1){
-                      alert('L\'utilisateur a bien été supprimé.', 'success')
+                      alert('La location a bien été supprimée.', 'success')
                       Router.push("/rentals/list");
                   }
                 })

@@ -12,7 +12,7 @@ import { withRouter } from 'next/router'
 import RentalTab from './Tabs/RentalTab'
 import CustomerTab from './Tabs/CustomerTab'
 import CarTab from './Tabs/CarTab'
-
+import RentalDeleteButton from './DeleteButton'
 
 class View extends React.Component {
   constructor (props) {
@@ -39,6 +39,7 @@ class View extends React.Component {
                         <i className="fa fa-pen-alt"></i> Modifier
                         </a>
                     </Link>
+                    <RentalDeleteButton rentalId={rentalId} />
                 </div>
           </React.Fragment>
   }
