@@ -10,8 +10,15 @@ class CustomerForm extends React.Component{
     super(props)
     this.state = {
       customer:{
-        name:""
-
+        lastname:"",
+        firstname:"",
+        birthday:"",
+        cni:"",
+        driver_license:"",
+        city:"",
+        address:"",
+        email:"",
+        phone:""
       }
     }
   }
@@ -128,9 +135,9 @@ class CustomerForm extends React.Component{
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Civilité:</Form.Label>
             <Form.Control value={customer.gender} onChange={(event)=>this.setGender(event.target.value)} as="select">
-              <option>Mr</option>
-              <option>Mme</option>
-              <option>Mlle</option>
+              <option value="M.">M.</option>
+              <option value="Mme">Mme</option>
+              <option value="Mlle">Mlle</option>
             </Form.Control>
           </Form.Group>
           <Form.Group controlId="formBasicEmail">

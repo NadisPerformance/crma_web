@@ -37,7 +37,7 @@ class Add extends React.Component {
                         </tr>
                         <tr>
                             <th style={{width:"50%"}} >Couleur:</th>
-                            <td>{car.color.name}</td>
+                            <td>{"car.color.name"}</td>
                         </tr>
                         <tr>
                             <th style={{width:"50%"}} >Numéro de chassis:</th>

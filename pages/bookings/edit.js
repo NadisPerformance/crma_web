@@ -64,7 +64,6 @@ class Edit extends React.Component {
                 }
                 booking.customerId = this.state.booking.customerId * 1
                 booking.carId = this.state.booking.carId * 1
-                booking.second_driverId = this.state.booking.second_driverId *  1
                 delete booking.customer
                 delete booking.car
                 //console.log(user)
