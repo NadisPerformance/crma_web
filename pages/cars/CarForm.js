@@ -10,16 +10,16 @@ class CarForm extends React.Component{
     super(props)
     this.state = {
       car:{
-        brandId:"",
+        brandId:0,
         model:"",
         model_date:"",
-        categoryId:"",
+        categoryId:0,
         price:"",
-        colorId:"",
+        colorId:0,
         plate_number:"",
         chassis_number:"",
-        
-        statusId:"",
+
+        statusId:0,
       }
     }
   }

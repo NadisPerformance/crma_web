@@ -6,7 +6,7 @@ class SelectInput extends React.Component{
   constructor (props) {
     super(props)
     this.state = {
-      selectedId:1
+      selectedId:0
     }
     this.setSelectedId = this.setSelectedId.bind(this)
     this.onChange = this.onChange.bind(this)
@@ -46,6 +46,8 @@ class SelectInput extends React.Component{
               defaultValue={value:role.id, label:role.title}
 
           }
+          if(!this.state.selectedId &&  data.roles.edges[0] )
+            this.setSelectedId(data.roles.edges[0].node.id)
           //console.log(options)
           return (
             <Select
