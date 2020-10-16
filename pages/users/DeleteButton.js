@@ -27,7 +27,6 @@ class DeleteButton extends React.Component {
           {postMutation =>
             <a  style={{margin:3}}
               onClick={(event)=>{
-                alert("hello")
                 event.preventDefault();
                 //console.log(user)
                 postMutation().then((result)=>{

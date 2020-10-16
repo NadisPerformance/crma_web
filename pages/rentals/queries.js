@@ -22,7 +22,7 @@ export const get_rentals = gql`
               id
               plate_number
             }
-            
+
         }
     }
   }
@@ -45,7 +45,7 @@ query get_rental($rentalId:ID!){
       lastname
       gender
       cni
-      phone 
+      phone
       email
       address
       city
@@ -66,13 +66,28 @@ query get_rental($rentalId:ID!){
         name
       }
       color{
-        id 
+        id
         name
       }
     }
   }
 }
 `
+
+export const get_rental_to_update = gql`
+query get_rental($rentalId:ID!){
+  rental(id:$rentalId){
+    id
+    bookingId
+    carId
+    customerId
+    second_driverId
+    date_begin
+    date_end
+  }
+}
+`
+
 export const update_rental = gql`
   mutation update_rental($id: ID!, $data:RentalInput!)  {
     updateRental(id:$id,data:$data){

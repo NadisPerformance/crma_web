@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import React from 'react'
 import AdminLayout from '../../components/AdminLayout'
-import {get_rental, update_rental} from './queries'
+import {get_rental_to_update, update_rental} from './queries'
 import { Query, Mutation } from 'react-apollo'
 import withData from '../../lib/withData'
 import {Table, Row,Col} from 'react-bootstrap'
@@ -20,7 +20,7 @@ class Edit extends React.Component {
         rentalId: rentalId,
         rental:null
     }
-    this.fariane= [{title:"Acceuil",path:"/"},{title:"Rental",path:"/rentals/"}]
+    this.fariane= [{title:"Acceuil",path:"/"},{title:"Locations",path:"/rentals/list"}]
     this.onDelete = this.onDelete.bind(this)
   }
   onDelete(){
@@ -48,7 +48,7 @@ class Edit extends React.Component {
     return (
       <AdminLayout>
         <Page title="Locations" fariane={this.fariane}>
-            <Query query={get_rental} variables={{rentalId}} _pollInterval={3000} >
+            <Query query={get_rental_to_update} variables={{rentalId}} _pollInterval={3000} >
               {({ loading, error, data }) => {
                 if (loading) return <div>Chargement en cours ...</div>
                 if (error) {
