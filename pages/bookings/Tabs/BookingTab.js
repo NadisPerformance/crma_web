@@ -16,7 +16,7 @@ class Add extends React.Component {
             <Col className="col-sm-6 table-responsive">
                 <table className="table">
                     <tbody>
-                        
+
                         <tr>
                             <th style={{width:"50%"}} >Date de début:</th>
                             <td>{moment(booking.date_begin).format("DD/MM/YYYY")}</td>
@@ -27,7 +27,9 @@ class Add extends React.Component {
                         </tr>
                         <tr>
                             <th style={{width:"50%"}} >Montant payé à l'avance:</th>
-                            <td>{booking.montant_avance}</td>
+                            <td>{booking.montant_avance>0 && booking.montant_avance+' Dhs'}
+                                {booking.montant_avance==0 && '--'}
+                            </td>
                         </tr>
                         <tr>
                             <th style={{width:"50%"}} >commentaire:</th>

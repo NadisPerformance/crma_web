@@ -47,7 +47,7 @@ class Edit extends React.Component {
       delete booking.id
     return (
       <AdminLayout>
-        <Page title="Utilisateurs" fariane={this.fariane}>
+        <Page title="Réservations" fariane={this.fariane}>
             <Query query={get_booking} variables={{bookingId}} _pollInterval={3000} >
               {({ loading, error, data }) => {
                 if (loading) return <div>Chargement en cours ...</div>
@@ -79,7 +79,7 @@ class Edit extends React.Component {
                             postMutation().then((result)=>{
                               //this.props.history.goBack();
                               //console.log(result)
-                              alert('La location a bien été modifié.', 'success')
+                              alert('La réservation a bien été modifiée.', 'success')
                               Router.push("/bookings/view?bookingId="+result.data.updateBooking.id);
                             })
                           }
