@@ -10,6 +10,8 @@ class CustomerForm extends React.Component{
     super(props)
     this.state = {
       customer:{
+        type:0,
+        company_name:"",
         gender:"M.",
         lastname:"",
         firstname:"",
