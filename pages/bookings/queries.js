@@ -11,6 +11,7 @@ export const get_bookings = gql`
             date_begin
             date_end
             montant_avance
+            comment
             customer{
               id
               firstname
@@ -20,6 +21,10 @@ export const get_bookings = gql`
             car{
               id
               plate_number
+              color{
+                id 
+                name
+              }
             }
             
         }
@@ -32,13 +37,12 @@ export const get_booking = gql`
 query booking($bookingId:ID!){
   booking(id:$bookingId){
     id
-    
     carId
     customerId
-    
     date_begin
     date_end
     montant_avance
+    comment
     customer{
       id
       firstname
@@ -52,6 +56,8 @@ query booking($bookingId:ID!){
     }
     car{
       id
+      colorId
+      categoryId
       plate_number
       model
       model_date
@@ -73,6 +79,54 @@ query booking($bookingId:ID!){
   }
 }
 `
+
+export const get_booking_to_update = gql`
+query booking($bookingId:ID!){
+  booking(id:$bookingId){
+    id
+    carId
+    customerId
+    date_begin
+    date_end
+    montant_avance
+    comment
+    customer{
+      id
+      firstname
+      lastname
+      gender
+      cni
+      phone 
+      email
+      address
+      city
+    }
+    car{
+      id
+      colorId
+      categoryId
+      plate_number
+      model
+      model_date
+      price
+      chassis_number
+      category{
+        id
+        title
+      }
+      brand{
+        id
+        name
+      }
+      color{
+        id 
+        name
+      }
+    }
+  }
+}
+`
+
 export const update_booking = gql`
   mutation update_booking($id: ID!, $data:BookingInput!)  {
     updateBooking(id:$id,data:$data){
@@ -82,6 +136,7 @@ export const update_booking = gql`
       date_begin
       date_end
       montant_avance
+      comment
     }
   }
 

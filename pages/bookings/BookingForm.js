@@ -14,7 +14,8 @@ class BookingForm extends React.Component{
         carId:"",
         customerId:"",
         date_begin:"",
-        date_end:""
+        date_end:"",
+        comment:""
       },
       show_password:false
     }
@@ -50,6 +51,12 @@ class BookingForm extends React.Component{
 
   setDateEnd(value){
     this.state.booking.date_end = value
+    this.setState({booking:this.state.booking})
+    this.onChange();
+  }
+
+  setComment(value){
+    this.state.booking.comment = value
     this.setState({booking:this.state.booking})
     this.onChange();
   }
@@ -97,6 +104,11 @@ class BookingForm extends React.Component{
               placeholderText="Date début"
             />
           </Form.Group>
+          <Form.Group>
+              <Form.Label>Commentaire</Form.Label><br/>
+            <Form.Control as="textarea"  value={booking.comment} onChange={(event)=>this.setComment(event.target.value)} placeholder="Commentaire" />
+          </Form.Group>
+
           <div className="text-right" style={{margin:10}}>
                 <Button   variant="primary" type="submit">
                   Enregistrer

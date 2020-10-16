@@ -29,6 +29,10 @@ class Add extends React.Component {
                             <th style={{width:"50%"}} >Montant payé à l'avance:</th>
                             <td>{booking.montant_avance}</td>
                         </tr>
+                        <tr>
+                            <th style={{width:"50%"}} >commentaire:</th>
+                            <td><p>{booking.comment}</p></td>
+                        </tr>
                     </tbody>
                 </table>
             </Col>
