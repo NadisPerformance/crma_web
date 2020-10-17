@@ -31,6 +31,10 @@ class BookingTab extends React.Component {
                                 {booking.montant_avance==0 && '--'}
                             </td>
                         </tr>
+                        <tr>
+                            <th style={{width:"50%"}} >commentaire:</th>
+                            <td><p>{booking.comment}</p></td>
+                        </tr>
                     </tbody>
                 </table>
             </Col>
