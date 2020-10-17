@@ -3,14 +3,14 @@ import Link from 'next/link'
 import Router from 'next/router'
 import React from 'react'
 import AdminLayout from '../../components/AdminLayout'
-import { create_customer} from './queries'
+import { create_customer} from '../../components/customer/queries'
 import { Query, Mutation } from 'react-apollo'
 import withData from '../../lib/withData'
 import {Table, Row,Col} from 'react-bootstrap'
 import Page from '../../components/Page'
 import Card from '../../components/Card'
 import { withRouter } from 'next/router'
-import CustomerForm from './CustomerForm'
+import CustomerForm from '../../components/customer/CustomerForm'
 class Add extends React.Component {
   constructor (props) {
     super(props)

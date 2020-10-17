@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import React from 'react'
 import AdminLayout from '../../components/AdminLayout'
-import {get_categories} from './queries'
+import {get_categories} from '../../components/category/queries'
 import { Query } from 'react-apollo'
 import withData from '../../lib/withData'
 import {Table} from 'react-bootstrap'
@@ -78,7 +78,7 @@ class List extends React.Component {
                                     <i className="fa fa-pen-alt"></i>
                                     </a>
                                   </Link>
-                                  
+
                                 </td>
                               </tr>
                             )

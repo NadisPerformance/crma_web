@@ -1,0 +1,1 @@
+{"ast":null,"code":"import gql from 'graphql-tag';\nexport const get_statuss = gql`\n{\n    statuss {\n    edges{\n        node{\n            id\n            title\n        }\n    }\n  }\n}\n`;\nexport default (() => {\n  return \"Show page working ! \";\n});","map":null,"metadata":{},"sourceType":"module"}

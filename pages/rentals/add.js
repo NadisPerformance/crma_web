@@ -3,14 +3,14 @@ import Link from 'next/link'
 import Router from 'next/router'
 import React from 'react'
 import AdminLayout from '../../components/AdminLayout'
-import { create_rental} from './queries'
+import { create_rental} from '../../components/rental/queries'
 import { Query, Mutation } from 'react-apollo'
 import withData from '../../lib/withData'
 import {Table, Row,Col} from 'react-bootstrap'
 import Page from '../../components/Page'
 import Card from '../../components/Card'
 import { withRouter } from 'next/router'
-import RentalForm from './RentalForm'
+import RentalForm from '../../components/rental/RentalForm'
 class Add extends React.Component {
   constructor (props) {
     super(props)

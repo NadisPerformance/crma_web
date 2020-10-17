@@ -2,28 +2,28 @@ import Head from 'next/head'
 import Link from 'next/link'
 import React from 'react'
 import AdminLayout from '../../components/AdminLayout'
-import {get_brand} from './queries'
-import { Query } from 'react-apollo' 
+import {get_brand} from '../../components/brand/queries'
+import { Query } from 'react-apollo'
 import withData from '../../lib/withData'
 import {Table, Row,Col} from 'react-bootstrap'
 import Page from '../../components/Page'
-import Card from '../../components/Card' 
+import Card from '../../components/Card'
 import { withRouter } from 'next/router'
 class View extends React.Component {
   constructor (props) {
-    super(props)   
+    super(props)
     const { brandId } = this.props.router.query
     this.state={
         brandId: brandId
     }
-    this.fariane= [{title:"Acceuil",path:"/"},{title:"Brands",path:"/brands/"}]  
+    this.fariane= [{title:"Acceuil",path:"/"},{title:"Brands",path:"/brands/"}]
     this.onDelete = this.onDelete.bind(this)
-  } 
+  }
   onDelete(){
     window.flash('La marque a bien été supprimée.', 'success')
     this.props.history.push("/brands/");
   }
-  header(){ 
+  header(){
     const { brandId } = this.state
     return <React.Fragment>
              <h3 className="card-title">{"Marque #"+brandId}</h3>
@@ -32,12 +32,12 @@ class View extends React.Component {
                     <Link href={"/brands/edit?brandId="+brandId} >
                        <a className="btn btn-success btn-sm" data-toggle="tooltip" title="" data-original-title="Nouvelle" >
                         <i className="fa fa-pen-alt"></i> Modifier
-                        </a> 
+                        </a>
                     </Link>
                 </div>
           </React.Fragment>
   }
-  render() {   
+  render() {
     const {brandId} = this.state
     return (
       <AdminLayout>
@@ -48,12 +48,12 @@ class View extends React.Component {
                 if (loading) return <div>Chargement en cours ...</div>
                 if (error) {
                   console.log(error)
-                  return <div>Error</div> 
-                }   
-                console.log(data) 
+                  return <div>Error</div>
+                }
+                console.log(data)
                 if(!data.brand)
                   return " Brand not found"
-                return (  
+                return (
                   <Row className="col-sm-12">
                       <Col className="col-sm-6 table-responsive">
                           <table className="table">
@@ -64,21 +64,21 @@ class View extends React.Component {
                                 </tr>
                               </tbody>
                           </table>
-                      </Col>  
+                      </Col>
                       <Col className="col-sm-6 table-responsive">
                           <table className="table">
-                             <tbody> 
+                             <tbody>
                                 <tr>
                                   <th style={{width:"50%"}}>Date de création:</th>
                                   <td>{false && new Date(data.brand.createdAt).toLocaleString()}</td>
-                                </tr>  
+                                </tr>
                               </tbody>
                           </table>
-                      </Col> 
-                  </Row>  
+                      </Col>
+                  </Row>
                 )
               }}
-              </Query> 
+              </Query>
           </Card>
         </Page>
       </AdminLayout>

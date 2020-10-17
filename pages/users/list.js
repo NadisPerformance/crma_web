@@ -2,14 +2,14 @@ import Head from 'next/head'
 import Link from 'next/link'
 import React from 'react'
 import AdminLayout from '../../components/AdminLayout'
-import {get_users} from './queries'
+import {get_users} from '../../components/user/queries'
 import { Query } from 'react-apollo'
 import withData from '../../lib/withData'
 import {Table} from 'react-bootstrap'
 import Page from '../../components/Page'
 import Card from '../../components/Card'
 import withAuth from '../../lib/withAuth'
-import UserDeleteButton from './DeleteButton'
+import UserDeleteButton from '../../components/user/DeleteButton'
 class List extends React.Component {
   constructor (props) {
     super(props)

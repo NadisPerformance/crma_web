@@ -210,14 +210,6 @@ class Menu extends React.Component{
                 </Link>
               </li>
               <li className="nav-item">
-                <Link href="/users/list" >
-                  <a className="nav-link" activeclassname="active" >
-                  <i className="fas fa-map-marked-alt nav-icon"></i>
-                    <p>Locaux</p>
-                  </a>
-                </Link>
-              </li>
-              <li className="nav-item">
                 <Link href="/brands/list" >
                   <a className="nav-link" activeclassname="active" >
                   <i className="fab fa-bandcamp nav-icon"></i>
@@ -240,15 +232,7 @@ class Menu extends React.Component{
                     <p>Catégories</p>
                   </a>
                 </Link>
-              </li>
-              <li className="nav-item">
-                <Link href="/users/list" >
-                  <a className="nav-link" activeclassname="active" >
-                    <i className="fas fa-percentage nav-icon"></i>
-                    <p>Promotions</p>
-                  </a>
-                </Link>
-              </li>
+              </li> 
             </ul>
           </li>
         </ul>

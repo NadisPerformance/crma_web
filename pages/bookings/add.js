@@ -3,21 +3,21 @@ import Link from 'next/link'
 import Router from 'next/router'
 import React from 'react'
 import AdminLayout from '../../components/AdminLayout'
-import { create_booking} from './queries'
+import { create_booking} from '../../components/booking/queries'
 import { Query, Mutation } from 'react-apollo'
 import withData from '../../lib/withData'
 import {Table, Row,Col} from 'react-bootstrap'
 import Page from '../../components/Page'
 import Card from '../../components/Card'
 import { withRouter } from 'next/router'
-import BookingForm from './BookingForm'
+import BookingForm from '../../components/booking/BookingForm'
 class Add extends React.Component {
   constructor (props) {
     super(props)
     this.state={
       car:null
     }
-    this.fariane= [{title:"Acceuil",path:"/"},{title:"Réservations",path:"/bookings/list"}]  
+    this.fariane= [{title:"Acceuil",path:"/"},{title:"Réservations",path:"/bookings/list"}]
     this.onDelete = this.onDelete.bind(this)
   }
   onDelete(){
