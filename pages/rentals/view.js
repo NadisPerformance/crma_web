@@ -12,6 +12,7 @@ import { withRouter } from 'next/router'
 import RentalTab from '../../components/rental/Tabs/RentalTab'
 import CustomerTab from '../../components/rental/Tabs/CustomerTab'
 import CarTab from '../../components/rental/Tabs/CarTab'
+import BeforeRentalTab from '../../components/rental/Tabs/BeforeRentalTab'
 import RentalDeleteButton from '../../components/rental/DeleteButton'
 
 class View extends React.Component {
@@ -66,7 +67,7 @@ class View extends React.Component {
                        <RentalTab rental={data.rental} />
                     </Tab>
                     <Tab eventKey="before_rental" title="Début de location">
-                       <RentalTab rental={data.rental} />
+                       <BeforeRentalTab before_rental={data.rental.before_rental} rentalId={data.rental.id}/>
                     </Tab>
                     <Tab eventKey="after_rental" title="Fin de location">
                       <CustomerTab customer={data.rental.customer} />

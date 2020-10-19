@@ -70,6 +70,26 @@ query get_rental($rentalId:ID!){
         name
       }
     }
+    before_rental{
+      id
+      kilometrage
+      niveau_carburant
+      comment
+      album{
+        id
+        images{
+          id
+          path
+          image_url
+        }
+      }
+    }
+    after_rental{
+      id
+      kilometrage
+      niveau_carburant
+      comment
+    }
   }
 }
 `
