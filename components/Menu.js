@@ -233,6 +233,14 @@ class Menu extends React.Component{
                   </a>
                 </Link>
               </li> 
+              <li className="nav-item">
+                <Link href="/insurances/list" >
+                  <a className="nav-link" activeclassname="active" >
+                  <i className="fab fa-bandcamp nav-icon"></i>
+                    <p>Assurances</p>
+                  </a>
+                </Link>
+              </li>
             </ul>
           </li>
         </ul>

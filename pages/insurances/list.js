@@ -2,46 +2,49 @@ import Head from 'next/head'
 import Link from 'next/link'
 import React from 'react'
 import AdminLayout from '../../components/AdminLayout'
-import {get_colors} from '../../components/color/queries'
+import {get_insurances} from '../../components/insurance/queries'
 import { Query } from 'react-apollo'
 import withData from '../../lib/withData'
 import {Table} from 'react-bootstrap'
 import Page from '../../components/Page'
 import Card from '../../components/Card'
 import withAuth from '../../lib/withAuth'
+import InsuranceDeleteButton from '../../components/insurance/DeleteButton'
+import moment from 'moment'
+
 
 class List extends React.Component {
   constructor (props) {
     super(props)
-    this.fariane= [{title:"Acceuil",path:"/"},{title:"Couleurs",path:"/colors/"}]
+    this.fariane= [{title:"Acceuil",path:"/"},{title:"Assurances",path:"/insurance/"}]
     this.onDelete = this.onDelete.bind(this)
   }
   renderHeader(){
 
   }
   header(){
-    console.log(this.props.color)
+    console.log(this.props.insurance)
     return (<React.Fragment>
-             <h3 className="card-title">Marques</h3>
+             <h3 className="card-title">Assurances</h3>
               <div className="card-tools">
-                    <Link href="/colors/add" >
+                    <Link href="/insurances/add" >
                       <a className="btn btn-success btn-xs" >
-                        <i className="fa fa-plus"></i> Nouvelle marque
+                        <i className="fa fa-plus"></i> Nouvelle assurance
                       </a>
                     </Link>
                 </div>
           </React.Fragment>)
   }
   onDelete(){
-    window.flash('La couleur a bien été supprimée.', 'success')
-    //this.props.history.push("/users/");
+    window.flash('La location a bien été supprimée.', 'success')
+    //this.props.history.push("/cars/");
   }
   render() {
     return (
       <AdminLayout>
-        <Page title="Couleurs" fariane={this.fariane}>
+        <Page title="Assurances" fariane={this.fariane}>
           <Card header={this.header()} >
-            <Query query={get_colors} pollInterval={3000} >
+            <Query query={get_insurances} pollInterval={3000} >
               {({ loading, error, data }) => {
                 if (loading) return <div>Chargement en cours ...</div>
                 if (error) {
@@ -54,31 +57,31 @@ class List extends React.Component {
                         <tr>
                           <th>#ID</th>
                           <th>Nom</th>
-                          <th>Actions</th>
+                          <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
                         {
-                          data.colors.edges.map((edge, index)=>{
-                            let color = edge.node
+                          data.insurances.edges.map((edge, index)=>{
+                            let insurance = edge.node
                             return (
-                              <tr key={color.id}>
-                                <td>{color.id}</td>
-                                <td>{color.name}</td>
+                              <tr key={insurance.id}>
+                                <td>{insurance.id}</td>
+                                <td>{insurance.name}</td>
                                 <td>
-                                  <Link href={"/colors/view?colorId="+color.id} >
+                                  <Link href={"/insurances/view?insuranceId="+insurance.id} >
                                     <a style={{margin:3}}
                                     className="btn btn-info btn-sm" >
                                     <i className="fa fa-eye"></i>
                                     </a>
                                   </Link>
-                                  <Link href={"/colors/edit?colorId="+color.id} >
+                                  <Link href={"/insurances/edit?insuranceId="+insurance.id} >
                                     <a  style={{margin:3}}
                                     className="btn btn-success btn-sm" >
                                     <i className="fa fa-pen-alt"></i>
                                     </a>
                                   </Link>
-
+                                  <InsuranceDeleteButton insuranceId={insurance.id} />
                                 </td>
                               </tr>
                             )
