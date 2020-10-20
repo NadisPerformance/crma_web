@@ -3,14 +3,14 @@ import Link from 'next/link'
 import Router from 'next/router'
 import React from 'react'
 import AdminLayout from '../../components/AdminLayout'
-import { create_insurance} from '../../components/insurance/queries'
+import { create_technical_control} from '../../components/technical_control/queries'
 import { Query, Mutation } from 'react-apollo'
 import withData from '../../lib/withData'
 import {Table, Row,Col} from 'react-bootstrap'
 import Page from '../../components/Page'
 import Card from '../../components/Card'
 import { withRouter } from 'next/router'
-import InsuranceForm from '../../components/insurance/InsuranceForm'
+import TechnicalControlsForm from '../../components/technical_controls/TechnicalControlsForm'
 class Add extends React.Component {
   constructor (props) {
     super(props)
@@ -42,23 +42,23 @@ class Add extends React.Component {
     return (
       <AdminLayout>
         <Page title="Assurances" fariane={this.fariane}>
-            <Mutation mutation={create_insurance} variables={{data:this.state.insurance}} >
-              {postMutation =>
-                 <InsuranceForm
-                 insurance={insurance}
-                    onSubmit={(event)=>{
-                          //alert("hello")
-                          event.preventDefault();
-                          //console.log(car)
-                          postMutation().then((result)=>{
-                            //this.props.history.goBack();
-                            alert('L\'assurance a bien été crée.', 'success')
-                            Router.push("/insurances/view?insuranceId="+result.data.createInsurance.id);
-                          })
-                        }}
-                        onChange={(insurance)=>this.setState({insurance:insurance})}
-                         />
-              }
+          <Mutation mutation={create_technical_control} variables={{data:this.state.technical_control}} >
+            {postMutation =>
+              <TechnicalControlsForm
+              technical_control={technical_control}
+                onSubmit={(event)=>{
+                  //alert("hello")
+                  event.preventDefault();
+                  //console.log(car)
+                  postMutation().then((result)=>{
+                    //this.props.history.goBack();
+                    alert('L\'assurance a bien été crée.', 'success')
+                    Router.push("/technical_controls/view?technical_controlId="+result.data.createTechnicalControl.id);
+                  })
+                }}
+                onChange={(technical_control)=>this.setState({technical_control:technical_control})}
+              />
+            }
           </Mutation>
         </Page>
       </AdminLayout>

@@ -2,38 +2,38 @@ import Head from 'next/head'
 import Link from 'next/link'
 import React from 'react'
 import AdminLayout from '../../components/AdminLayout'
-import {get_insurance_to_update, update_insurance} from '../../components/insurance/queries'
+import {get_technical_control_to_update, update_technical_control} from '../../components/technical_control/queries'
 import { Query, Mutation } from 'react-apollo'
 import withData from '../../lib/withData'
 import {Table, Row,Col} from 'react-bootstrap'
 import Page from '../../components/Page'
 import Card from '../../components/Card'
 import { withRouter } from 'next/router'
-import InsuranceForm from '../../components/insurance/InsuranceForm'
+import TechnicalControlForm from '../../components/technical_control/TechnicalControlForm'
 import Router from 'next/router'
 
 class Edit extends React.Component {
   constructor (props) {
     super(props)
-    const { insuranceId } = this.props.router.query
+    const { technical_controlId } = this.props.router.query
     this.state={
-      insuranceId: insuranceId,
-      insurance:null
+      technical_controlId: technical_controlId,
+      technical_control:null
     }
-    this.fariane= [{title:"Acceuil",path:"/"},{title:"Assurances",path:"/insurances/list"}]
+    this.fariane= [{title:"Acceuil",path:"/"},{title:"Assurances",path:"/technical_controls/list"}]
     this.onDelete = this.onDelete.bind(this)
   }
   onDelete(){
     window.flash('L\'assurance a bien été supprimée.', 'success')
-    this.props.history.push("/insurances/");
+    this.props.history.push("/technical_controls/");
   }
   header(){
-    const { insuranceId } = this.state
+    const { technical_controlId } = this.state
     return <React.Fragment>
-             <h3 className="card-title">{"Location #"+insuranceId}</h3>
+             <h3 className="card-title">{"Location #"+technical_controlId}</h3>
 
                 <div className="card-tools">
-                    <Link href={"/insurances/edit/"+insuranceId} >
+                    <Link href={"/technical_controls/edit/"+technical_controlId} >
                        <a className="btn btn-success btn-sm" data-toggle="tooltip" title="" data-original-title="Nouvelle" >
                         <i className="fa fa-pen-alt"></i> Modifier
                         </a>
@@ -42,13 +42,13 @@ class Edit extends React.Component {
           </React.Fragment>
   }
   render() {
-    let {insuranceId, insurance} = this.state
-    if(insurance)
-      delete insurance.id
+    let {technical_controlId, technical_control} = this.state
+    if(technical_control)
+      delete technical_control.id
     return (
       <AdminLayout>
         <Page title="Assurances" fariane={this.fariane}>
-            <Query query={get_insurance_to_update} variables={{insuranceId}} _pollInterval={3000} >
+            <Query query={get_technical_control_to_update} variables={{technical_controlId}} _pollInterval={3000} >
               {({ loading, error, data }) => {
                 if (loading) return <div>Chargement en cours ...</div>
                 if (error) {
@@ -56,18 +56,18 @@ class Edit extends React.Component {
                   return <div>Error</div>
                 }
                 console.log(data)
-                if(!data.insurance)
+                if(!data.technical_control)
                   return "Rental not found"
-                if(this.state.insurance == null){
-                    delete data.insurance.__typename
-                    insurance = this.state.insurance = data.insurance
+                if(this.state.technical_control == null){
+                    delete data.technical_control.__typename
+                    technical_control = this.state.technical_control = data.technical_control
                 }
                 //console.log(user)
                 return (
-                    <Mutation mutation={update_insurance} variables={{id:insuranceId,data:insurance}} >
+                    <Mutation mutation={update_technical_control} variables={{id:technical_controlId,data:technical_control}} >
                       {postMutation =>
-                      <InsuranceForm
-                      insurance={insurance}
+                      <TechnicalControlForm
+                      technical_control={technical_control}
                           onSubmit={(event)=>{
                             //alert("hello")
                             event.preventDefault();
@@ -76,11 +76,11 @@ class Edit extends React.Component {
                               //this.props.history.goBack();
                               //console.log(result)
                               alert('L\'assurance a bien été modifié.', 'success')
-                              Router.push("/insurances/view?insuranceId="+result.data.updateInsurance.id);
+                              Router.push("/technical_controls/view?technical_controlId="+result.data.updateTechnicalControl.id);
                             })
                           }
                         }
-                        onChange={(insurance)=>this.setState({insurance:insurance})}
+                        onChange={(technical_control)=>this.setState({technical_control:technical_control})}
                       />
                       }
                     </Mutation>

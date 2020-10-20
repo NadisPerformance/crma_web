@@ -1,33 +1,33 @@
 import React from 'react'
 import {Form, Row,Col, Button, InputGroup} from 'react-bootstrap'
-class InsuranceForm extends React.Component{
+class TechnicalControlForm extends React.Component{
   constructor (props) {
     super(props)
     this.state = {
-      insurance:{
+      technical_control:{
         name:""
       }
     }
   }
   componentDidMount(){
-    const {insurance} = this.props
-    if(insurance){
-      this.state.insurance = insurance
+    const {technical_control} = this.props
+    if(technical_control){
+      this.state.technical_control = technical_control
     }
     this.onChange()
   }
   setName(value){
-    this.state.insurance.name = value
-    this.setState({insurance:this.state.insurance})
+    this.state.technical_control.name = value
+    this.setState({technical_control:this.state.technical_control})
     this.onChange();
   }
 
   onChange(){
     if(this.props.onChange)
-      this.props.onChange(this.state.insurance)
+      this.props.onChange(this.state.technical_control)
   }
   render () {
-    const {insurance, show_password} = this.state
+    const {technical_control, show_password} = this.state
     return (
        <Form onSubmit={(event)=>{
                 if(this.props.onSubmit)
@@ -35,7 +35,7 @@ class InsuranceForm extends React.Component{
               }} >
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Nom:</Form.Label>
-            <Form.Control value={insurance.name} type="text" onChange={(event)=>this.setName(event.target.value)} placeholder="Nom de l'assurance" />
+            <Form.Control value={technical_control.name} type="text" onChange={(event)=>this.setName(event.target.value)} placeholder="Nom de l'assurance" />
           </Form.Group>
           <div className="text-right" style={{margin:10}}>
                 <Button   variant="primary" type="submit">
@@ -56,4 +56,4 @@ const styles ={
   }
 }
 
-export default InsuranceForm;
+export default TechnicalControlForm;

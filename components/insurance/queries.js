@@ -20,6 +20,16 @@ query get_insurance($insuranceId:ID!){
   }
 }
 `
+
+export const get_insurance_to_update = gql`
+query get_insurance_to_update($insuranceId:ID!){
+  insurance(id:$insuranceId){
+    id
+    name
+  }
+}
+`
+
 export const update_insurance = gql`
   mutation update_insurance($id: ID!, $data:InsuranceInput!)  {
     updateInsurance(id:$id,data:$data){
