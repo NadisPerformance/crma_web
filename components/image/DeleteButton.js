@@ -38,7 +38,7 @@ class DeleteButton extends React.Component {
                   }
                 })
               }}
-                  className="btn btn-danger btn-sm" >
+                  className="btn btn-danger btn-sm" > 
                   <i className="fa fa-trash" style={{color:'white'}}></i>
              </a>
           }

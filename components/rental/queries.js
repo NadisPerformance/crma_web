@@ -89,6 +89,14 @@ query get_rental($rentalId:ID!){
       kilometrage
       niveau_carburant
       comment
+      album{
+        id
+        images{
+          id
+          path
+          image_url
+        }
+      }
     }
   }
 }

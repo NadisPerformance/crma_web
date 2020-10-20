@@ -38,6 +38,7 @@ class Edit extends React.Component {
   }
   render() {
     let {beforeRentalId, before_rental} = this.state
+    var album= null
     return (
       <AdminLayout>
         <Page title="Véhicules" fariane={this.fariane}>
@@ -55,6 +56,7 @@ class Edit extends React.Component {
                 if(this.state.before_rental == null){
                     delete data.before_rental.__typename
                     before_rental = this.state.before_rental = data.before_rental
+                    album = before_rental.album
                 }
                 delete this.state.before_rental.album
                 delete this.state.before_rental.id
@@ -64,6 +66,7 @@ class Edit extends React.Component {
                       {postMutation =>
                       <BeforeRentalForm
                         before_rental={data.before_rental}
+                        album={ album}
                         onSubmit={(event)=>{
                           //alert("hello")
                           event.preventDefault();

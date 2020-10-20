@@ -13,6 +13,7 @@ import RentalTab from '../../components/rental/Tabs/RentalTab'
 import CustomerTab from '../../components/rental/Tabs/CustomerTab'
 import CarTab from '../../components/rental/Tabs/CarTab'
 import BeforeRentalTab from '../../components/rental/Tabs/BeforeRentalTab'
+import AfterRentalTab from '../../components/rental/Tabs/AfterRentalTab'
 import RentalDeleteButton from '../../components/rental/DeleteButton'
 
 class View extends React.Component {
@@ -70,7 +71,7 @@ class View extends React.Component {
                        <BeforeRentalTab before_rental={data.rental.before_rental} rentalId={data.rental.id}/>
                     </Tab>
                     <Tab eventKey="after_rental" title="Fin de location">
-                      <CustomerTab customer={data.rental.customer} />
+                      <AfterRentalTab after_rental={data.rental.after_rental} rentalId={data.rental.id}/>
                     </Tab>
                     <Tab eventKey="customer" title="Client">
                       <CustomerTab customer={data.rental.customer} />

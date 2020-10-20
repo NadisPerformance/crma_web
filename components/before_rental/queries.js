@@ -9,6 +9,7 @@ query before_rental($beforeRentalId:ID!){
     kilometrage
     niveau_carburant
     comment
+    albumId
     album{
       id
       images{

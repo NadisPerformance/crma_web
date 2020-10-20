@@ -2,6 +2,6 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/before_rentals/edit": "pages/before_rentals/edit.js",
-  "/rentals/view": "pages/rentals/view.js"
+  "/rentals/view": "pages/rentals/view.js",
+  "/after_rentals/edit": "pages/after_rentals/edit.js"
 }

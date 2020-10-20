@@ -13,6 +13,7 @@ export default class MultiUpload extends Component {
         this.state = {
             file: [null],
             albumId:null,
+            isLoading: false,
             album:{
               title:"Test"
             },
@@ -22,6 +23,8 @@ export default class MultiUpload extends Component {
             },
             uploaded_images:[]
         }
+        if(props.album)
+         this.state.uploaded_images = props.album.images
         this.uploadFile = this.uploadFile.bind(this)
         this.uploadFiles = this.uploadFiles.bind(this)
     }
@@ -31,23 +34,14 @@ export default class MultiUpload extends Component {
       const {album} = this.props
       if(album && album.id)
         this.setAlbumId(album.id)
-      if(album && album.images){
-         this.setState({uploaded_images:album.images})
+      if(album != null ){
+         this.state.uploaded_images = album.images
       }
-      console.log("test album")
       console.log(album)
 
     }
-    componentDidUpdate(prevProps, prevState) {
-      const {album} = this.props
-      console.log(album)
-      if(this.state.albumId== 0 && album && album.id)
-        this.setAlbumId(album.id)
-      if(this.state.albumId== 0 && album && album.images){
-         this.setState({uploaded_images:album.images})
-      }
-    }
     async uploadFile(file) {
+        this.setState({isLoading: true})
         if(!file )
           return null
         this.setImageFile(file)
@@ -59,12 +53,15 @@ export default class MultiUpload extends Component {
         this.uploadImage().then((result)=>{
           this.state.uploaded_images.push(result.data.createImage)
           this.setState({uploaded_images:this.state.uploaded_images})
+          this.setState({isLoading: false})
           //alert("Image uploaded "+result.data.createImage.id)
         })
         this.fileObj.push(file)
         this.fileArray.push(URL.createObjectURL(file))
       //  console.log(this.fileObj)
         //this.setState({ file: this.fileArray })
+
+
     }
 
     uploadFiles(e) {
@@ -89,7 +86,7 @@ export default class MultiUpload extends Component {
     deleteImage(imageId){
       var images = this.state.uploaded_images
       for(var i= 0; i < images.length; i++)
-        if( images[i].id == imageId)
+        if( images[i] && images[i].id == imageId)
           delete images[i]
       this.setState({uploaded_images:images})
     }
@@ -116,8 +113,15 @@ export default class MultiUpload extends Component {
                     </div>
                 </div>
                ))}
+               { this.state.isLoading &&
+                 <div className="col-sm-12 row" style={{border:"solid #ccc 1px", backgroundColor:'white',padding:'2px',margin:'2px'}}>
+                     <center>Chargement en cours ...</center>
+                 </div>
+               }
                 <div className="form-group">
-                    <input type="file" className="form-control" id="file" onChange={({target: {validity,files: [file],},})=>this.uploadFile(file)} _multiple  style={{display:'none'}}/>
+                    <input type="file" className="form-control" id="file"
+                    onChange={({target: {validity,files: [file],},})=>this.uploadFile(file)}
+                      style={{display:'none'}}/>
                 </div>
                 <Mutation mutation={create_image} variables={{data:this.state.image}} >
                   {postMutation =>{

@@ -24,10 +24,10 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
-    "/before_rentals/edit": [
+    "/after_rentals/edit": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/before_rentals/edit.js"
+      "static/chunks/pages/after_rentals/edit.js"
     ],
     "/rentals/view": [
       "static/chunks/main.js",

@@ -10,6 +10,8 @@ class BeforeRentalTab extends React.Component {
     super(props)
   }
   renderAlbum(album){
+    if(!album)
+      return <p>Aucune image associée</p>
     var images = []
     for(var i=0; i<album.images.length; i++){
        images.push(album.images[i].image_url)

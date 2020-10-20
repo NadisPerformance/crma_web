@@ -16,13 +16,11 @@ class BeforeRentalForm extends React.Component{
         niveau_carburant:0
       }
     }
+    this.state.album = props.album
+    this.state.before_rental = props.before_rental
     this.onChange = this.onChange.bind(this)
   }
-  componentDidMount(){
-    const {before_rental} = this.props
-    if(before_rental){
-      this.state.before_rental = before_rental
-    }
+  componentDidMount(){ 
     this.onChange()
   }
   setRentalId(value){
@@ -57,8 +55,7 @@ class BeforeRentalForm extends React.Component{
       this.props.onChange(this.state.before_rental)
   }
   render () {
-    const {before_rental} = this.state
-    console.log(before_rental)
+    const {before_rental, album} = this.state
     return (
        <Form onSubmit={(event)=>{
                 if(this.props.onSubmit)
@@ -80,7 +77,7 @@ class BeforeRentalForm extends React.Component{
           </Form.Group>
          </Col>
           <Col className="col-sm-6 table-responsive">
-              <MultiUpload onChange={(value)=>this.setAlbumId(value)} album={before_rental.album} />
+              <MultiUpload onChange={(value)=>this.setAlbumId(value)} album={album} />
           </Col>
         </Row>
           <div className="text-right" style={{margin:10}}>
