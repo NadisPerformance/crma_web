@@ -1,11 +1,16 @@
 import React from 'react'
 import {Form, Row,Col, Button, InputGroup} from 'react-bootstrap'
+import DatePicker from 'react-datepicker'
+import "react-datepicker/dist/react-datepicker.css"
+import moment from 'moment'
 class TechnicalControlForm extends React.Component{
   constructor (props) {
     super(props)
     this.state = {
       technical_control:{
-        name:""
+        carId:0,
+        date_begin:"",
+        date_end:""
       }
     }
   }
@@ -16,8 +21,20 @@ class TechnicalControlForm extends React.Component{
     }
     this.onChange()
   }
-  setName(value){
-    this.state.technical_control.name = value
+  setCarId(value){
+    this.state.technical_control.carId = value*1
+    this.setState({technical_control:this.state.technical_control})
+    this.onChange();
+  }
+
+  setDateBegin(value){
+    this.state.technical_control.date_begin = value
+    this.setState({technical_control:this.state.technical_control})
+    this.onChange();
+  }
+
+  setDateEnd(value){
+    this.state.technical_control.date_end = value
     this.setState({technical_control:this.state.technical_control})
     this.onChange();
   }
@@ -34,8 +51,28 @@ class TechnicalControlForm extends React.Component{
                   this.props.onSubmit(event)
               }} >
           <Form.Group controlId="formBasicEmail">
-            <Form.Label>Nom:</Form.Label>
-            <Form.Control value={technical_control.name} type="text" onChange={(event)=>this.setName(event.target.value)} placeholder="Nom de l'assurance" />
+            
+            <Form.Control type="hidden" value={technical_control.carId}  onChange={(event)=>this.setCarId(event.target.value)} placeholder="Nom de l'assurance" />
+          </Form.Group>
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Date de début:</Form.Label><br/>
+            <DatePicker
+              selected={Date.parse(moment(technical_control.date_begin).toDate())}
+              onChange={date => this.setDateBegin(date)}
+              isClearable
+              dateFormat="dd/MM/yyyy"
+              placeholderText="Date début"
+            />
+          </Form.Group>
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Date de fin:</Form.Label><br/>
+            <DatePicker
+              selected={Date.parse(moment(technical_control.date_end).toDate())}
+              onChange={date => this.setDateEnd(date)}
+              isClearable
+              dateFormat="dd/MM/yyyy"
+              placeholderText="Date fin"
+            />
           </Form.Group>
           <div className="text-right" style={{margin:10}}>
                 <Button   variant="primary" type="submit">

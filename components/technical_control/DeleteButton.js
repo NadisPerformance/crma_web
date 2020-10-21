@@ -35,7 +35,6 @@ class DeleteButton extends React.Component {
                   //console.log(result)
                   if (result.data.deleteTechnicalControl.statut_code==1){
                       alert('Le contrôle technique a bien été supprimé.', 'success')
-                      Router.push("/technical_controls/list");
                   }
                 })
               }}

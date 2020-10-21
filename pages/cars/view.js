@@ -11,7 +11,7 @@ import Card from '../../components/Card'
 import { withRouter } from 'next/router'
 import CarTab from '../../components/car/Tabs/CarTab'
 import CarInsurancesTab from '../../components/car/Tabs/CarInsurancesTab'
-import TechnicalControlsTab from '../../components/car/Tabs/TechnicalControlsTab'
+import TechnicalControlTab from '../../components/car/Tabs/TechnicalControlTab'
 import CarDeleteButton from '../../components/car/DeleteButton'
 class View extends React.Component {
   constructor (props) {
@@ -67,7 +67,7 @@ class View extends React.Component {
                        <CarInsurancesTab car_insurances={data.car.car_insurances} />
                     </Tab>
                     <Tab eventKey="technical_control" title="Contrôle technique" >
-                       <TechnicalControlsTab technical_controls={data.car.technical_controls} />
+                       <TechnicalControlTab technical_controls={data.car.technical_controls} carId={data.car.id} />
                     </Tab>
                   </Tabs>
                 )

@@ -10,6 +10,8 @@ import Page from '../../components/Page'
 import Card from '../../components/Card'
 import { withRouter } from 'next/router'
 import TechnicalControlDeleteButton from '../../components/technical_control/DeleteButton'
+import moment from 'moment'
+
 
 class View extends React.Component {
   constructor (props) {
@@ -18,21 +20,21 @@ class View extends React.Component {
     this.state={
       technical_controlId: technical_controlId
     }
-    this.fariane= [{title:"Acceuil",path:"/"},{title:"Assurances",path:"/technical_controls/list"}]
+    this.fariane= [{title:"Acceuil",path:"/"},{title:"Contrôles techniques",path:"/technical_controls/list"}]
     this.onDelete = this.onDelete.bind(this)
   }
   onDelete(){
-    window.flash('La location a bien été supprimée.', 'success')
+    window.flash('Le contrôle technique a bien été supprimée.', 'success')
     this.props.history.push("/technical_controls/");
   }
   header(){
     const { technical_controlId } = this.state
     return <React.Fragment>
-             <h3 className="card-title">{"Assurance #"+technical_controlId}</h3>
+             <h3 className="card-title">{"Contrôle technique #"+technical_controlId}</h3>
 
                 <div className="card-tools">
-                    <Link href={"/technical_control/edit?technical_controlId="+technical_controlId} >
-                       <a className="btn btn-success btn-sm" data-toggle="tooltip" title="" data-original-title="Nouvelle" >
+                    <Link href={"/technical_controls/edit?technical_controlId="+technical_controlId} >
+                       <a className="btn btn-success btn-sm" data-toggle="tooltip" title="" data-original-title="Nouveau" >
                         <i className="fa fa-pen-alt"></i> Modifier
                         </a>
                     </Link>
@@ -44,7 +46,7 @@ class View extends React.Component {
     const {technical_controlId} = this.state
     return (
       <AdminLayout>
-        <Page title="Assurances" fariane={this.fariane}>
+        <Page title="Contrôles techniques" fariane={this.fariane}>
           <Card header={this.header()} >
             <Query query={get_technical_control} variables={{technical_controlId}} pollInterval={3000} >
               {({ loading, error, data }) => {
@@ -62,8 +64,12 @@ class View extends React.Component {
                           <table className="table">
                               <tbody>
                                 <tr>
-                                  <th style={{width:"50%"}}>Nom de l'assurance</th>
-                                  <td>{data.technical_control.name}</td>
+                                  <th style={{width:"50%"}}>Date de début</th>
+                                  <td>{moment(data.technical_control.date_begin).format("DD/MM/YYYY")}</td>
+                                </tr>
+                                <tr>
+                                  <th style={{width:"50%"}}>Date de fin</th>
+                                  <td>{moment(data.technical_control.date_end).format("DD/MM/YYYY")}</td>
                                 </tr>
                               </tbody>
                           </table>

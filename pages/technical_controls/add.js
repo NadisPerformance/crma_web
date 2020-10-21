@@ -10,26 +10,31 @@ import {Table, Row,Col} from 'react-bootstrap'
 import Page from '../../components/Page'
 import Card from '../../components/Card'
 import { withRouter } from 'next/router'
-import TechnicalControlsForm from '../../components/technical_controls/TechnicalControlsForm'
+import TechnicalControlForm from '../../components/technical_control/TechnicalControlForm'
 class Add extends React.Component {
   constructor (props) {
     super(props)
+    const { carId } = this.props.router.query
     this.state={
-      car:null
+      technical_control:{
+        carId: carId*1,
+        date_begin:"",
+        date_end:""
+      }
     }
-    this.fariane= [{title:"Acceuil",path:"/"},{title:"Assurance",path:"/insurances/list"}]
+    this.fariane= [{title:"Acceuil",path:"/"},{title:"Contrôle technique",path:"/technical_controls/list"}]
     this.onDelete = this.onDelete.bind(this)
   }
   onDelete(){
-    window.flash('L\'assurance a bien été supprimée.', 'success')
+    window.flash('Le contrôle technique a bien été supprimée.', 'success')
     this.props.history.push("/insurances/");
   }
   header(){
     return <React.Fragment>
-             <h3 className="card-title">{"Nouvelle assurance "}</h3>
+             <h3 className="card-title">{"Nouveau contrôle technique "}</h3>
 
                 <div className="card-tools">
-                    <Link href={"/insurances/add"} >
+                    <Link href={"/technical_controls/add"} >
                        <a className="btn btn-success btn-sm" data-toggle="tooltip" title="" data-original-title="Nouvelle" >
                         <i className="fa fa-pen-alt"></i> Nouvelle
                         </a>
@@ -38,22 +43,22 @@ class Add extends React.Component {
           </React.Fragment>
   }
   render() {
-    let {insurance} = this.state
+    let {technical_control} = this.state
     return (
       <AdminLayout>
         <Page title="Assurances" fariane={this.fariane}>
           <Mutation mutation={create_technical_control} variables={{data:this.state.technical_control}} >
             {postMutation =>
-              <TechnicalControlsForm
+              <TechnicalControlForm
               technical_control={technical_control}
                 onSubmit={(event)=>{
-                  //alert("hello")
+                  alert("hello")
                   event.preventDefault();
                   //console.log(car)
                   postMutation().then((result)=>{
                     //this.props.history.goBack();
                     alert('L\'assurance a bien été crée.', 'success')
-                    Router.push("/technical_controls/view?technical_controlId="+result.data.createTechnicalControl.id);
+                    Router.push("/cars/view?carId="+result.data.createTechnicalControl.carId);
                   })
                 }}
                 onChange={(technical_control)=>this.setState({technical_control:technical_control})}

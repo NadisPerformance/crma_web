@@ -21,9 +21,6 @@ query get_technical_control($technical_controlId:ID!){
     carId
     date_begin
     date_end
-    car{
-      
-    }
   }
 }
 `
@@ -40,7 +37,7 @@ query get_technical_control_to_update($technical_controlId:ID!){
 `
 
 export const update_technical_control = gql`
-  mutation update_technical_control($id: ID!, $data:technical_controlInput!)  {
+  mutation update_technical_control($id: ID!, $data:Technical_controlInput!)  {
     updateTechnicalControl(id:$id,data:$data){
       id
       carId
@@ -51,9 +48,10 @@ export const update_technical_control = gql`
 
 `
 export const create_technical_control = gql`
-  mutation update_technical_control($data:technical_controlInput!)  {
+  mutation update_technical_control($data:Technical_controlInput!)  {
     createTechnicalControl(data:$data){
         id
+        carId
     }
   }
 

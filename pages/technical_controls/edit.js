@@ -20,11 +20,11 @@ class Edit extends React.Component {
       technical_controlId: technical_controlId,
       technical_control:null
     }
-    this.fariane= [{title:"Acceuil",path:"/"},{title:"Assurances",path:"/technical_controls/list"}]
+    this.fariane= [{title:"Acceuil",path:"/"},{title:"Contrôle technique",path:"/technical_controls/list"}]
     this.onDelete = this.onDelete.bind(this)
   }
   onDelete(){
-    window.flash('L\'assurance a bien été supprimée.', 'success')
+    window.flash('Le contrôle technique a bien été supprimée.', 'success')
     this.props.history.push("/technical_controls/");
   }
   header(){
@@ -47,7 +47,7 @@ class Edit extends React.Component {
       delete technical_control.id
     return (
       <AdminLayout>
-        <Page title="Assurances" fariane={this.fariane}>
+        <Page title="Contrôles techniques" fariane={this.fariane}>
             <Query query={get_technical_control_to_update} variables={{technical_controlId}} _pollInterval={3000} >
               {({ loading, error, data }) => {
                 if (loading) return <div>Chargement en cours ...</div>
@@ -57,7 +57,7 @@ class Edit extends React.Component {
                 }
                 console.log(data)
                 if(!data.technical_control)
-                  return "Rental not found"
+                  return "technical_control not found"
                 if(this.state.technical_control == null){
                     delete data.technical_control.__typename
                     technical_control = this.state.technical_control = data.technical_control
@@ -75,7 +75,7 @@ class Edit extends React.Component {
                             postMutation().then((result)=>{
                               //this.props.history.goBack();
                               //console.log(result)
-                              alert('L\'assurance a bien été modifié.', 'success')
+                              alert('Le contrôle technique a bien été modifié.', 'success')
                               Router.push("/technical_controls/view?technical_controlId="+result.data.updateTechnicalControl.id);
                             })
                           }
