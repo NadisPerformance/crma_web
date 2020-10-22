@@ -24,15 +24,15 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
-    "/bookings/view": [
-      "static/chunks/main.js",
-      "static/chunks/webpack.js",
-      "static/chunks/pages/bookings/view.js"
-    ],
     "/rentals/list": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
       "static/chunks/pages/rentals/list.js"
+    ],
+    "/rentals/view": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/rentals/view.js"
     ]
   },
   "ampFirstPages": []

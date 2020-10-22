@@ -1,7 +1,7 @@
 import React from 'react'
 import {Table, Row,Col} from 'react-bootstrap'
 import moment from 'moment'
-
+import {api_url} from '../../../lib/config'
 import { withRouter } from 'next/router'
 class RentalTab extends React.Component {
   constructor (props) {
@@ -25,8 +25,8 @@ class RentalTab extends React.Component {
                             <td>{moment(rental.date_end).format("DD/MM/YYYY")}</td>
                         </tr>
                         <tr>
-                            <th style={{width:"50%"}} >Contrat de location:</th>
-                            <td><a href="" > Télécharger </a></td>
+                            <th style={{width:"50%"}} >Contrat de location préremplie:</th>
+                            <td><a target="_blank" href={api_url+"contracts/download?rentalId="+rental.id} > Télécharger </a></td>
                         </tr>
                         <tr>
                             <th style={{width:"50%"}} >Contrat de location scannée:</th>
