@@ -9,11 +9,19 @@ class CarInsurancesTab extends React.Component {
     super(props)
   }
   render() {
-    let {car_insurances} = this.props
+    let {car_insurances, carId} = this.props
     if (!car_insurances)
       return <p><center>Aucune assurance attachée au véhicule.</center></p>
     return (
+      
+    console.log(carId+"A"),
       <Row className="col-sm-12">
+        <Link href={"/car_insurances/add?carId="+carId} >
+          <a style={{margin:3}}
+          className="btn btn-info btn-sm" >
+            <i className="fa fa-plus"></i> Nouvelle assurance
+          </a>
+        </Link>
       <Table striped bordered hover size="sm">
        <thead>
          <tr>

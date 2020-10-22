@@ -23,6 +23,9 @@ query get_car_insurance($car_insuranceId:ID!){
     insuranceId
     date_begin
     date_end
+    insurance{
+      name
+    }
   }
 }
 `

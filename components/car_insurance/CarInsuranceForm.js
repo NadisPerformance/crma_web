@@ -3,7 +3,8 @@ import {Form, Row,Col, Button, InputGroup} from 'react-bootstrap'
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css"
 import moment from 'moment'
-class TechnicalControlForm extends React.Component{
+import InsuranceInput  from '../insurance/SelectInput'
+class CarInsuranceForm extends React.Component{
   constructor (props) {
     super(props)
     this.state = {
@@ -22,13 +23,8 @@ class TechnicalControlForm extends React.Component{
     }
     this.onChange()
   }
-  setCarId(value){
-    this.state.car_insurance.carId = value*1
-    this.setState({car_insurance:this.state.car_insurance})
-    this.onChange();
-  }
 
-  setCarId(value){
+  setInsuranceId(value){
     this.state.car_insurance.insuranceId = value*1
     this.setState({car_insurance:this.state.car_insurance})
     this.onChange();
@@ -58,8 +54,10 @@ class TechnicalControlForm extends React.Component{
                   this.props.onSubmit(event)
               }} >
           <Form.Group controlId="formBasicEmail">
-            
             <Form.Control type="hidden" value={car_insurance.carId}  onChange={(event)=>this.setCarId(event.target.value)} placeholder="Nom de l'assurance" />
+          </Form.Group>
+          <Form.Group controlId="formBasicEmail">
+            <InsuranceInput  selectedId={car_insurance.insuranceId}  onChange={(selectedId)=>this.setInsuranceId(selectedId)} />
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Date de début:</Form.Label><br/>
@@ -100,4 +98,4 @@ const styles ={
   }
 }
 
-export default TechnicalControlForm;
+export default CarInsuranceForm;

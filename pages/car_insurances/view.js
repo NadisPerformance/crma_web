@@ -65,7 +65,7 @@ class View extends React.Component {
                               <tbody>
                                 <tr>
                                   <th style={{width:"50%"}}>Société d'assurance</th>
-                                  <td>{data.car_insurance.insurance && data.car_insurance.insurance.name}</td>
+                                  <td>{data.car_insurance.insurance.name}</td>
                                 </tr>
                                 <tr>
                                   <th style={{width:"50%"}}>Date de début</th>

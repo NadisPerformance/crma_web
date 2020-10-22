@@ -9,7 +9,7 @@ import {Table, Row,Col} from 'react-bootstrap'
 import Page from '../../components/Page'
 import Card from '../../components/Card'
 import { withRouter } from 'next/router'
-import TechnicalControlForm from '../../components/car_insurance/TechnicalControlForm'
+import CarInsuranceForm from '../../components/car_insurance/CarInsuranceForm'
 import Router from 'next/router'
 
 class Edit extends React.Component {
@@ -66,7 +66,7 @@ class Edit extends React.Component {
                 return (
                     <Mutation mutation={update_car_insurance} variables={{id:car_insuranceId,data:car_insurance}} >
                       {postMutation =>
-                      <TechnicalControlForm
+                      <CarInsuranceForm
                       car_insurance={car_insurance}
                           onSubmit={(event)=>{
                             //alert("hello")

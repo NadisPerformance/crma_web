@@ -10,12 +10,9 @@ class TechnicalControlTab extends React.Component {
   }
   render() {
     let {technical_controls, carId} = this.props
-    console.log(carId+"A");
     if (!technical_controls)
       return <p><center>Aucune contrôle technique attaché au véhicule.</center></p>
-      console.log(carId+"B");
     return (
-      console.log(carId+"C"),
       <Row className="col-sm-12">
         <Link href={"/technical_controls/add?carId="+carId} >
           <a style={{margin:3}}

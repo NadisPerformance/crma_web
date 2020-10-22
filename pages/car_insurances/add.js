@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Router from 'next/router'
 import React from 'react'
 import AdminLayout from '../../components/AdminLayout'
-import { create_technical_control} from '../../components/technical_control/queries'
+import { create_car_insurance} from '../../components/car_insurance/queries'
 import { Query, Mutation } from 'react-apollo'
 import withData from '../../lib/withData'
 import {Table, Row,Col} from 'react-bootstrap'
@@ -16,13 +16,13 @@ class Add extends React.Component {
     super(props)
     const { carId } = this.props.router.query
     this.state={
-      technical_control:{
+      car_insurance:{
         carId: carId*1,
         date_begin:"",
         date_end:""
       }
     }
-    this.fariane= [{title:"Acceuil",path:"/"},{title:"Contrôle technique",path:"/technical_controls/list"}]
+    this.fariane= [{title:"Acceuil",path:"/"},{title:"Contrôle technique",path:"/car_insurances/list"}]
     this.onDelete = this.onDelete.bind(this)
   }
   onDelete(){
@@ -34,7 +34,7 @@ class Add extends React.Component {
              <h3 className="card-title">{"Nouveau contrôle technique "}</h3>
 
                 <div className="card-tools">
-                    <Link href={"/technical_controls/add"} >
+                    <Link href={"/car_insurances/add"} >
                        <a className="btn btn-success btn-sm" data-toggle="tooltip" title="" data-original-title="Nouvelle" >
                         <i className="fa fa-pen-alt"></i> Nouvelle
                         </a>
@@ -43,14 +43,14 @@ class Add extends React.Component {
           </React.Fragment>
   }
   render() {
-    let {technical_control} = this.state
+    let {car_insurance} = this.state
     return (
       <AdminLayout>
         <Page title="Assurances" fariane={this.fariane}>
-          <Mutation mutation={create_technical_control} variables={{data:this.state.technical_control}} >
+          <Mutation mutation={create_car_insurance} variables={{data:this.state.car_insurance}} >
             {postMutation =>
-              <TechnicalControlForm
-              technical_control={technical_control}
+              <CarInsuranceForm
+              car_insurance={car_insurance}
                 onSubmit={(event)=>{
                   alert("hello")
                   event.preventDefault();
@@ -61,7 +61,7 @@ class Add extends React.Component {
                     Router.push("/cars/view?carId="+result.data.createTechnicalControl.carId);
                   })
                 }}
-                onChange={(technical_control)=>this.setState({technical_control:technical_control})}
+                onChange={(car_insurance)=>this.setState({car_insurance:car_insurance})}
               />
             }
           </Mutation>
