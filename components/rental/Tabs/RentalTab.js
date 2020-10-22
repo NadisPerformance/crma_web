@@ -24,6 +24,14 @@ class RentalTab extends React.Component {
                             <th style={{width:"50%"}} >Date de fin:</th>
                             <td>{moment(rental.date_end).format("DD/MM/YYYY")}</td>
                         </tr>
+                        <tr>
+                            <th style={{width:"50%"}} >Contrat de location:</th>
+                            <td><a href="" > Télécharger </a></td>
+                        </tr>
+                        <tr>
+                            <th style={{width:"50%"}} >Contrat de location scannée:</th>
+                            <td><a href="" > Télécharger </a></td>
+                        </tr>
                     </tbody>
                 </table>
             </Col>
