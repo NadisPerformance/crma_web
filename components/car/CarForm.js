@@ -86,6 +86,11 @@ class CarForm extends React.Component{
      this.setState({car:this.state.car})
      this.onChange() ;
   }
+  setGreyCardFile(file){
+    this.state.car.grey_card_file = file
+    this.setState({car:this.state.car})
+    this.onChange() ;
+ }
   onChange(){
     if(this.props.onChange)
       this.props.onChange(this.state.car)
@@ -101,6 +106,12 @@ class CarForm extends React.Component{
               <Form.Label>Photo du véhicule:</Form.Label>
               <Form.Control type="file"
                 onChange={({target: {validity,files: [file],},})=>this.setPictureFile(file)}
+                 />
+          </Form.Group>
+          <Form.Group controlId="formBasicEmail">
+              <Form.Label>Carte grise scannée:</Form.Label>
+              <Form.Control type="file"
+                onChange={({target: {validity,files: [file],},})=>this.setGreyCardFile(file)}
                  />
           </Form.Group>
           <Form.Group controlId="formBasicBrandId">

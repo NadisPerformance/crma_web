@@ -50,7 +50,11 @@ class RentalForm extends React.Component{
     this.setState({rental:this.state.rental})
     this.onChange();
   }
-
+  setContractFile(file){
+    this.state.rental.contract_file = file
+    this.setState({rental:this.state.rental})
+    this.onChange() ;
+  }
   onChange(){
     if(this.props.onChange)
       this.props.onChange(this.state.rental)
@@ -92,6 +96,12 @@ class RentalForm extends React.Component{
               isClearable
               dateFormat="d/MM/yyyy"
               placeholderText="Date début"
+            />
+          </Form.Group>
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Importé le contrat de location:</Form.Label>
+            <Form.Control type="file"
+              onChange={({target: {validity,files: [file],},})=>this.setContractFile(file)}
             />
           </Form.Group>
           <div className="text-right" style={{margin:10}}>

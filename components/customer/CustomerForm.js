@@ -92,7 +92,11 @@ class CustomerForm extends React.Component{
     this.setState({customer:this.state.customer})
     this.onChange();
   }
-
+  setGreyDriverLicenseFile(file){
+    this.state.customer.driver_license_file = file
+    this.setState({customer:this.state.customer})
+    this.onChange() ;
+  }
   onChange(){
     if(this.props.onChange)
       this.props.onChange(this.state.customer)
@@ -150,6 +154,12 @@ class CustomerForm extends React.Component{
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Permis de conduite:</Form.Label>
             <Form.Control value={customer.driver_license} type="text" onChange={(event)=>this.setDriver_license(event.target.value)} placeholder="Permis de conduite " />
+          </Form.Group>
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Importé le permis de conduite:</Form.Label>
+            <Form.Control type="file"
+              onChange={({target: {validity,files: [file],},})=>this.setDriver_licenseFile(file)}
+            />
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Ville:</Form.Label>

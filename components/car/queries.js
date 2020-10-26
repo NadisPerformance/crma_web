@@ -16,6 +16,7 @@ export const get_cars = gql`
             chassis_number
             statusId
             picture_url
+            grey_card_url
             picture
             brand{
               id
@@ -54,6 +55,8 @@ query get_car($carId:ID!){
         statusId
         picture
         picture_url
+        
+        grey_card_url
         createdAt
         updatedAt
         brand{

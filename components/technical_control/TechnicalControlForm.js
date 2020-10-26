@@ -39,6 +39,12 @@ class TechnicalControlForm extends React.Component{
     this.onChange();
   }
 
+  setTechnicalControlFile(file){
+    this.state.technical_control.technical_control_file = file
+    this.setState({technical_control:this.state.technical_control})
+    this.onChange() ;
+ }
+
   onChange(){
     if(this.props.onChange)
       this.props.onChange(this.state.technical_control)
@@ -51,7 +57,12 @@ class TechnicalControlForm extends React.Component{
                   this.props.onSubmit(event)
               }} >
           <Form.Group controlId="formBasicEmail">
-            
+              <Form.Label>Contrôle technique scannée:</Form.Label>
+              <Form.Control type="file"
+                onChange={({target: {validity,files: [file],},})=>this.setTechnicalControlFile(file)}
+                 />
+          </Form.Group>
+          <Form.Group controlId="formBasicEmail">
             <Form.Control type="hidden" value={technical_control.carId}  onChange={(event)=>this.setCarId(event.target.value)} placeholder="Nom de l'assurance" />
           </Form.Group>
           <Form.Group controlId="formBasicEmail">

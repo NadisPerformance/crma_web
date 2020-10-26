@@ -42,6 +42,12 @@ class CarInsuranceForm extends React.Component{
     this.onChange();
   }
 
+  setCarInsuranceFile(file){
+    this.state.car_insurance.car_insurance_file = file
+    this.setState({car_insurance:this.state.car_insurance})
+    this.onChange() ;
+  }
+
   onChange(){
     if(this.props.onChange)
       this.props.onChange(this.state.car_insurance)
@@ -54,9 +60,16 @@ class CarInsuranceForm extends React.Component{
                   this.props.onSubmit(event)
               }} >
           <Form.Group controlId="formBasicEmail">
+              <Form.Label>Assurance scannée:</Form.Label>
+              <Form.Control type="file"
+                onChange={({target: {validity,files: [file],},})=>this.setCarInsuranceFile(file)}
+                 />
+          </Form.Group>
+          <Form.Group controlId="formBasicEmail">
             <Form.Control type="hidden" value={car_insurance.carId}  onChange={(event)=>this.setCarId(event.target.value)} placeholder="Nom de l'assurance" />
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
+            <Form.Label>Société d'assurance:</Form.Label><br/>
             <InsuranceInput  selectedId={car_insurance.insuranceId}  onChange={(selectedId)=>this.setInsuranceId(selectedId)} />
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
