@@ -9,7 +9,8 @@ export const get_technical_controls = gql`
           carId
           date_begin
           date_end
-          technical_control_url
+          scanned_technical_control
+          scanned_technical_control_url
         }
     }
   }
@@ -22,7 +23,8 @@ query get_technical_control($technical_controlId:ID!){
     carId
     date_begin
     date_end
-    technical_control_url
+    scanned_technical_control
+    scanned_technical_control_url
   }
 }
 `

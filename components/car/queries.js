@@ -16,8 +16,9 @@ export const get_cars = gql`
             chassis_number
             statusId
             picture_url
-            grey_card_url
             picture
+            scanned_grey_card_url
+            scanned_grey_card
             brand{
               id
               name
@@ -55,8 +56,8 @@ query get_car($carId:ID!){
         statusId
         picture
         picture_url
-        
-        grey_card_url
+        scanned_grey_card
+        scanned_grey_card_url
         createdAt
         updatedAt
         brand{
@@ -79,6 +80,7 @@ query get_car($carId:ID!){
           id
           date_begin
           date_end
+          scanned_car_insurance_url
           insurance{
             id
             name

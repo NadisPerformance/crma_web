@@ -12,7 +12,8 @@ export const get_rentals = gql`
             second_driverId
             date_begin
             date_end
-            contract_file
+            scanned_contract
+            scanned_contract_url
             customer{
               id
               firstname
@@ -40,7 +41,8 @@ query get_rental($rentalId:ID!){
     second_driverId
     date_begin
     date_end
-    contract_file
+    scanned_contract
+    scanned_contract_url
     customer{
       id
       firstname

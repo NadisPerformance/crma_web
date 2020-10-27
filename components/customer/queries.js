@@ -13,7 +13,8 @@ export const get_customers = gql`
             cni
             type
             driver_license
-            driver_license_url
+            scanned_driver_license_url
+            scanned_driver_license
             city
             address
             email
@@ -36,7 +37,8 @@ query get_customer($customerId:ID!){
     cni
     type
     driver_license
-    driver_license_url
+    scanned_driver_license_url
+    scanned_driver_license
     city
     address
     email

@@ -10,6 +10,8 @@ export const get_car_insurances = gql`
           insuranceId
           date_begin
           date_end
+          scanned_car_insurance
+          scanned_car_insurance_url
         }
     }
   }
@@ -23,6 +25,8 @@ query get_car_insurance($car_insuranceId:ID!){
     insuranceId
     date_begin
     date_end
+    scanned_car_insurance
+    scanned_car_insurance_url
     insurance{
       name
     }
