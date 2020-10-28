@@ -40,7 +40,7 @@ class TechnicalControlForm extends React.Component{
   }
 
   setTechnicalControlFile(file){
-    this.state.technical_control.technical_control_file = file
+    this.state.technical_control.scanned_technical_control_file = file
     this.setState({technical_control:this.state.technical_control})
     this.onChange() ;
  }

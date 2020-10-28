@@ -87,7 +87,7 @@ class CarForm extends React.Component{
      this.onChange() ;
   }
   setGreyCardFile(file){
-    this.state.car.grey_card_file = file
+    this.state.car.scanned_grey_card_file = file
     this.setState({car:this.state.car})
     this.onChange() ;
  }

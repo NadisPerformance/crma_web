@@ -51,7 +51,7 @@ class RentalForm extends React.Component{
     this.onChange();
   }
   setContractFile(file){
-    this.state.rental.contract_file = file
+    this.state.rental.scanned_contract_file = file
     this.setState({rental:this.state.rental})
     this.onChange() ;
   }

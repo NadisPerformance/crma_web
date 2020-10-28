@@ -43,7 +43,7 @@ class CarInsuranceForm extends React.Component{
   }
 
   setCarInsuranceFile(file){
-    this.state.car_insurance.car_insurance_file = file
+    this.state.car_insurance.scanned_car_insurance_file = file
     this.setState({car_insurance:this.state.car_insurance})
     this.onChange() ;
   }

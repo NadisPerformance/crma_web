@@ -93,7 +93,7 @@ class CustomerForm extends React.Component{
     this.onChange();
   }
   setGreyDriverLicenseFile(file){
-    this.state.customer.driver_license_file = file
+    this.state.customer.scanned_driver_license_file = file
     this.setState({customer:this.state.customer})
     this.onChange() ;
   }
