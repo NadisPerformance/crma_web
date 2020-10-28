@@ -1,13 +1,17 @@
 import gql from 'graphql-tag'
 
 export const get_colors = gql`
-{
-    colors {
+query get_colors($limit:Int!, $page:Int!){
+    colors(limit:$limit, page: $page) {
     edges{
         node{
             id
             name
         }
+    }
+    pageInfo {
+      count
+      currentPage
     }
   }
 }

@@ -1,13 +1,17 @@
 import gql from 'graphql-tag'
 
 export const get_brands = gql`
-{
-    brands {
+query get_brands($limit:Int!, $page:Int!){
+    brands(limit:$limit, page: $page) {
     edges{
         node{
             id
             name
         }
+    }
+    pageInfo {
+      count
+      currentPage
     }
   }
 }

@@ -1,13 +1,17 @@
 import gql from 'graphql-tag'
 
 export const get_categories = gql`
-{
-    categories {
+query get_categories($limit:Int!, $page:Int!){
+    categories(limit:$limit, page: $page) {
     edges{
         node{
             id
             title
         }
+    }
+    pageInfo {
+      count
+      currentPage
     }
   }
 }

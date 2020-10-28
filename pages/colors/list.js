@@ -9,10 +9,15 @@ import {Table} from 'react-bootstrap'
 import Page from '../../components/Page'
 import Card from '../../components/Card'
 import withAuth from '../../lib/withAuth'
+import Pagination from '../../components/Pagination'
 
 class List extends React.Component {
   constructor (props) {
     super(props)
+    this.state={
+      limit:10,
+      page:1
+    }
     this.fariane= [{title:"Acceuil",path:"/"},{title:"Couleurs",path:"/colors/"}]
     this.onDelete = this.onDelete.bind(this)
   }
@@ -37,11 +42,14 @@ class List extends React.Component {
     //this.props.history.push("/users/");
   }
   render() {
+    const {
+      limit, page
+    } = this.state
     return (
       <AdminLayout>
         <Page title="Couleurs" fariane={this.fariane}>
           <Card header={this.header()} >
-            <Query query={get_colors} pollInterval={3000} >
+            <Query query={get_colors} variables={{limit:limit,page:page}} pollInterval={3000} >
               {({ loading, error, data }) => {
                 if (loading) return <div>Chargement en cours ...</div>
                 if (error) {
@@ -49,6 +57,7 @@ class List extends React.Component {
                   return <div>Error</div>
                 }
                 return (
+                  <React.Fragment>
                      <Table striped bordered hover size="sm">
                       <thead>
                         <tr>
@@ -86,6 +95,13 @@ class List extends React.Component {
                         }
                       </tbody>
                     </Table>
+                    <Pagination
+                    currentPage={data.colors.pageInfo.currentPage}
+                    count={data.colors.pageInfo.count}
+                    perPage={this.state.limit}
+                    onChange={(page)=>this.setState({page:page})}
+                    />
+                </React.Fragment>
                 )
               }}
               </Query>

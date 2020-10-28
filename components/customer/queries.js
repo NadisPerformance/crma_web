@@ -1,8 +1,8 @@
 import gql from 'graphql-tag'
 
 export const get_customers = gql`
-{
-    customers {
+query get_customers($limit:Int!, $page:Int!){
+    customers(limit:$limit, page: $page) {
     edges{
         node{
             id
@@ -21,6 +21,10 @@ export const get_customers = gql`
             phone
             company_name
         }
+    }
+    pageInfo {
+      count
+      currentPage
     }
   }
 }

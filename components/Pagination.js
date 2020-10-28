@@ -17,14 +17,14 @@ class Pagination extends React.Component{
       //return null
      return [...Array(parseInt(count/perPage))].map((x, i)=>{
        if(i+1 == currentPage)
-          return <li class="page-item active">
-              <a href="#" class="page-link"
+          return <li className="page-item active">
+              <a href="#" className="page-link"
             onClick={()=>this.setPage(i+1)}>{i+1}
               </a>
               </li>
        else
-         return <li class="page-item">
-              <a href="#" class="page-link"
+         return <li className="page-item">
+              <a href="#" className="page-link"
               onClick={()=>this.setPage(i+1)}  >{i+1}
               </a>
               </li>
@@ -34,20 +34,20 @@ class Pagination extends React.Component{
   getPreview(){
     const { currentPage} = this.props
     if(currentPage == 1)
-      return <li class="page-item disabled"><a href="#" class="page-link">«</a></li>
-    return <li class="page-item"><a href="#" class="page-link" onClick={()=>this.setPage(currentPage-1)}>«</a></li>
+      return <li className="page-item disabled"><a href="#" className="page-link">«</a></li>
+    return <li className="page-item"><a href="#" className="page-link" onClick={()=>this.setPage(currentPage-1)}>«</a></li>
   }
   getNext(){
     const { currentPage, count, perPage} = this.props
     if(currentPage >= parseInt(count/perPage)   )
-      return <li class="page-item disabled"><a href="#" class="page-link">»</a></li>
-    return <li class="page-item"><a href="#" class="page-link" onClick={()=>this.setPage(currentPage+1)}>»</a></li>
+      return <li className="page-item disabled"><a href="#" className="page-link">»</a></li>
+    return <li className="page-item"><a href="#" className="page-link" onClick={()=>this.setPage(currentPage+1)}>»</a></li>
   }
   render () {
       return (
         <div style={{margin:"10px", float:"right"}} >
          <center>
-          <ul class="pagination pagination-sm">
+          <ul className="pagination pagination-sm">
                     {this.getPreview()}
                     {this.getPagination()}
                     {this.getNext()}

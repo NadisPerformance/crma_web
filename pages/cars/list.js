@@ -15,7 +15,7 @@ class List extends React.Component {
   constructor (props) {
     super(props)
     this.state={
-      limit:1,
+      limit:10,
       page:1
     }
     this.fariane= [{title:"Acceuil",path:"/"},{title:"Véhicules",path:"/cars/"}]

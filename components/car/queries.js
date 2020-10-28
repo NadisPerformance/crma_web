@@ -94,6 +94,7 @@ query get_car($carId:ID!){
           id
           date_begin
           date_end
+          scanned_technical_control_url
         }
   }
 }

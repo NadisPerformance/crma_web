@@ -29,7 +29,7 @@ class SelectInput extends React.Component{
   render () {
     const {selectedId} = this.state
     return (
-      <Query query={get_brands} pollInterval={3000} >
+      <Query query={get_brands} variables={{limit:100,page:1}} pollInterval={3000} >
         {({ loading, error, data }) => {
           if (loading) return <div>Chargement en cours ...</div>
           if (error) {

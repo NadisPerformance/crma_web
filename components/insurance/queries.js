@@ -1,13 +1,17 @@
 import gql from 'graphql-tag'
 
 export const get_insurances = gql`
-{
-  insurances {
+query get_insurances($limit:Int!, $page:Int!){
+  insurances(limit:$limit, page: $page) {
     edges{
         node{
             id
             name
         }
+    }
+    pageInfo {
+      count
+      currentPage
     }
   }
 }

@@ -1,8 +1,8 @@
 import gql from 'graphql-tag'
 
 export const get_rentals = gql`
-{
-  rentals {
+query get_rentals($limit:Int!, $page:Int!){
+  rentals (limit:$limit, page: $page){
     edges{
         node{
             id
@@ -26,6 +26,10 @@ export const get_rentals = gql`
             }
 
         }
+    }
+    pageInfo {
+      count
+      currentPage
     }
   }
 }
