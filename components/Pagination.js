@@ -13,8 +13,8 @@ class Pagination extends React.Component{
      if(!count)
         return null
      var pagination= "" ;
-     if( parseInt(count/perPage) == 0 )
-      return null
+     //if( parseInt(count/perPage) == 0 )
+      //return null
      return [...Array(parseInt(count/perPage))].map((x, i)=>{
        if(i+1 == currentPage)
           return <li class="page-item active">
@@ -39,7 +39,7 @@ class Pagination extends React.Component{
   }
   getNext(){
     const { currentPage, count, perPage} = this.props
-    if(currentPage == parseInt(count/perPage) )
+    if(currentPage >= parseInt(count/perPage)   )
       return <li class="page-item disabled"><a href="#" class="page-link">»</a></li>
     return <li class="page-item"><a href="#" class="page-link" onClick={()=>this.setPage(currentPage+1)}>»</a></li>
   }
@@ -56,5 +56,5 @@ class Pagination extends React.Component{
         </div>
         )
   }
-} 
+}
 export default Pagination
