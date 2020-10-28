@@ -10,10 +10,14 @@ import Page from '../../components/Page'
 import Card from '../../components/Card'
 import withAuth from '../../lib/withAuth'
 import CarDeleteButton from '../../components/car/DeleteButton'
-
+import Pagination from '../../components/Pagination'
 class List extends React.Component {
   constructor (props) {
     super(props)
+    this.state={
+      limit:2,
+      page:1
+    }
     this.fariane= [{title:"Acceuil",path:"/"},{title:"Véhicules",path:"/cars/"}]
     this.onDelete = this.onDelete.bind(this)
   }
@@ -38,11 +42,14 @@ class List extends React.Component {
     //this.props.history.push("/cars/");
   }
   render() {
+    const {
+      limit, page
+    } = this.state
     return (
       <AdminLayout>
         <Page title="Véhicules" fariane={this.fariane}>
           <Card header={this.header()} >
-            <Query query={get_cars} pollInterval={3000} >
+            <Query query={get_cars} variables={{limit:limit,page:page}} pollInterval={3000} >
               {({ loading, error, data }) => {
                 if (loading) return <div>Chargement en cours ...</div>
                 if (error) {
@@ -50,6 +57,7 @@ class List extends React.Component {
                   return <div>Error</div>
                 }
                 return (
+                  <React.Fragment>
                      <Table striped bordered hover size="sm">
                       <thead>
                         <tr>
@@ -101,6 +109,14 @@ class List extends React.Component {
                         }
                       </tbody>
                     </Table>
+
+                  <Pagination
+                      currentPage={data.cars.pageInfo.currentPage}
+                      count={data.cars.pageInfo.count}
+                      perPage={this.state.limit}
+                      onChange={(page)=>this.setState({page:page})}
+                      />
+                  </React.Fragment>
                 )
               }}
               </Query>
