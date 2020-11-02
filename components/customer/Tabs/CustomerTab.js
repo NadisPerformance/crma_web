@@ -74,6 +74,14 @@ class CustomerTab extends React.Component {
           <Col className="col-sm-6 table-responsive">
               <table className="table">
                  <tbody>
+                 <tr>
+                    <th style={{width:"50%"}}>Permis de conduire:</th>
+                    <td>{ customer.scanned_driver_license_url &&
+                           <a  target="_blank" href={customer.scanned_driver_license_url} > Télécharger </a> }
+                       { !customer.scanned_driver_license_url &&
+                               "--" }
+                    </td>
+                  </tr>
                     <tr>
                       <th style={{width:"50%"}}>Date de création:</th>
                       <td>{ new Date(customer.createdAt).toLocaleString()}</td>
