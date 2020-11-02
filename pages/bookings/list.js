@@ -12,6 +12,7 @@ import withAuth from '../../lib/withAuth'
 import BookingDeleteButton from '../../components/booking/DeleteButton'
 import moment from 'moment'
 import Pagination from '../../components/Pagination'
+import Search from '../../components/booking/Search'
 
 class List extends React.Component {
   constructor (props) {
@@ -60,6 +61,7 @@ class List extends React.Component {
                 }
                 return (
                   <React.Fragment>
+                    <Search/>
                      <Table striped bordered hover size="sm">
                       <thead>
                         <tr>

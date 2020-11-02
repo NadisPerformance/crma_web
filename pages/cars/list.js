@@ -11,6 +11,7 @@ import Card from '../../components/Card'
 import withAuth from '../../lib/withAuth'
 import CarDeleteButton from '../../components/car/DeleteButton'
 import Pagination from '../../components/Pagination'
+import Search from '../../components/car/Search'
 class List extends React.Component {
   constructor (props) {
     super(props)
@@ -58,6 +59,7 @@ class List extends React.Component {
                 }
                 return (
                   <React.Fragment>
+                    <Search/>
                      <Table striped bordered hover size="sm">
                       <thead>
                         <tr>

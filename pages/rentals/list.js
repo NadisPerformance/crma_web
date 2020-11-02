@@ -11,6 +11,7 @@ import Card from '../../components/Card'
 import withAuth from '../../lib/withAuth'
 import RentalDeleteButton from '../../components/rental/DeleteButton'
 import Pagination from '../../components/Pagination'
+import Search from '../../components/rental/Search'
 import moment from 'moment'
 
 
@@ -61,6 +62,7 @@ class List extends React.Component {
                 }
                 return (
                   <React.Fragment>
+                    <Search />
                      <Table striped bordered hover size="sm">
                       <thead>
                         <tr>
