@@ -1,8 +1,8 @@
 import gql from 'graphql-tag'
 
 export const get_users = gql`
-{
-  users {
+query get_users($limit:Int!, $page:Int!){
+  users (limit:$limit, page: $page){
     edges{
         node{
             id
@@ -19,6 +19,10 @@ export const get_users = gql`
             }
             password
         }
+    }
+    pageInfo {
+      count
+      currentPage
     }
   }
 }
