@@ -13,7 +13,7 @@ class CarInsurancesTab extends React.Component {
     if (!car_insurances)
       return <p><center>Aucune assurance attachée au véhicule.</center></p>
     return (
-      
+
     console.log(carId+"A"),
       <Row className="col-sm-12">
         <Link href={"/car_insurances/add?carId="+carId} >
@@ -29,7 +29,7 @@ class CarInsurancesTab extends React.Component {
            <th>Date de début</th>
            <th>Date de fin</th>
            <th>Société d'assurance</th>
-           <th></th>
+           <th>Document</th>
            <th>Actions</th>
          </tr>
        </thead>
@@ -42,7 +42,7 @@ class CarInsurancesTab extends React.Component {
                   <td>{moment(car_insurance.date_begin).format("DD/MM/YYYY")}</td>
                   <td>{moment(car_insurance.date_end).format("DD/MM/YYYY")} </td>
                   <td>{car_insurance.insurance && car_insurance.insurance.name}</td>
-                  <td> 
+                  <td>
                     { car_insurance.scanned_car_insurance_url && <a target="_blank" href={car_insurance.scanned_car_insurance_url} > Télécharger </a>}
                     { !car_insurance.scanned_car_insurance_url && "--"}
                   </td>

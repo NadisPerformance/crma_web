@@ -30,7 +30,11 @@ class RentalTab extends React.Component {
                         </tr>
                         <tr>
                             <th style={{width:"50%"}} >Contrat de location scannée:</th>
-                            <td><a href="" > Télécharger </a></td>
+                            <td>{ rental.scanned_contract_url &&
+                                <a href={rental.scanned_contract_url} > Télécharger </a> }
+                                { !rental.scanned_contract_url &&
+                                    "--" }
+                            </td>
                         </tr>
                     </tbody>
                 </table>

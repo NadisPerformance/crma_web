@@ -26,9 +26,9 @@ class TechnicalControlTab extends React.Component {
             <th>#ID</th>
             <th>Date de début</th>
             <th>Date de fin</th>
-            <th></th>
+            <th>Document</th>
             <th>Actions</th>
-            
+
           </tr>
         </thead>
         <tbody>
@@ -39,7 +39,7 @@ class TechnicalControlTab extends React.Component {
                   <td>{technical_control.id}</td>
                   <td>{moment(technical_control.date_begin).format("DD/MM/YYYY")}</td>
                   <td>{moment(technical_control.date_end).format("DD/MM/YYYY")} </td>
-                  <td> 
+                  <td>
                     { technical_control.scanned_technical_control_url && <a target="_blank" href={technical_control.scanned_technical_control_url} > Télécharger </a>}
                     { !technical_control.scanned_technical_control_url && "--"}
                   </td>                  <td>
