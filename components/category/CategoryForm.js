@@ -16,8 +16,8 @@ class CategoryForm extends React.Component{
     }
     this.onChange()
   }
-  setName(value){
-    this.state.category.name = value
+  setTitle(value){
+    this.state.category.title = value
     this.setState({category:this.state.category})
     this.onChange();
   }
@@ -35,7 +35,7 @@ class CategoryForm extends React.Component{
               }} >
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Nom:</Form.Label>
-            <Form.Control value={category.name} type="text" onChange={(event)=>this.setName(event.target.value)} placeholder="Nom de la marque" />
+            <Form.Control value={category.title} type="text" onChange={(event)=>this.setTitle(event.target.value)} placeholder="Nom de la catégorie" />
           </Form.Group>
           <div className="text-right" style={{margin:10}}>
                 <Button   variant="primary" type="submit">

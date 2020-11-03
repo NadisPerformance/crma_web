@@ -20,7 +20,7 @@ class Edit extends React.Component {
         colorId: colorId,
         color:null
     }
-    this.fariane= [{title:"Acceuil",path:"/"},{title:"Couleurs",path:"/colors/"}]
+    this.fariane= [{title:"Acceuil",path:"/"},{title:"Couleurs",path:"/colors/list"},{title:"Couleur #"+colorId,path:"/colors/view?colorId="+colorId},{title:"Modifier couleur",path:"/colors/edit?colorId="+colorId}]
     this.onDelete = this.onDelete.bind(this)
   }
   onDelete(){

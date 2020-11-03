@@ -30,18 +30,18 @@ class List extends React.Component {
   header(){
     console.log(this.props.booking)
     return (<React.Fragment>
-             <h3 className="card-title">Locations</h3>
+             <h3 className="card-title">Réservations</h3>
               <div className="card-tools">
                     <Link href="/bookings/add" >
                       <a className="btn btn-success btn-xs" >
-                        <i className="fa fa-plus"></i> Nouvelle location
+                        <i className="fa fa-plus"></i> Nouvelle réservation
                       </a>
                     </Link>
                 </div>
           </React.Fragment>)
   }
   onDelete(){
-    window.flash('La location a bien été supprimée.', 'success')
+    window.flash('La réservation a bien été supprimée.', 'success')
     //this.props.history.push("/cars/");
   }
   render() {

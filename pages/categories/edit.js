@@ -20,7 +20,7 @@ class Edit extends React.Component {
       categoryId: categoryId,
         category:null
     }
-    this.fariane= [{title:"Acceuil",path:"/"},{title:"Categories",path:"/categories/"}]
+    this.fariane= [{title:"Acceuil",path:"/"},{title:"Categories",path:"/categories/list"},{title:"Categorie #"+categoryId,path:"/categories/view?categoryId="+categoryId},{title:"Modifier categorie",path:"/categories/edit?categoryId="+categoryId}]
     this.onDelete = this.onDelete.bind(this)
   }
   onDelete(){

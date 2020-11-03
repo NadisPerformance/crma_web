@@ -16,7 +16,7 @@ class View extends React.Component {
     this.state={
         colorId: colorId
     }
-    this.fariane= [{title:"Acceuil",path:"/"},{title:"Couleurs",path:"/colors/"}]
+    this.fariane= [{title:"Acceuil",path:"/"},{title:"Couleurs",path:"/colors/list"},{title:"Couleur #"+colorId,path:"/colors/view?colorId="+colorId}]
     this.onDelete = this.onDelete.bind(this)
   }
   onDelete(){
@@ -41,7 +41,7 @@ class View extends React.Component {
     const {colorId} = this.state
     return (
       <AdminLayout>
-        <Page title="Marques" fariane={this.fariane}>
+        <Page title="Couleurs" fariane={this.fariane}>
           <Card header={this.header()} >
             <Query query={get_color} variables={{colorId}} pollInterval={3000} >
               {({ loading, error, data }) => {

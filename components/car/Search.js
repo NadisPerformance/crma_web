@@ -9,7 +9,7 @@ class Search extends React.Component{
       return (
             <div style={{margin:"10px", float:"left"}} >
                 <Form.Group controlId="search">
-                    <Form.Control type="text"  placeholder="Chercher" />
+                    <Form.Control type="text"  placeholder="Rechercher" />
                 </Form.Group>
             </div>
         )

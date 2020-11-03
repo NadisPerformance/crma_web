@@ -20,7 +20,7 @@ class Edit extends React.Component {
       userId: userId,
       user:null
     }
-    this.fariane= [{title:"Acceuil",path:"/"},{title:"Users",path:"/users/"}]
+    this.fariane= [{title:"Acceuil",path:"/"},{title:"Utilisateurs",path:"/users/list"},{title:"Utilisateur #"+userId,path:"/users/view?userId="+userId},{title:"Modifier utilisateur",path:"/users/edit?userId="+userId}]
     this.onDelete = this.onDelete.bind(this)
   }
   onDelete(){

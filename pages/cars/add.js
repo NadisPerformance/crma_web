@@ -17,11 +17,11 @@ class Add extends React.Component {
     this.state={
       car:null
     }
-    this.fariane= [{title:"Acceuil",path:"/"},{title:"Véhicules",path:"/cars/"}]
+    this.fariane= [{title:"Acceuil",path:"/"},{title:"Véhicules",path:"/cars/list"},{title:"Nouveau véhicule",path:"/cars/add"}]
     this.onDelete = this.onDelete.bind(this)
   }
   onDelete(){
-    window.flash('L\'utilisateur a bien été supprimée.', 'success')
+    window.flash('Le véhicule a bien été supprimée.', 'success')
     this.props.history.push("/cars/");
   }
   header(){
@@ -30,7 +30,7 @@ class Add extends React.Component {
 
                 <div className="card-tools">
                     <Link href={"/cars/add"} >
-                       <a className="btn btn-success btn-sm" data-toggle="tooltip" title="" data-original-title="Nouvelle" >
+                       <a className="btn btn-success btn-sm" data-toggle="tooltip" title="" data-original-title="Nouveau" >
                         <i className="fa fa-pen-alt"></i> Nouveau
                         </a>
                     </Link>

@@ -17,7 +17,7 @@ class Add extends React.Component {
     this.state={
       car:null
     }
-    this.fariane= [{title:"Acceuil",path:"/"},{title:"Réservations",path:"/bookings/list"}]
+    this.fariane= [{title:"Acceuil",path:"/"},{title:"Réservations",path:"/bookings/list"},{title:"Nouvelle réservation",path:"/bookings/add"}]
     this.onDelete = this.onDelete.bind(this)
   }
   onDelete(){
@@ -41,7 +41,7 @@ class Add extends React.Component {
     let {booking} = this.state
     return (
       <AdminLayout>
-        <Page title="Réservation" fariane={this.fariane}>
+        <Page title="Nouvelle réservation" fariane={this.fariane}>
             <Mutation mutation={create_booking} variables={{data:this.state.booking}} >
               {postMutation =>
                  <BookingForm

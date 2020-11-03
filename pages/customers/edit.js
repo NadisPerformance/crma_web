@@ -20,7 +20,7 @@ class Edit extends React.Component {
       customerId: customerId,
       customer:null
     }
-    this.fariane= [{title:"Acceuil",path:"/"},{title:"Clients",path:"/customers/list"}]
+    this.fariane= [{title:"Acceuil",path:"/"},{title:"Clients",path:"/customers/list"},{title:"Client #"+customerId,path:"/customers/view?customerId="+customerId},{title:"Modifier client",path:"/customers/edit?customerId="+customerId}]
     this.onDelete = this.onDelete.bind(this)
   }
   onDelete(){

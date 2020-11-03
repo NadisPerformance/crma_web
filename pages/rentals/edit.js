@@ -20,7 +20,8 @@ class Edit extends React.Component {
         rentalId: rentalId,
         rental:null
     }
-    this.fariane= [{title:"Acceuil",path:"/"},{title:"Locations",path:"/rentals/list"}]
+    this.fariane= [{title:"Acceuil",path:"/"},{title:"Locations",path:"/rentals/list"},{title:"Location #"+rentalId,path:"/rentals/view?rentalId="+rentalId},{title:"Modifier location",path:"/rentals/edit?rentalId="+rentalId}]
+
     this.onDelete = this.onDelete.bind(this)
   }
   onDelete(){

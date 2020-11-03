@@ -19,7 +19,7 @@ class List extends React.Component {
       limit:10,
       page:1
     }
-    this.fariane= [{title:"Acceuil",path:"/"},{title:"Véhicules",path:"/cars/"}]
+    this.fariane= [{title:"Acceuil",path:"/"},{title:"Véhicules",path:"/cars/list"}]
     this.onDelete = this.onDelete.bind(this)
   }
   renderHeader(){

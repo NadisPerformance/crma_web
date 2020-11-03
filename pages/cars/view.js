@@ -20,7 +20,7 @@ class View extends React.Component {
     this.state={
       carId: carId
     }
-    this.fariane= [{title:"Acceuil",path:"/"},{title:"Véhicules",path:"/cars/"}]
+    this.fariane= [{title:"Acceuil",path:"/"},{title:"Véhicules",path:"/cars/list"},{title:"Véhicule #"+carId,path:"/cars/view?carId="+carId}]
     this.onDelete = this.onDelete.bind(this)
   }
   onDelete(){

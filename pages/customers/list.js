@@ -28,11 +28,11 @@ class List extends React.Component {
   header(){
     console.log(this.props.customer)
     return (<React.Fragment>
-             <h3 className="card-title">Marques</h3>
+             <h3 className="card-title">Clients</h3>
               <div className="card-tools">
                     <Link href="/customers/add" >
                       <a className="btn btn-success btn-xs" >
-                        <i className="fa fa-plus"></i> Nouvelle marque
+                        <i className="fa fa-plus"></i> Nouveau client
                       </a>
                     </Link>
                 </div>

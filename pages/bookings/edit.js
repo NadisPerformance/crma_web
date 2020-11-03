@@ -20,7 +20,7 @@ class Edit extends React.Component {
       bookingId: bookingId,
       booking:null
     }
-    this.fariane= [{title:"Acceuil",path:"/"},{title:"Réservations",path:"/bookings/list"}]
+    this.fariane= [{title:"Acceuil",path:"/"},{title:"Réservations",path:"/bookings/list"},{title:"Réservation #"+bookingId,path:"/bookings/view?bookingId="+bookingId},{title:"Modifier réservation",path:"/bookings/edit?bookingId="+bookingId}]
     this.onDelete = this.onDelete.bind(this)
   }
   onDelete(){
@@ -47,7 +47,7 @@ class Edit extends React.Component {
       delete booking.id
     return (
       <AdminLayout>
-        <Page title="Réservations" fariane={this.fariane}>
+        <Page title={"Modifier réservation #"+bookingId} fariane={this.fariane}>
             <Query query={get_booking} variables={{bookingId}} _pollInterval={3000} >
               {({ loading, error, data }) => {
                 if (loading) return <div>Chargement en cours ...</div>

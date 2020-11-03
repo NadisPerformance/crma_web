@@ -20,11 +20,11 @@ class Edit extends React.Component {
         brandId: brandId,
         brand:null
     }
-    this.fariane= [{title:"Acceuil",path:"/"},{title:"Brands",path:"/brands/"}]
+    this.fariane= [{title:"Acceuil",path:"/"},{title:"Marques",path:"/brands/list"},{title:"Marque #"+brandId,path:"/brands/view?brandId="+brandId},{title:"Modifier marque",path:"/brands/edit?brandId="+brandId}]
     this.onDelete = this.onDelete.bind(this)
   }
   onDelete(){
-    window.flash('L\'utilisateur a bien été supprimée.', 'success')
+    window.flash('La marque a bien été supprimée.', 'success')
     this.props.history.push("/brands/");
   }
   header(){

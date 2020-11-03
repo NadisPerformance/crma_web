@@ -21,7 +21,7 @@ class List extends React.Component {
       limit:10,
       page:1
     }
-    this.fariane= [{title:"Acceuil",path:"/"},{title:"Assurances",path:"/insurance/"}]
+    this.fariane= [{title:"Acceuil",path:"/"},{title:"Assurances",path:"/insurances/list"}]
     this.onDelete = this.onDelete.bind(this)
   }
   renderHeader(){
@@ -41,7 +41,7 @@ class List extends React.Component {
           </React.Fragment>)
   }
   onDelete(){
-    window.flash('La location a bien été supprimée.', 'success')
+    window.flash('L\'assurance a bien été supprimée.', 'success')
     //this.props.history.push("/cars/");
   }
   render() {

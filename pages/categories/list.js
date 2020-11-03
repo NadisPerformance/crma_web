@@ -19,7 +19,7 @@ class List extends React.Component {
       limit:10,
       page:1
     }
-    this.fariane= [{title:"Acceuil",path:"/"},{title:"Categories",path:"/categories/"}]
+    this.fariane= [{title:"Acceuil",path:"/"},{title:"Categories",path:"/categories/list"}]
     this.onDelete = this.onDelete.bind(this)
   }
   renderHeader(){
@@ -28,7 +28,7 @@ class List extends React.Component {
   header(){
     console.log(this.props.category)
     return (<React.Fragment>
-             <h3 className="card-title">Marques</h3>
+             <h3 className="card-title">Categories</h3>
               <div className="card-tools">
                     <Link href="/categories/add" >
                       <a className="btn btn-success btn-xs" >
@@ -39,7 +39,7 @@ class List extends React.Component {
           </React.Fragment>)
   }
   onDelete(){
-    window.flash('L\'utilisateur a bien été supprimée.', 'success')
+    window.flash('La catégorie a bien été supprimée.', 'success')
     //this.props.history.push("/users/");
   }
   render() {
@@ -48,7 +48,7 @@ class List extends React.Component {
     } = this.state
     return (
       <AdminLayout>
-        <Page title="Marques" fariane={this.fariane}>
+        <Page title="Categories" fariane={this.fariane}>
           <Card header={this.header()} >
             <Query query={get_categories} variables={{limit:limit,page:page}} pollInterval={3000} >
               {({ loading, error, data }) => {

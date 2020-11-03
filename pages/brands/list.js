@@ -19,7 +19,7 @@ class List extends React.Component {
       limit:10,
       page:1
     }
-    this.fariane= [{title:"Acceuil",path:"/"},{title:"Brands",path:"/brands/"}]
+    this.fariane= [{title:"Acceuil",path:"/"},{title:"Marques",path:"/brands/list"}]
     this.onDelete = this.onDelete.bind(this)
   }
   renderHeader(){
@@ -39,7 +39,7 @@ class List extends React.Component {
           </React.Fragment>)
   }
   onDelete(){
-    window.flash('L\'utilisateur a bien été supprimée.', 'success')
+    window.flash('La marque a bien été supprimée.', 'success')
     //this.props.history.push("/users/");
   }
   render() {

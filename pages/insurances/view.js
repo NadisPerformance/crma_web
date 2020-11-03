@@ -18,7 +18,7 @@ class View extends React.Component {
     this.state={
       insuranceId: insuranceId
     }
-    this.fariane= [{title:"Acceuil",path:"/"},{title:"Assurances",path:"/insurances/list"}]
+    this.fariane= [{title:"Acceuil",path:"/"},{title:"Assurances",path:"/insurances/list"},{title:"Assurance #"+insuranceId,path:"/insurances/view?insuranceId="+insuranceId}]
     this.onDelete = this.onDelete.bind(this)
   }
   onDelete(){

@@ -17,7 +17,7 @@ class Add extends React.Component {
     this.state={
       color:null
     }
-    this.fariane= [{title:"Acceuil",path:"/"},{title:"Couleurs",path:"/colors/"}]
+    this.fariane= [{title:"Acceuil",path:"/"},{title:"Couleurs",path:"/colors/list"},{title:"Nouvelle couleur",path:"/colors/add"}]
     this.onDelete = this.onDelete.bind(this)
   }
   onDelete(){

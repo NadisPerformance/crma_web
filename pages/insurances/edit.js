@@ -20,7 +20,7 @@ class Edit extends React.Component {
       insuranceId: insuranceId,
       insurance:null
     }
-    this.fariane= [{title:"Acceuil",path:"/"},{title:"Assurances",path:"/insurances/list"}]
+    this.fariane= [{title:"Acceuil",path:"/"},{title:"Assurances",path:"/insurances/list"},{title:"Assurance #"+insuranceId,path:"/insurances/view?insuranceId="+insuranceId},{title:"Modifier assurance",path:"/insurances/edit?insuranceId="+insuranceId}]
     this.onDelete = this.onDelete.bind(this)
   }
   onDelete(){

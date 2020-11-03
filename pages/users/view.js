@@ -17,7 +17,7 @@ class View extends React.Component {
     this.state={
       userId: userId
     }
-    this.fariane= [{title:"Acceuil",path:"/"},{title:"Users",path:"/users/"}]
+    this.fariane= [{title:"Acceuil",path:"/"},{title:"Utilisateurs",path:"/users/list"},{title:"Utilisateur #"+userId,path:"/users/view?userId="+userId}]
     this.onDelete = this.onDelete.bind(this)
   }
   onDelete(){

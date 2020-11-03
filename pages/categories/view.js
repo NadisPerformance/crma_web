@@ -16,7 +16,7 @@ class View extends React.Component {
     this.state={
       categoryId: categoryId
     }
-    this.fariane= [{title:"Acceuil",path:"/"},{title:"Categories",path:"/categories/"}]
+    this.fariane= [{title:"Acceuil",path:"/"},{title:"Categories",path:"/categories/list"},{title:"Categorie #"+categoryId,path:"/categories/view?categoryId="+categoryId}]
     this.onDelete = this.onDelete.bind(this)
   }
   onDelete(){
@@ -60,7 +60,7 @@ class View extends React.Component {
                               <tbody>
                                 <tr>
                                   <th style={{width:"50%"}}>Nom de la catégorie:</th>
-                                  <td>{data.category.name}</td>
+                                  <td>{data.category.title}</td>
                                 </tr>
                               </tbody>
                           </table>

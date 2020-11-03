@@ -21,7 +21,7 @@ class List extends React.Component {
       limit:10,
       page:1
     }
-    this.fariane= [{title:"Acceuil",path:"/"},{title:"Users",path:"/users/"}]
+    this.fariane= [{title:"Acceuil",path:"/"},{title:"Utilisateurs",path:"/users/list"}]
     this.onDelete = this.onDelete.bind(this)
   }
   renderHeader(){

@@ -17,7 +17,7 @@ class Add extends React.Component {
     this.state={
       customer:null
     }
-    this.fariane= [{title:"Acceuil",path:"/"},{title:"Clients",path:"/customers/list"}]
+    this.fariane= [{title:"Acceuil",path:"/"},{title:"Clients",path:"/customers/list"},{title:"Nouveau client",path:"/customers/add"}]
     this.onDelete = this.onDelete.bind(this)
   }
   onDelete(){
