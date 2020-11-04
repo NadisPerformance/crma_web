@@ -67,6 +67,15 @@ query get_user_to_update($userId:ID!){
 }
 `
 
+export const get_user_password_to_update = gql`
+query get_user_password_to_update($userId:ID!){
+  user(id:$userId){
+    id
+    password
+  }
+}
+`
+
 export const update_user = gql`
   mutation update_user($id: ID!, $data:UserInput!)  {
     updateUser(id:$id,data:$data){
@@ -76,7 +85,14 @@ export const update_user = gql`
         email
     }
   }
-
+`
+export const update_user_password = gql`
+  mutation update_user_password($id: ID!, $data:UserPasswordInput!)  {
+    updateUserPassword(id:$id,data:$data){
+        id
+        password
+    }
+  }
 `
 export const create_user = gql`
   mutation update_user($data:UserInput!)  {

@@ -64,11 +64,6 @@ class UserForm extends React.Component{
     this.setState(state => (state.user.roleId = value *1, state))
     this.onChange();
   }
-  setPassword(value){
-    this.state.user.password = value
-    this.setState({user:this.state.user})
-    this.onChange();
-  }
 
   onChange(){
     if(this.props.onChange)
@@ -112,28 +107,6 @@ class UserForm extends React.Component{
           <Form.Group controlId="formBasicRoleId">
             <Form.Label>Rôle:</Form.Label>
             <RoleSelectInput  selectedId={user.roleId}  onChange={(selectedId)=>this.setRoleId(selectedId)} />
-          </Form.Group>
-          <Form.Group controlId="formBasicEmail">
-            <Form.Label>Mot de passe:</Form.Label>
-            <InputGroup className="mb-3">
-            <Form.Control value={user.password} type={show_password?"text":"password"} onChange={(event)=>this.setPassword(event.target.value)} placeholder="Mot de passe" />
-            <InputGroup.Prepend>
-              <InputGroup.Text id="basic-addon1">
-                <Button
-                  className="btn btn-primary btn-xs"
-                  style={styles.btnXs}
-                  onClick={()=>this.setState({show_password:!show_password})}
-                  >
-                  {!show_password &&
-                  <i className="fa fa-eye"></i>
-                   }
-                  {show_password &&
-                  <i className="fa fa-eye-slash"></i>
-                   }
-                </Button>
-              </InputGroup.Text>
-            </InputGroup.Prepend>
-            </InputGroup>
           </Form.Group>
           <div className="text-right" style={{margin:10}}>
                 <Button   variant="primary" type="submit">

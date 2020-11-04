@@ -88,6 +88,18 @@ class View extends React.Component {
                                   <th>Téléphone:</th>
                                   <td>{data.user.phone}</td>
                                 </tr>
+                                <tr>
+                                  <th>Mot de passe:</th>
+                                  <td>
+                                    ******
+                                    <Link href={"/users/edit-password?userId="+data.user.id} >
+                                      <a style={{margin:3}}
+                                      className="btn btn-info btn-sm sss" >
+                                      <i className="fa fa-pen-alt"></i>
+                                      </a>
+                                    </Link>
+                                  </td>
+                                </tr>
 
                               </tbody>
                           </table>
