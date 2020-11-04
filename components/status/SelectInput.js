@@ -59,6 +59,7 @@ class SelectInput extends React.Component{
                isSearchable={true}
                name="status"
                options={options}
+               placeholder="Choisir le statut"
                onChange={({value})=>this.setSelectedId(value)}
              />
           )

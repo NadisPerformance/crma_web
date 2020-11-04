@@ -59,6 +59,7 @@ class SelectInput extends React.Component{
                isSearchable={true}
                name="insurance"
                options={options}
+               placeholder="Choisir l'assurance"
                onChange={({value})=>this.setSelectedId(value)}
              />
           )

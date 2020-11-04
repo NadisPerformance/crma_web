@@ -11,7 +11,9 @@ import Card from '../../components/Card'
 import withAuth from '../../lib/withAuth'
 import CarDeleteButton from '../../components/car/DeleteButton'
 import Pagination from '../../components/Pagination'
-import Search from '../../components/car/Search'
+import SearchForm from '../../components/car/SearchForm'
+import { withRouter } from 'next/router'
+
 class List extends React.Component {
   constructor (props) {
     super(props)
@@ -46,20 +48,30 @@ class List extends React.Component {
     const {
       limit, page
     } = this.state
+    const { plate_number, brandId, statusId } = this.props.router.query
+    var where = {}
+    if( plate_number )
+      where.plate_number = {contains:plate_number}
+    if( brandId && brandId != 0)
+      where.brandId = {equals:brandId *1}
+    if( statusId  && statusId != 0)
+      where.statusId = {equals:statusId* 1}
     return (
       <AdminLayout>
         <Page title="Véhicules" fariane={this.fariane}>
+          <SearchForm />
           <Card header={this.header()} >
-            <Query query={get_cars} variables={{limit:limit,page:page}} pollInterval={3000} >
+            <Query query={get_cars} variables={{limit:limit,page:page, where:where}} pollInterval={3000} >
               {({ loading, error, data }) => {
                 if (loading) return <div>Chargement en cours ...</div>
                 if (error) {
                   console.log(error)
                   return <div>Error</div>
                 }
+                if( data.cars.edges.length == 0)
+                  return (<p><center> Aucun véhicule trouvé.</center></p>)
                 return (
                   <React.Fragment>
-                    <Search/>
                      <Table striped bordered hover size="sm">
                       <thead>
                         <tr>
@@ -129,4 +141,4 @@ class List extends React.Component {
   }
 }
 
-export default withData(List, true)
+export default withData(withRouter(List), true)

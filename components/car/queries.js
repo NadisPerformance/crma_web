@@ -1,8 +1,8 @@
 import gql from 'graphql-tag'
 
 export const get_cars = gql`
-query get_cars($limit:Int!, $page:Int!){
-  cars(limit:$limit, page: $page){
+query get_cars($where:CarWhereInput, $limit:Int!, $page:Int!){
+  cars(where:$where, limit:$limit, page: $page){
     edges{
         node{
             id
