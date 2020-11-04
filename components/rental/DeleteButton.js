@@ -4,6 +4,7 @@ import {  Mutation } from 'react-apollo'
 import withData from '../../lib/withData'
 import { withRouter } from 'next/router'
 import Router from 'next/router'
+import { withFlashMessages } from 'next-flash-messages'
 
 class DeleteButton extends React.Component {
   constructor (props) {
@@ -33,7 +34,7 @@ class DeleteButton extends React.Component {
                   //this.props.history.goBack();
                   //console.log(result)
                   if (result.data.deleteRental.statut_code==1){
-                      alert('La location a bien été supprimée.', 'success')
+                      this.props.flashMessages.set('La location a bien été supprimée.', 'success')
                       Router.push("/rentals/list");
                   }
                 })
@@ -48,4 +49,4 @@ class DeleteButton extends React.Component {
   }
 }
 
-export default withData(withRouter(DeleteButton))
+export default withFlashMessages(withData(withRouter(DeleteButton)))

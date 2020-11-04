@@ -11,27 +11,29 @@ import Page from '../../components/Page'
 import Card from '../../components/Card'
 import { withRouter } from 'next/router'
 import ColorForm from '../../components/color/ColorForm'
+import { withFlashMessages } from 'next-flash-messages'
+
 class Add extends React.Component {
   constructor (props) {
     super(props)
     this.state={
-      color:null
+      car:null
     }
     this.fariane= [{title:"Acceuil",path:"/"},{title:"Couleurs",path:"/colors/list"},{title:"Nouvelle couleur",path:"/colors/add"}]
     this.onDelete = this.onDelete.bind(this)
   }
   onDelete(){
-    window.flash('L\'utilisateur a bien été supprimée.', 'success')
-    this.props.history.push("/colorss/");
+    window.flash('La couleur a bien été supprimée.', 'success')
+    this.props.history.push("/colors/");
   }
   header(){
     return <React.Fragment>
-             <h3 className="card-title">{"Nouveau véhicule "}</h3>
+             <h3 className="card-title">{"Nouvelle couleur "}</h3>
 
                 <div className="card-tools">
-                    <Link href={"/cars/add"} >
+                    <Link href={"/colors/add"} >
                        <a className="btn btn-success btn-sm" data-toggle="tooltip" title="" data-original-title="Nouvelle" >
-                        <i className="fa fa-pen-alt"></i> Nouveau
+                        <i className="fa fa-pen-alt"></i> Nouvelle
                         </a>
                     </Link>
                 </div>
@@ -41,7 +43,7 @@ class Add extends React.Component {
     let {color} = this.state
     return (
       <AdminLayout>
-        <Page title="Véhicules" fariane={this.fariane}>
+        <Page title="Couleurs" fariane={this.fariane}>
             <Mutation mutation={create_color} variables={{data:this.state.color}} >
               {postMutation =>
                  <ColorForm
@@ -52,7 +54,7 @@ class Add extends React.Component {
                           //console.log(car)
                           postMutation().then((result)=>{
                             //this.props.history.goBack();
-                            alert('Le véhicule a bien été crée.', 'success')
+                            this.props.flashMessages.set('La couleur a bien été crée.', 'success')
                             Router.push("/colors/view?colorId="+result.data.createColor.id);
                           })
                         }}
@@ -66,4 +68,4 @@ class Add extends React.Component {
   }
 }
 
-export default withData(withRouter(Add))
+export default withFlashMessages(withData(withRouter(Add)))

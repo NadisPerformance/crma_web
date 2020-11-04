@@ -4,6 +4,7 @@ import {  Mutation } from 'react-apollo'
 import withData from '../../lib/withData'
 import { withRouter } from 'next/router'
 import Router from 'next/router'
+import { withFlashMessages } from 'next-flash-messages'
 
 class DeleteButton extends React.Component {
   constructor (props) {
@@ -34,7 +35,7 @@ class DeleteButton extends React.Component {
                   //this.props.history.goBack();
                   //console.log(result)
                   if (result.data.deleteCustomer.statut_code==1){
-                      alert('Le client a bien été supprimé.', 'success')
+                      this.props.flashMessages.set('Le client a bien été supprimé.', 'success')
                       Router.push("/customers/list");
                   }
                 })
@@ -49,4 +50,4 @@ class DeleteButton extends React.Component {
   }
 }
 
-export default withData(withRouter(DeleteButton))
+export default withFlashMessages(withData(withRouter(DeleteButton)))

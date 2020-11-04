@@ -11,6 +11,7 @@ import Page from '../../components/Page'
 import Card from '../../components/Card'
 import { withRouter } from 'next/router'
 import UserForm from '../../components/user/UserForm'
+import { withFlashMessages } from 'next-flash-messages'
 class Add extends React.Component {
   constructor (props) {
     super(props)
@@ -52,7 +53,7 @@ class Add extends React.Component {
                           //console.log(user)
                           postMutation().then((result)=>{
                             //this.props.history.goBack();
-                            alert('L\'utilisateur a bien été crée.', 'success')
+                            this.props.flashMessages.set('L\'utilisateur a bien été crée.', 'success')
                             Router.push("/users/view?userId="+result.data.createUser.id);
                           })
                         }}
@@ -66,4 +67,4 @@ class Add extends React.Component {
   }
 }
 
-export default withData(withRouter(Add))
+export default withFlashMessages(withData(withRouter(Add)))

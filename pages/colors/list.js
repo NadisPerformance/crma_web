@@ -9,6 +9,7 @@ import {Table} from 'react-bootstrap'
 import Page from '../../components/Page'
 import Card from '../../components/Card'
 import withAuth from '../../lib/withAuth'
+import ColorDeleteButton from '../../components/color/DeleteButton'
 import Pagination from '../../components/Pagination'
 import Search from '../../components/color/Search'
 
@@ -28,11 +29,11 @@ class List extends React.Component {
   header(){
     console.log(this.props.color)
     return (<React.Fragment>
-             <h3 className="card-title">Marques</h3>
+             <h3 className="card-title">Couleurs</h3>
               <div className="card-tools">
                     <Link href="/colors/add" >
                       <a className="btn btn-success btn-xs" >
-                        <i className="fa fa-plus"></i> Nouvelle marque
+                        <i className="fa fa-plus"></i> Nouvelle couleur
                       </a>
                     </Link>
                 </div>
@@ -89,7 +90,7 @@ class List extends React.Component {
                                     <i className="fa fa-pen-alt"></i>
                                     </a>
                                   </Link>
-
+                                  <ColorDeleteButton colorId={color.id} />
                                 </td>
                               </tr>
                             )

@@ -11,6 +11,7 @@ import Card from '../../components/Card'
 import { withRouter } from 'next/router'
 import BookingForm from '../../components/booking/BookingForm'
 import Router from 'next/router'
+import { withFlashMessages } from 'next-flash-messages'
 
 class Edit extends React.Component {
   constructor (props) {
@@ -79,7 +80,7 @@ class Edit extends React.Component {
                             postMutation().then((result)=>{
                               //this.props.history.goBack();
                               //console.log(result)
-                              alert('La réservation a bien été modifiée.', 'success')
+                              this.props.flashMessages.set('La réservation a bien été modifiée.', 'success')
                               Router.push("/bookings/view?bookingId="+result.data.updateBooking.id);
                             })
                           }
@@ -97,4 +98,4 @@ class Edit extends React.Component {
   }
 }
 
-export default withData(withRouter(Edit))
+export default withFlashMessages(withData(withRouter(Edit)))

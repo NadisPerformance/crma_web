@@ -11,6 +11,7 @@ import Card from '../../components/Card'
 import { withRouter } from 'next/router'
 import BrandForm from '../../components/brand/BrandForm'
 import Router from 'next/router'
+import { withFlashMessages } from 'next-flash-messages'
 
 class Edit extends React.Component {
   constructor (props) {
@@ -75,8 +76,8 @@ class Edit extends React.Component {
                           postMutation().then((result)=>{
                             //this.props.history.goBack();
                             //console.log(result)
-                            alert('La marque a bien été modifié.', 'success')
-                            Router.push("/brand/view?brandId="+result.data.updateBrand.id);
+                            this.props.flashMessages.set('La marque a bien été modifiée.', 'success')
+                            Router.push("/brands/view?brandId="+result.data.updateBrand.id);
                           })
                         }}
                         onChange={(brand)=>this.setState({brand:brand})}
@@ -92,4 +93,4 @@ class Edit extends React.Component {
   }
 }
 
-export default withData(withRouter(Edit))
+export default withFlashMessages(withData(withRouter(Edit)))

@@ -5,7 +5,7 @@ class CategoryForm extends React.Component{
     super(props)
     this.state = {
       category:{
-        name:""
+        title:""
       }
     }
   }

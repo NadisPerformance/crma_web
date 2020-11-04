@@ -2,39 +2,39 @@ import Head from 'next/head'
 import Link from 'next/link'
 import React from 'react'
 import AdminLayout from '../../components/AdminLayout'
-import {get_color, update_color} from '../../components/color/queries'
+import {get_user_password_to_update, update_user_password} from '../../components/user/queries'
 import { Query, Mutation } from 'react-apollo'
 import withData from '../../lib/withData'
 import {Table, Row,Col} from 'react-bootstrap'
 import Page from '../../components/Page'
 import Card from '../../components/Card'
 import { withRouter } from 'next/router'
-import ColorForm from '../../components/color/ColorForm'
+import UserPasswordForm from '../../components/user/UserPasswordForm'
 import Router from 'next/router'
 import { withFlashMessages } from 'next-flash-messages'
 
 class Edit extends React.Component {
   constructor (props) {
     super(props)
-    const { colorId } = this.props.router.query
+    const { userId } = this.props.router.query
     this.state={
-        colorId: colorId,
-        color:null
+      userId: userId,
+      user:null
     }
-    this.fariane= [{title:"Acceuil",path:"/"},{title:"Couleurs",path:"/colors/list"},{title:"Couleur #"+colorId,path:"/colors/view?colorId="+colorId},{title:"Modifier couleur",path:"/colors/edit?colorId="+colorId}]
+    this.fariane= [{title:"Acceuil",path:"/"},{title:"Utilisateurs",path:"/users/list"},{title:"Utilisateur #"+userId,path:"/users/view?userId="+userId},{title:"Modifier mot de passe",path:"/users/edit?userId="+userId}]
     this.onDelete = this.onDelete.bind(this)
   }
   onDelete(){
-    window.flash('La couleur a bien été supprimée.', 'success')
-    this.props.history.push("/colors/");
+    window.flash('L\'utilisateur a bien été supprimée.', 'success')
+    this.props.history.push("/users/");
   }
   header(){
-    const { colorId } = this.state
+    const { userId } = this.state
     return <React.Fragment>
-             <h3 className="card-title">{"Couleurs #"+colorId}</h3>
+             <h3 className="card-title">{"Utilisateur #"+userId}</h3>
 
                 <div className="card-tools">
-                    <Link href={"/colors/edit/"+colorId} >
+                    <Link href={"/users/edit/"+userId} >
                        <a className="btn btn-success btn-sm" data-toggle="tooltip" title="" data-original-title="Nouvelle" >
                         <i className="fa fa-pen-alt"></i> Modifier
                         </a>
@@ -43,13 +43,13 @@ class Edit extends React.Component {
           </React.Fragment>
   }
   render() {
-    let {colorId, color} = this.state
-    if(color)
-      delete color.id
+    let {userId, user} = this.state
+    if(user)
+      delete user.id
     return (
       <AdminLayout>
-        <Page title="Couleurs" fariane={this.fariane}>
-            <Query query={get_color} variables={{colorId}} _pollInterval={3000} >
+        <Page title="Utilisateurs" fariane={this.fariane}>
+            <Query query={get_user_password_to_update} variables={{userId}} _pollInterval={3000} >
               {({ loading, error, data }) => {
                 if (loading) return <div>Chargement en cours ...</div>
                 if (error) {
@@ -57,18 +57,18 @@ class Edit extends React.Component {
                   return <div>Error</div>
                 }
                 console.log(data)
-                if(!data.color)
-                  return "Color not found"
-                if(this.state.color == null){
-                    delete data.color.__typename
-                    color = this.state.color = data.color
+                if(!data.user)
+                  return "User not found"
+                if(this.state.user == null){
+                    delete data.user.__typename
+                    user = this.state.user = data.user
                 }
                 //console.log(user)
                 return (
-                    <Mutation mutation={update_color} variables={{id:colorId,data:this.state.color}} >
+                    <Mutation mutation={update_user_password} variables={{id:userId,data:this.state.user}} >
                       {postMutation =>
-                      <ColorForm
-                        color={color}
+                      <UserPasswordForm
+                        user={user}
                         onSubmit={(event)=>{
                           //alert("hello")
                           event.preventDefault();
@@ -76,11 +76,11 @@ class Edit extends React.Component {
                           postMutation().then((result)=>{
                             //this.props.history.goBack();
                             //console.log(result)
-                            this.props.flashMessages.set('La couleur a bien été modifiée.', 'success')
-                            Router.push("/colors/view?colorId="+result.data.updateColor.id);
+                            this.props.flashMessages.set('Mot de passe a bien été modifié.', 'success')
+                            Router.push("/users/view?userId="+result.data.updateUserPassword.id);
                           })
                         }}
-                        onChange={(color)=>this.setState({color:color})}
+                        onChange={(user)=>this.setState({user:user})}
                          />
                       }
                     </Mutation>

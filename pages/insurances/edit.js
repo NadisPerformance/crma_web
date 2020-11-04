@@ -11,6 +11,7 @@ import Card from '../../components/Card'
 import { withRouter } from 'next/router'
 import InsuranceForm from '../../components/insurance/InsuranceForm'
 import Router from 'next/router'
+import { withFlashMessages } from 'next-flash-messages'
 
 class Edit extends React.Component {
   constructor (props) {
@@ -75,7 +76,7 @@ class Edit extends React.Component {
                             postMutation().then((result)=>{
                               //this.props.history.goBack();
                               //console.log(result)
-                              alert('L\'assurance a bien été modifié.', 'success')
+                              this.props.flashMessages.set('L\'assurance a bien été modifiée.', 'success')
                               Router.push("/insurances/view?insuranceId="+result.data.updateInsurance.id);
                             })
                           }
@@ -93,4 +94,4 @@ class Edit extends React.Component {
   }
 }
 
-export default withData(withRouter(Edit))
+export default withFlashMessages(withData(withRouter(Edit)))

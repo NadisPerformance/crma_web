@@ -11,6 +11,7 @@ import Card from '../../components/Card'
 import { withRouter } from 'next/router'
 import CategoryForm from '../../components/category/CategoryForm'
 import Router from 'next/router'
+import { withFlashMessages } from 'next-flash-messages'
 
 class Edit extends React.Component {
   constructor (props) {
@@ -75,8 +76,8 @@ class Edit extends React.Component {
                           postMutation().then((result)=>{
                             //this.props.history.goBack();
                             //console.log(result)
-                            alert('La couleur a bien été modifié.', 'success')
-                            Router.push("/category/view?categoryId="+result.data.updateCategory.id);
+                            this.props.flashMessages.set('La categorie a bien été modifiée.', 'success')
+                            Router.push("/categories/view?categoryId="+result.data.updateCategory.id);
                           })
                         }}
                         onChange={(category)=>this.setState({category:category})}
@@ -92,4 +93,4 @@ class Edit extends React.Component {
   }
 }
 
-export default withData(withRouter(Edit))
+export default withFlashMessages(withData(withRouter(Edit)))
