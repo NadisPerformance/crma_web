@@ -25,6 +25,14 @@ query get_category($categoryId:ID!){
   }
 }
 `
+export const get_category_to_update = gql`
+query get_category_to_update($categoryId:ID!){
+  category(id:$categoryId){
+    id
+    title
+  }
+}
+`
 export const update_category = gql`
   mutation update_category($id: ID!, $data:CategoryInput!)  {
     updateCategory(id:$id,data:$data){
@@ -38,6 +46,16 @@ export const create_category = gql`
   mutation update_category($data:CategoryInput!)  {
     createCategory(data:$data){
         id
+    }
+  }
+
+`
+
+export const delete_category = gql`
+  mutation delete_category($id: ID!)  {
+    deleteCategory(id:$id){
+        statut_code
+        message
     }
   }
 

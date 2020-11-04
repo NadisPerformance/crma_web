@@ -11,6 +11,7 @@ import Card from '../../components/Card'
 import { withRouter } from 'next/router'
 import RentalForm from '../../components/rental/RentalForm'
 import Router from 'next/router'
+import { withFlashMessages } from 'next-flash-messages'
 
 class Edit extends React.Component {
   constructor (props) {
@@ -81,7 +82,7 @@ class Edit extends React.Component {
                             postMutation().then((result)=>{
                               //this.props.history.goBack();
                               //console.log(result)
-                              alert('La location a bien été modifié.', 'success')
+                              this.props.flashMessages.set('La location a bien été modifié.', 'success')
                               Router.push("/rentals/view?rentalId="+result.data.updateRental.id);
                             })
                           }
@@ -99,4 +100,4 @@ class Edit extends React.Component {
   }
 }
 
-export default withData(withRouter(Edit))
+export default withFlashMessages(withData(withRouter(Edit)))

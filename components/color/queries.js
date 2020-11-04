@@ -24,6 +24,16 @@ query get_color($colorId:ID!){
   }
 }
 `
+
+export const get_color_to_update = gql`
+query get_color_to_update($colorId:ID!){
+  color(id:$colorId){
+    id
+    name
+  }
+}
+`
+
 export const update_color = gql`
   mutation update_color($id: ID!, $data:ColorInput!)  {
     updateColor(id:$id,data:$data){
@@ -37,6 +47,16 @@ export const create_color = gql`
   mutation update_color($data:ColorInput!)  {
     createColor(data:$data){
         id
+    }
+  }
+
+`
+
+export const delete_color = gql`
+  mutation delete_color($id: ID!)  {
+    deleteColor(id:$id){
+        statut_code
+        message
     }
   }
 

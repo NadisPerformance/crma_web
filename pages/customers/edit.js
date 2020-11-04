@@ -11,6 +11,7 @@ import Card from '../../components/Card'
 import { withRouter } from 'next/router'
 import CustomerForm from '../../components/customer/CustomerForm'
 import Router from 'next/router'
+import { withFlashMessages } from 'next-flash-messages'
 
 class Edit extends React.Component {
   constructor (props) {
@@ -75,7 +76,7 @@ class Edit extends React.Component {
                           postMutation().then((result)=>{
                             //this.props.history.goBack();
                             //console.log(result)
-                            alert('Le client a bien été modifié.', 'success')
+                            this.props.flashMessages.set('Le client a bien été modifié.', 'success')
                             Router.push("/customers/view?customerId="+result.data.updateCustomer.id);
                           })
                         }}
@@ -92,4 +93,4 @@ class Edit extends React.Component {
   }
 }
 
-export default withData(withRouter(Edit))
+export default withFlashMessages(withData(withRouter(Edit)))

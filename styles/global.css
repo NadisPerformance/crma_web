@@ -1,6 +1,6 @@
 .alert {
   color: white;
-  border-radius: 10px;
+  border-radius: 5px;
   position: absolute;
   top: 50px;
   right: 10px;
@@ -13,13 +13,21 @@
   margin: 0;
 }
 .alert-error {
-  background: lightcoral;
+  background: #d9534f;
 }
 .alert-success {
-  background: lightgreen;
+  background: #5cb85c;
 }
 .close {
   color: white;
   cursor: pointer;
   margin-right: 10px;
+}
+
+.fa-times{
+  color: black;
+}
+
+.fa-times:hover{
+  color: white;
 }

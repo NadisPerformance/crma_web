@@ -1,30 +1,31 @@
 import React from 'react'
-import { delete_booking} from './queries'
+import { delete_color} from './queries'
 import {  Mutation } from 'react-apollo'
 import withData from '../../lib/withData'
 import { withRouter } from 'next/router'
 import Router from 'next/router'
 import { withFlashMessages } from 'next-flash-messages'
 
+
 class DeleteButton extends React.Component {
   constructor (props) {
     super(props)
-    const { bookingId } = this.props.router.query
+    const { colorId } = this.props.router.query
     this.state={
-      bookingId: bookingId,
-      booking:null
+      colorId: colorId,
+      color:null
     }
-    this.fariane= [{title:"Acceuil",path:"/"},{title:"Réservations",path:"/bookings/"}]
+    this.fariane= [{title:"Acceuil",path:"/"},{title:"Véhicules",path:"/colors/"}]
     this.onDelete = this.onDelete.bind(this)
   }
   onDelete(){
-    window.flash('La réservation a bien été supprimée.', 'success')
-    this.props.history.push("/bookings/list");
+    window.flash('La couleur a bien été supprimée.', 'success')
+    this.props.history.push("/colors/");
   }
   render() {
-    let {bookingId} = this.props
+    let {colorId} = this.props
     return (
-      <Mutation mutation={delete_booking} variables={{id:bookingId}} >
+      <Mutation mutation={delete_color} variables={{id:colorId}} >
           {postMutation =>
             <a  style={{margin:3}}
               onClick={(event)=>{
@@ -33,9 +34,9 @@ class DeleteButton extends React.Component {
                 postMutation().then((result)=>{
                   //this.props.history.goBack();
                   //console.log(result)
-                  if (result.data.deleteBooking.statut_code==1){
-                      this.props.flashMessages.set('La réservation a bien été supprimée.', 'success')
-                      Router.push("/bookings/list");
+                  if (result.data.deleteColor.statut_code==1){
+                      this.props.flashMessages.set('La couleur a bien été supprimée.', 'success')
+                      Router.push("/colors/list");
                   }
                 })
               }}

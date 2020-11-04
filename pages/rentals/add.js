@@ -11,6 +11,7 @@ import Page from '../../components/Page'
 import Card from '../../components/Card'
 import { withRouter } from 'next/router'
 import RentalForm from '../../components/rental/RentalForm'
+import { withFlashMessages } from 'next-flash-messages'
 class Add extends React.Component {
   constructor (props) {
     super(props)
@@ -52,7 +53,7 @@ class Add extends React.Component {
                           //console.log(car)
                           postMutation().then((result)=>{
                             //this.props.history.goBack();
-                            alert('La location a bien été crée.', 'success')
+                            this.props.flashMessages.set('La location a bien été crée.', 'success')
                             Router.push("/rentals/view?rentalId="+result.data.createRental.id);
                           })
                         }}
@@ -66,4 +67,4 @@ class Add extends React.Component {
   }
 }
 
-export default withData(withRouter(Add))
+export default withFlashMessages(withData(withRouter(Add)))

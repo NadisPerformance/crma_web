@@ -9,6 +9,7 @@ import {Table} from 'react-bootstrap'
 import Page from '../../components/Page'
 import Card from '../../components/Card'
 import withAuth from '../../lib/withAuth'
+import BrandDeleteButton from '../../components/brand/DeleteButton'
 import Pagination from '../../components/Pagination'
 import Search from '../../components/brand/Search'
 
@@ -89,6 +90,7 @@ class List extends React.Component {
                                     <i className="fa fa-pen-alt"></i>
                                     </a>
                                   </Link>
+                                  <BrandDeleteButton brandId={brand.id} />
                                 </td>
                               </tr>
                             )

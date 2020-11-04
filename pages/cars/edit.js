@@ -83,7 +83,7 @@ class Edit extends React.Component {
                           postMutation().then((result)=>{
                             //this.props.history.goBack();
                             //console.log(result)
-                            this.props.flashMessages.set('Le véhicule a bien été modifié.', 'error')
+                            this.props.flashMessages.set('Le véhicule a bien été modifié.', 'success')
                             Router.push("/cars/view?carId="+result.data.updateCar.id);
                           })
                         }}

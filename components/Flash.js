@@ -12,7 +12,7 @@ class Flash extends React.Component{
       this.setState({
         show: false
       });
-    }, 4000);
+    }, 6000);
   }
   hide(){
     this.setState({show:false})
@@ -24,7 +24,7 @@ class Flash extends React.Component{
     return (
         <div className={`alert alert-${type}`}>
                   <a onClick={()=>this.hide()} >
-                    <span className="close"><strong>X</strong>
+                    <span className="close"><i class="fas fa-times"></i>
                     </span>
                   </a>
                   <p>{`${message}`}</p>
