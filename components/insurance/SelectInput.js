@@ -27,7 +27,9 @@ class SelectInput extends React.Component{
       this.props.onChange(value*1)
   }
   render () {
-    const {selectedId} = this.state
+    var  {selectedId} = this.state
+    if(!selectedId)
+      selectedId = this.props.selectedId
     return (
       <Query query={get_insurances} variables={{limit:100,page:1}} pollInterval={3000} >
         {({ loading, error, data }) => {
@@ -38,16 +40,16 @@ class SelectInput extends React.Component{
           }
           var options= [];
           //console.log(data.roles.edges)
-          var defaultValue
+          var defaultValue, defaultLabel
           for(var i=0; i < data.insurances.edges.length; i++){
             var insurance =  data.insurances.edges[i].node
             options.push({value:insurance.id, label:insurance.name})
             if(insurance.id == selectedId)
-              defaultValue={value:insurance.id, label:insurance.name}
+              defaultLabel = insurance.name
 
           }
-          if(!this.state.selectedId &&  data.insurances.edges[0] )
-            this.setSelectedId(data.insurances.edges[0].node.id)
+          if( selectedId != 0 && defaultLabel)
+            defaultValue = {value:selectedId,label: defaultLabel}
           //console.log(options)
           return (
             <Select

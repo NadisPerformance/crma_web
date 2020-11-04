@@ -14,7 +14,7 @@ class SelectInput extends React.Component{
   componentDidMount(){
     const {selectedId} = this.props
     if(selectedId){
-      this.state.selectedId = selectedId
+      this.setSelectedId(selectedId)
       this.onChange(selectedId)
     }
   }
@@ -27,7 +27,9 @@ class SelectInput extends React.Component{
       this.props.onChange(value*1)
   }
   render () {
-    const {selectedId} = this.state
+    var  {selectedId} = this.state
+    if(!selectedId)
+      selectedId = this.props.selectedId
     return (
       <Query query={get_cars} variables={{limit:100,page:1}} pollInterval={3000} >
         {({ loading, error, data }) => {
@@ -38,16 +40,16 @@ class SelectInput extends React.Component{
           }
           var options= [];
           //console.log(data.roles.edges)
-          var defaultValue
+          var defaultValue, defaultLabel
           for(var i=0; i < data.cars.edges.length; i++){
             var car =  data.cars.edges[i].node
             options.push({value:car.id, label:car.brand.name+' '+car.model+' - '+car.plate_number})
             if(car.id == selectedId)
-              defaultValue={value:car.id, label:car.brand.name+' '+car.model+' - '+car.plate_number}
+              defaultLabel = car.brand.name+' '+car.model+' - '+car.plate_number
 
           }
-          if(selectedId== 0 &&  data.cars.edges[0] )
-            this.setSelectedId(data.cars.edges[0].node.id)
+          if( selectedId != 0 && defaultLabel)
+            defaultValue = {value:selectedId,label: defaultLabel}
           //console.log(options)
           return (
             <Select
