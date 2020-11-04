@@ -14,12 +14,15 @@
     "apollo-link-context": "^1.0.20",
     "apollo-link-http": "^1.5.17",
     "apollo-upload-client": "^14.1.2",
+    "events": "^3.2.0",
     "graphql": "^15.3.0",
     "graphql-tag": "^2.11.0",
     "isomorphic-unfetch": "^3.1.0",
     "js-cookie": "^2.2.1",
     "moment": "^2.29.1",
     "next": "^9.5.5",
+    "next-flash": "^1.0.2",
+    "next-flash-messages": "^0.1.0",
     "react": "^16.14.0",
     "react-apollo": "^3.1.5",
     "react-awesome-slider": "^4.1.0",
@@ -28,6 +31,7 @@
     "react-datepicker": "^3.3.0",
     "react-dom": "^16.13.1",
     "react-image-slider": "^0.1.0",
+    "react-nextjs-toast": "^1.2.5",
     "react-select": "^3.1.0",
     "react-simple-image-slider": "^1.0.4"
   }

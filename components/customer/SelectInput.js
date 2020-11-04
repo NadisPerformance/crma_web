@@ -14,7 +14,7 @@ class SelectInput extends React.Component{
   componentDidMount(){
     const {selectedId} = this.props
     if(selectedId){
-      this.state.selectedId = selectedId
+      this.setState({selectedId:selectedId})
       this.onChange(selectedId)
     }
   }
@@ -38,17 +38,21 @@ class SelectInput extends React.Component{
           }
           var options= [];
           //console.log(data.roles.edges)
-          var defaultValue
+          let defaultValue, defaultLabel
+          if(!this.state.selectedId &&  data.customers.edges[0] )
+            this.setSelectedId(data.customers.edges[0].node.id)
           for(var i=0; i < data.customers.edges.length; i++){
             var customer =  data.customers.edges[i].node
             options.push({value:customer.id, label:customer.lastname+' '+customer.firstname })
             if(customer.id == selectedId)
-              defaultValue={value:customer.id, label:customer.lastname+' '+customer.firstname}
+              defaultLabel = customer.lastname+' '+customer.firstname
 
           }
-          if(!this.state.selectedId &&  data.customers.edges[0] )
-            this.setSelectedId(data.customers.edges[0].node.id)
+          if(!defaultLabel)
+            return null
+          defaultValue = {value:selectedId,label: defaultLabel}
           //console.log(options)
+          console.log(defaultValue)
           return (
             <Select
                className="basic-single"

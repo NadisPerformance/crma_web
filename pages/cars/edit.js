@@ -11,6 +11,7 @@ import Card from '../../components/Card'
 import { withRouter } from 'next/router'
 import CarForm from '../../components/car/CarForm'
 import Router from 'next/router'
+import { withFlashMessages } from 'next-flash-messages'
 
 class Edit extends React.Component {
   constructor (props) {
@@ -22,6 +23,7 @@ class Edit extends React.Component {
     }
     this.fariane= [{title:"Acceuil",path:"/"},{title:"Véhicules",path:"/cars/list"},{title:"Véhicules #"+carId,path:"/cars/view?carId="+carId},{title:"Modifier Véhicule",path:"/cars/edit?carId="+carId}]
     this.onDelete = this.onDelete.bind(this)
+
   }
   onDelete(){
     window.flash('Le véhicule a bien été supprimé.', 'success')
@@ -81,7 +83,7 @@ class Edit extends React.Component {
                           postMutation().then((result)=>{
                             //this.props.history.goBack();
                             //console.log(result)
-                            alert('Le véhicule a bien été modifié.', 'success')
+                            this.props.flashMessages.set('Le véhicule a bien été modifié.', 'error')
                             Router.push("/cars/view?carId="+result.data.updateCar.id);
                           })
                         }}
@@ -98,4 +100,4 @@ class Edit extends React.Component {
   }
 }
 
-export default withData(withRouter(Edit))
+export default withFlashMessages(withData(withRouter(Edit)))
