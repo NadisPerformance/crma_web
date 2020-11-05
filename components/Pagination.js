@@ -15,7 +15,10 @@ class Pagination extends React.Component{
      var pagination= "" ;
      //if( parseInt(count/perPage) == 0 )
       //return null
-     return [...Array(parseInt(count/perPage))].map((x, i)=>{
+     var nbr_page = parseInt(count/perPage)
+     if( nbr_page < count/perPage)
+      nbr_page += 1
+     return [...Array(nbr_page)].map((x, i)=>{
        if(i+1 == currentPage)
           return <li className="page-item active">
               <a href="#" className="page-link"
