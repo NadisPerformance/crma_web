@@ -97,6 +97,26 @@ query get_car($carId:ID!){
           date_end
           scanned_technical_control_url
         }
+        rentals{
+          id
+          date_begin
+          date_end
+          customer{
+            id
+            firstname
+            lastname
+          }
+        }
+        bookings{
+          id
+          date_begin
+          date_end
+          customer{
+            id
+            firstname
+            lastname
+          }
+        }
   }
 }
 `

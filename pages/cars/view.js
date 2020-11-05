@@ -10,6 +10,7 @@ import Page from '../../components/Page'
 import Card from '../../components/Card'
 import { withRouter } from 'next/router'
 import CarTab from '../../components/car/Tabs/CarTab'
+import CalendarTab from '../../components/car/Tabs/CalendarTab'
 import CarInsurancesTab from '../../components/car/Tabs/CarInsurancesTab'
 import TechnicalControlTab from '../../components/car/Tabs/TechnicalControlTab'
 import CarDeleteButton from '../../components/car/DeleteButton'
@@ -68,6 +69,9 @@ class View extends React.Component {
                     </Tab>
                     <Tab eventKey="technical_control" title="Contrôle technique" >
                        <TechnicalControlTab technical_controls={data.car.technical_controls} carId={data.car.id} />
+                    </Tab>
+                    <Tab eventKey="calendar" title="Calendrier des disponibilitées" >
+                       <CalendarTab rentals={data.car.rentals} bookings={data.car.bookings}/>
                     </Tab>
                   </Tabs>
                 )
