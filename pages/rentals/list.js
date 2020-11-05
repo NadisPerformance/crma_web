@@ -11,15 +11,16 @@ import Card from '../../components/Card'
 import withAuth from '../../lib/withAuth'
 import RentalDeleteButton from '../../components/rental/DeleteButton'
 import Pagination from '../../components/Pagination'
-import Search from '../../components/rental/Search'
 import moment from 'moment'
+import SearchForm from '../../components/rental/SearchForm'
+import { withRouter } from 'next/router'
 
 
 class List extends React.Component {
   constructor (props) {
     super(props)
     this.state={
-      limit:3,
+      limit:10,
       page:1
     }
     this.fariane= [{title:"Acceuil",path:"/"},{title:"Locations",path:"/rental/"}]
@@ -49,20 +50,28 @@ class List extends React.Component {
     const {
       limit, page
     } = this.state
+    const { customerId, carId } = this.props.router.query
+    var where = {}
+    if( customerId && customerId != 0)
+      where.customerId = {equals:customerId *1}
+    if( carId  && carId != 0)
+      where.carId = {equals:carId* 1}
     return (
       <AdminLayout>
         <Page title="Locations" fariane={this.fariane}>
+          <SearchForm />
           <Card header={this.header()} >
-          <Query query={get_rentals} variables={{limit:limit,page:page}} pollInterval={3000} >
+          <Query query={get_rentals} variables={{limit:limit,page:page,where:where}} pollInterval={3000} >
               {({ loading, error, data }) => {
                 if (loading) return <div>Chargement en cours ...</div>
                 if (error) {
                   console.log(error)
                   return <div>Error</div>
                 }
+                if( data.rentals.edges.length == 0)
+                  return (<p><center> Aucun réservation trouvé.</center></p>)
                 return (
                   <React.Fragment>
-                    <Search />
                      <Table striped bordered hover size="sm">
                       <thead>
                         <tr>
@@ -123,4 +132,4 @@ class List extends React.Component {
   }
 }
 
-export default withData(List, true)
+export default withData(withRouter(List), true)

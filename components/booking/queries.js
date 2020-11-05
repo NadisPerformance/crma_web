@@ -1,8 +1,8 @@
 import gql from 'graphql-tag'
 
 export const get_bookings = gql`
-query get_bookings($limit:Int!, $page:Int!){
-  bookings (limit:$limit, page: $page){
+query get_bookings($where:BookingWhereInput,$limit:Int!, $page:Int!){
+  bookings (where:$where, limit:$limit, page: $page){
     edges{
         node{
             id

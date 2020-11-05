@@ -1,8 +1,8 @@
 import gql from 'graphql-tag'
 
 export const get_customers = gql`
-query get_customers($limit:Int!, $page:Int!){
-    customers(limit:$limit, page: $page) {
+query get_customers($where:CustomerWhereInput, $limit:Int!, $page:Int!){
+    customers(where:$where,limit:$limit, page: $page) {
     edges{
         node{
             id

@@ -123,7 +123,6 @@ class List extends React.Component {
                         }
                       </tbody>
                     </Table>
-
                   <Pagination
                       currentPage={data.cars.pageInfo.currentPage}
                       count={data.cars.pageInfo.count}

@@ -1,8 +1,8 @@
 import gql from 'graphql-tag'
 
 export const get_insurances = gql`
-query get_insurances($limit:Int!, $page:Int!){
-  insurances(limit:$limit, page: $page) {
+query get_insurances($where:InsuranceWhereInput,$limit:Int!, $page:Int!){
+  insurances(where:$where,limit:$limit, page: $page) {
     edges{
         node{
             id

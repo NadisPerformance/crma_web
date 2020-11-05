@@ -11,8 +11,8 @@ import Card from '../../components/Card'
 import withAuth from '../../lib/withAuth'
 import ColorDeleteButton from '../../components/color/DeleteButton'
 import Pagination from '../../components/Pagination'
-import Search from '../../components/color/Search'
-
+import SearchForm from '../../components/color/SearchForm'
+import { withRouter } from 'next/router'
 class List extends React.Component {
   constructor (props) {
     super(props)
@@ -47,20 +47,26 @@ class List extends React.Component {
     const {
       limit, page
     } = this.state
+    const {name} = this.props.router.query
+    var where = {}
+    if( name )
+      where.name = {contains:name}
     return (
       <AdminLayout>
         <Page title="Couleurs" fariane={this.fariane}>
+          <SearchForm />
           <Card header={this.header()} >
-            <Query query={get_colors} variables={{limit:limit,page:page}} pollInterval={3000} >
+            <Query query={get_colors} variables={{limit:limit,page:page,where:where}} pollInterval={3000} >
               {({ loading, error, data }) => {
                 if (loading) return <div>Chargement en cours ...</div>
                 if (error) {
                   console.log(error)
                   return <div>Error</div>
                 }
+                if( data.colors.edges.length == 0)
+                  return (<p><center> Aucune couleur trouvée.</center></p>)
                 return (
                   <React.Fragment>
-                    <Search />
                      <Table striped bordered hover size="sm">
                       <thead>
                         <tr>
@@ -115,4 +121,4 @@ class List extends React.Component {
   }
 }
 
-export default withData(List, true)
+export default withData(withRouter(List), true)

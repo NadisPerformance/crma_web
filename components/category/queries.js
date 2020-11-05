@@ -1,8 +1,8 @@
 import gql from 'graphql-tag'
 
 export const get_categories = gql`
-query get_categories($limit:Int!, $page:Int!){
-    categories(limit:$limit, page: $page) {
+query get_categories($where:CategoryWhereInput,$limit:Int!, $page:Int!){
+    categories(where:$where,limit:$limit, page: $page) {
     edges{
         node{
             id

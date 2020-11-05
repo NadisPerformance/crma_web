@@ -11,7 +11,8 @@ import Card from '../../components/Card'
 import withAuth from '../../lib/withAuth'
 import CustomerDeleteButton from '../../components/customer/DeleteButton'
 import Pagination from '../../components/Pagination'
-import Search from '../../components/customer/Search'
+import SearchForm from '../../components/customer/SearchForm'
+import { withRouter } from 'next/router'
 class List extends React.Component {
   constructor (props) {
     super(props)
@@ -46,20 +47,36 @@ class List extends React.Component {
     const {
       limit, page
     } = this.state
+    const { firstname, lastname, cni, driver_license, email, phone } = this.props.router.query
+    var where = {}
+    if( firstname )
+      where.firstname = {contains:firstname}
+    if( lastname )
+      where.lastname = {contains:lastname}
+    if( cni )
+      where.cni = {contains:cni}
+    if( driver_license )
+      where.driver_license = {contains:driver_license}
+    if( email )
+      where.email = {contains:email}
+    if( phone )
+      where.phone = {contains:phone}
     return (
       <AdminLayout>
         <Page title="Clients" fariane={this.fariane}>
+          <SearchForm />
           <Card header={this.header()} >
-            <Query query={get_customers} variables={{limit:limit,page:page}} pollInterval={3000} >
+            <Query query={get_customers} variables={{limit:limit,page:page,where:where}} pollInterval={3000} >
               {({ loading, error, data }) => {
                 if (loading) return <div>Chargement en cours ...</div>
                 if (error) {
                   console.log(error)
                   return <div>Error</div>
                 }
+                if( data.customers.edges.length == 0)
+                  return (<p><center> Aucun client trouvé.</center></p>)
                 return (
                   <React.Fragment>
-                    <Search />
                      <Table striped bordered hover size="sm">
                       <thead>
                         <tr>
@@ -124,4 +141,4 @@ class List extends React.Component {
   }
 }
 
-export default withData(List, true)
+export default withData(withRouter(List), true)

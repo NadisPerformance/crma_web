@@ -1,8 +1,8 @@
 import gql from 'graphql-tag'
 
 export const get_brands = gql`
-query get_brands($limit:Int!, $page:Int!){
-    brands(limit:$limit, page: $page) {
+query get_brands($where:BrandWhereInput,$limit:Int!, $page:Int!){
+    brands(where:$where,limit:$limit, page: $page) {
     edges{
         node{
             id

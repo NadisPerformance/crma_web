@@ -1,8 +1,8 @@
 import gql from 'graphql-tag'
 
 export const get_users = gql`
-query get_users($limit:Int!, $page:Int!){
-  users (limit:$limit, page: $page){
+query get_users($where:UserWhereInput,$limit:Int!, $page:Int!){
+  users (where:$where,limit:$limit, page: $page){
     edges{
         node{
             id
@@ -13,6 +13,7 @@ query get_users($limit:Int!, $page:Int!){
             address
             email
             phone
+            roleId
             role{
               id
               title

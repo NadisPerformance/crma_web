@@ -12,7 +12,8 @@ import withAuth from '../../lib/withAuth'
 import BookingDeleteButton from '../../components/booking/DeleteButton'
 import moment from 'moment'
 import Pagination from '../../components/Pagination'
-import Search from '../../components/booking/Search'
+import SearchForm from '../../components/booking/SearchForm'
+import { withRouter } from 'next/router'
 
 class List extends React.Component {
   constructor (props) {
@@ -48,20 +49,28 @@ class List extends React.Component {
     const {
       limit, page
     } = this.state
+    const { customerId, carId } = this.props.router.query
+    var where = {}
+    if( customerId && customerId != 0)
+      where.customerId = {equals:customerId *1}
+    if( carId  && carId != 0)
+      where.carId = {equals:carId* 1}
     return (
       <AdminLayout>
         <Page title="Réservations" fariane={this.fariane}>
+          <SearchForm />
           <Card header={this.header()} >
-            <Query query={get_bookings} variables={{limit:limit,page:page}} pollInterval={3000} >
+            <Query query={get_bookings} variables={{limit:limit,page:page,where:where}} pollInterval={3000} >
               {({ loading, error, data }) => {
                 if (loading) return <div>Chargement en cours ...</div>
                 if (error) {
                   console.log(error)
                   return <div>Error</div>
                 }
+                if( data.bookings.edges.length == 0)
+                  return (<p><center> Aucun réservation trouvé.</center></p>)
                 return (
                   <React.Fragment>
-                    <Search/>
                      <Table striped bordered hover size="sm">
                       <thead>
                         <tr>
@@ -122,4 +131,4 @@ class List extends React.Component {
   }
 }
 
-export default withData(List, true)
+export default withData(withRouter(List), true)

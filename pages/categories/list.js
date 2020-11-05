@@ -11,8 +11,8 @@ import Card from '../../components/Card'
 import withAuth from '../../lib/withAuth'
 import CategoryDeleteButton from '../../components/category/DeleteButton'
 import Pagination from '../../components/Pagination'
-import Search from '../../components/category/Search'
-
+import SearchForm from '../../components/category/SearchForm'
+import { withRouter } from 'next/router'
 class List extends React.Component {
   constructor (props) {
     super(props)
@@ -47,20 +47,26 @@ class List extends React.Component {
     const {
       limit, page
     } = this.state
+    const {title} = this.props.router.query
+    var where = {}
+    if( title )
+      where.title = {contains:title}
     return (
       <AdminLayout>
         <Page title="Categories" fariane={this.fariane}>
+          <SearchForm />
           <Card header={this.header()} >
-            <Query query={get_categories} variables={{limit:limit,page:page}} pollInterval={3000} >
+            <Query query={get_categories} variables={{limit:limit,page:page,where:where}} pollInterval={3000} >
               {({ loading, error, data }) => {
                 if (loading) return <div>Chargement en cours ...</div>
                 if (error) {
                   console.log(error)
                   return <div>Error</div>
                 }
+                if( data.categories.edges.length == 0)
+                  return (<p><center> Aucune catégorie trouvée.</center></p>)
                 return (
                   <React.Fragment>
-                    <Search />
                      <Table striped bordered hover size="sm">
                       <thead>
                         <tr>
@@ -115,4 +121,4 @@ class List extends React.Component {
   }
 }
 
-export default withData(List, true)
+export default withData(withRouter(List), true)

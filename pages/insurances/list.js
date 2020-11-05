@@ -12,8 +12,8 @@ import withAuth from '../../lib/withAuth'
 import InsuranceDeleteButton from '../../components/insurance/DeleteButton'
 import moment from 'moment'
 import Pagination from '../../components/Pagination'
-import Search from '../../components/insurance/Search'
-
+import SearchForm from '../../components/insurance/SearchForm'
+import { withRouter } from 'next/router'
 class List extends React.Component {
   constructor (props) {
     super(props)
@@ -48,20 +48,27 @@ class List extends React.Component {
     const {
       limit, page
     } = this.state
+    const {name} = this.props.router.query
+    var where = {}
+    if( name )
+      where.name = {contains:name}
     return (
       <AdminLayout>
         <Page title="Assurances" fariane={this.fariane}>
+          <SearchForm />
           <Card header={this.header()} >
-            <Query query={get_insurances} variables={{limit:limit,page:page}} pollInterval={3000} >
+            <Query query={get_insurances} variables={{limit:limit,page:page,where:where}} pollInterval={3000} >
               {({ loading, error, data }) => {
                 if (loading) return <div>Chargement en cours ...</div>
                 if (error) {
                   console.log(error)
                   return <div>Error</div>
                 }
+                if( data.insurances.edges.length == 0)
+                  return (<p><center> Aucune assurance trouvée.</center></p>)
                 return (
                   <React.Fragment>
-                    <Search />
+                    
                      <Table striped bordered hover size="sm">
                       <thead>
                         <tr>
@@ -116,4 +123,4 @@ class List extends React.Component {
   }
 }
 
-export default withData(List, true)
+export default withData(withRouter(List), true)
