@@ -96,6 +96,7 @@ class RentalForm extends React.Component{
               isClearable
               dateFormat="d/MM/yyyy"
               placeholderText="Date début"
+              minDate={rental.date_begin}
             />
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
