@@ -21,7 +21,9 @@ class CarTab extends React.Component {
                         </tr>
                         <tr>
                             <th style={{width:"50%"}} >La marque:</th>
-                            <td>{car.brand.name}</td>
+                            <td>{car.brand && car.brand.name}
+                              {!car.brand && "--"}
+                            </td>
                         </tr>
                         <tr>
                             <th style={{width:"50%"}} >Modéle:</th>
@@ -29,7 +31,9 @@ class CarTab extends React.Component {
                         </tr>
                         <tr>
                             <th style={{width:"50%"}} >Catégorie:</th>
-                            <td>{car.category.title}</td>
+                            <td>{car.category && car.category.title}
+                              {!car.category && "--"}
+                            </td>
                         </tr>
                         <tr>
                             <th style={{width:"50%"}} >Prix de location:</th>
