@@ -45,6 +45,7 @@ query get_rental($rentalId:ID!){
     second_driverId
     date_begin
     date_end
+    montant_avance
     scanned_contract
     scanned_contract_url
     customer{
@@ -104,6 +105,15 @@ query get_rental($rentalId:ID!){
           path
           image_url
         }
+      }
+    }
+    bill{
+      id
+      total_ht
+      total_ttc
+      payment_method{
+        id
+        title
       }
     }
   }

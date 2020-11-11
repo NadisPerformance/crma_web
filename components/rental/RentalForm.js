@@ -15,7 +15,8 @@ class RentalForm extends React.Component{
         customerId:0,
         second_driverId:0,
         date_begin:"",
-        date_end:""
+        date_end:"",
+        montant_avance:0
       }
     }
   }
@@ -47,6 +48,11 @@ class RentalForm extends React.Component{
 
   setDateEnd(value){
     this.state.rental.date_end = value
+    this.setState({rental:this.state.rental})
+    this.onChange();
+  }
+  setMontantAvance(value){
+    this.state.rental.montant_avance = value *1
     this.setState({rental:this.state.rental})
     this.onChange();
   }
@@ -98,6 +104,10 @@ class RentalForm extends React.Component{
               placeholderText="Date début"
               minDate={rental.date_begin}
             />
+          </Form.Group>
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Montant avancé:</Form.Label>
+            <Form.Control value={rental.montant_avance} type="text" onChange={(event)=>this.setMontantAvance(event.target.value)} placeholder="Montant avancé" />
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Importé le contrat de location:</Form.Label>

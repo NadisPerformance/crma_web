@@ -8,8 +8,7 @@ query get_bills($where:BillWhereInput,$limit:Int!, $page:Int!){
         id
         rentalId
         customerId
-        bill_number
-        bill_date
+        createdAt
         customer{
           id
           firstname
@@ -41,8 +40,6 @@ query bill($billId:ID!){
     id
     rentalId
     customerId
-    bill_number
-    bill_date
     customer{
       id
       firstname
@@ -73,8 +70,6 @@ query bill($billId:ID!){
     id
     rentalId
     customerId
-    bill_number
-    bill_date
     customer{
       id
       firstname
@@ -105,14 +100,12 @@ export const update_bill = gql`
       id
       rentalId
       customerId
-      bill_number
-      bill_date
     }
   }
 
 `
 export const create_bill = gql`
-  mutation update_bill($data:BillInput!)  {
+  mutation create_bill($data:BillInput!)  {
     createBill(data:$data){
         id
     }

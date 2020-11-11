@@ -88,9 +88,9 @@ class List extends React.Component {
                             return (
                               <tr key={bill.id}>
                                 <td>{bill.id}</td>
-                                <td>{bill.bill_number}</td>
+                                <td>FA{bill.id}</td>
                                 <td> {bill.customer.gender} {bill.customer.lastname} {bill.customer.firstname}</td>
-                                <td>{moment(bill.bill_date).format("DD/MM/YYYY")} </td>
+                                <td>{moment(bill.createdAt).format("DD/MM/YYYY")} </td>
                                 <td>
                                   <Link href={"/bills/view?billId="+bill.id} >
                                     <a style={{margin:3}}
