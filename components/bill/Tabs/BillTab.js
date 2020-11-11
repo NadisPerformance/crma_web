@@ -25,8 +25,8 @@ class BillTab extends React.Component {
                             <td>{moment(bill.bill_date).format("DD/MM/YYYY")}</td>
                         </tr>
                         <tr>
-                            <th style={{width:"50%"}} >Facture de location:</th>
-                            <td><a target="_blank" href="#" > Télécharger </a></td>
+                            <th style={{width:"50%"}} >Facture de location préremplie:</th>
+                            <td><a target="_blank" href={api_url+"bills/download?billId="+bill.id} > Télécharger </a></td>
                         </tr>
                         <tr>
                             <th style={{width:"50%"}} >Contrat de location scannée:</th>
