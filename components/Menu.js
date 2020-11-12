@@ -1,5 +1,6 @@
 import React from 'react'
 import Link  from "next/link";
+import { withRouter } from 'next/router'
 
 class Menu extends React.Component{
   constructor (props) {
@@ -14,7 +15,8 @@ class Menu extends React.Component{
   }
 
   render () {
-    const pathname = "/"
+
+    const pathname = this.props.router.pathname
     const {user} = this.state
     //console.log(pathname)
     return (
@@ -132,7 +134,7 @@ class Menu extends React.Component{
               </li>
             </ul>
           </li>
-          <li className={pathname.startsWith("/clients")?"nav-item has-treeview  menu-open":"nav-item has-treeview"} >
+          <li className={pathname.startsWith("/customers")?"nav-item has-treeview  menu-open":"nav-item has-treeview"} >
             <Link href="/clients" >
               <a className="nav-link" activeclassname="active">
               <i className="nav-icon fas fa-users"></i>
@@ -190,7 +192,12 @@ class Menu extends React.Component{
               </li>
             </ul>
           </li>
-          <li className={pathname.startsWith("/users") ?"nav-item has-treeview  menu-open":"nav-item has-treeview"}>
+          <li className={pathname.startsWith("/users") ||
+                pathname.startsWith("/brands") ||
+                pathname.startsWith("/colors") ||
+                pathname.startsWith("/categories") ||
+                pathname.startsWith("/insurances") ?
+                "nav-item has-treeview  menu-open":"nav-item has-treeview"}>
             <Link href="/configuration" >
               <a  className="nav-link" activeclassname="active" >
               <i className="nav-icon fa fa-cogs"></i>
@@ -232,7 +239,7 @@ class Menu extends React.Component{
                     <p>Catégories</p>
                   </a>
                 </Link>
-              </li> 
+              </li>
               <li className="nav-item">
                 <Link href="/insurances/list" >
                   <a className="nav-link" activeclassname="active" >
@@ -251,4 +258,4 @@ class Menu extends React.Component{
   }
 }
 
-export default Menu;
+export default withRouter(Menu);
