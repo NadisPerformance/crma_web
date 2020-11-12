@@ -22,7 +22,7 @@ query get_bookings($where:BookingWhereInput,$limit:Int!, $page:Int!){
               id
               plate_number
               color{
-                id 
+                id
                 name
               }
             }
@@ -40,10 +40,10 @@ query get_bookings($where:BookingWhereInput,$limit:Int!, $page:Int!){
 export const get_booking = gql`
 query booking($bookingId:ID!){
   booking(id:$bookingId){
-    id 
+    id
 
     carId
-    customerId 
+    customerId
     date_begin
     date_end
     montant_avance
@@ -101,7 +101,7 @@ query booking($bookingId:ID!){
       lastname
       gender
       cni
-      phone 
+      phone
       email
       address
       city
@@ -124,7 +124,7 @@ query booking($bookingId:ID!){
         name
       }
       color{
-        id 
+        id
         name
       }
     }
@@ -165,6 +165,14 @@ export const delete_booking = gql`
 
 `
 
+export const convert_to_rental = gql`
+  mutation convert_to_rental($id:ID!)  {
+    convertBookingToRental(id:$id){
+        id
+    }
+  }
+
+`
 export default () => {
 return "Show page working ! ";
 }

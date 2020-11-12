@@ -13,6 +13,7 @@ import BookingTab from '../../components/booking/Tabs/BookingTab'
 import CustomerTab from '../../components/booking/Tabs/CustomerTab'
 import CarTab from '../../components/booking/Tabs/CarTab'
 import BookingDeleteButton from '../../components/booking/DeleteButton'
+import ConvertToRental from '../../components/booking/ConvertToRental'
 
 class View extends React.Component {
   constructor (props) {
@@ -34,6 +35,7 @@ class View extends React.Component {
              <h3 className="card-title">{"Réservation #"+bookingId}</h3>
 
                 <div className="card-tools">
+                    <ConvertToRental bookingId={bookingId} />
                     <Link href={"/bookings/edit?bookingId="+bookingId} >
                        <a className="btn btn-success btn-sm" data-toggle="tooltip" title="" data-original-title="Nouvelle" >
                         <i className="fa fa-pen-alt"></i> Modifier

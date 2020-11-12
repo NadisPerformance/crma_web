@@ -18,23 +18,15 @@ class BillTab extends React.Component {
                     <tbody>
                         <tr>
                             <th style={{width:"50%"}} >Numéro de facture:</th>
-                            <td>{bill.bill_number}</td>
+                            <td>{bill.id}</td>
                         </tr>
                         <tr>
                             <th style={{width:"50%"}} >Date de facture:</th>
-                            <td>{moment(bill.bill_date).format("DD/MM/YYYY")}</td>
+                            <td>{moment(bill.createdAt).format("DD/MM/YYYY")}</td>
                         </tr>
                         <tr>
-                            <th style={{width:"50%"}} >Facture de location préremplie:</th>
+                            <th style={{width:"50%"}} >Facture de location:</th>
                             <td><a target="_blank" href={api_url+"bills/download?billId="+bill.id} > Télécharger </a></td>
-                        </tr>
-                        <tr>
-                            <th style={{width:"50%"}} >Contrat de location scannée:</th>
-                            <td>{ bill.scanned_contract_url &&
-                                <a  target="_blank" href={bill.scanned_contract_url} > Télécharger </a> }
-                                { !bill.scanned_contract_url &&
-                                    "--" }
-                            </td>
                         </tr>
                     </tbody>
                 </table>
