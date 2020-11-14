@@ -51,6 +51,27 @@ query get_user($userId:ID!){
 }
 `
 
+export const get_me = gql`
+query get_me{
+  me{
+    id
+    firstname
+    lastname
+    gender
+    cni
+    address
+    email
+    phone
+    role{
+      id
+      title
+    }
+    createdAt
+    updatedAt
+  }
+}
+`
+
 export const get_user_to_update = gql`
 query get_user_to_update($userId:ID!){
   user(id:$userId){
@@ -68,6 +89,19 @@ query get_user_to_update($userId:ID!){
 }
 `
 
+export const get_me_to_update = gql`
+query me{
+  me{
+    firstname
+    lastname
+    gender
+    cni
+    address
+    phone
+  }
+}
+`
+
 export const get_user_password_to_update = gql`
 query get_user_password_to_update($userId:ID!){
   user(id:$userId){
@@ -76,7 +110,16 @@ query get_user_password_to_update($userId:ID!){
   }
 }
 `
-
+export const update_my_profile = gql`
+  mutation update_my_profile($data:MyProfileInput!)  {
+    updateMyProfile(data:$data){
+        id
+        firstname
+        lastname
+        email
+    }
+  }
+`
 export const update_user = gql`
   mutation update_user($id: ID!, $data:UserInput!)  {
     updateUser(id:$id,data:$data){
@@ -84,6 +127,13 @@ export const update_user = gql`
         firstname
         lastname
         email
+    }
+  }
+`
+export const update_my_password = gql`
+  mutation update_my_password( $data:UserPasswordInput!)  {
+    updateMyPassword(data:$data){
+        id 
     }
   }
 `

@@ -1,16 +1,14 @@
 import React from 'react'
 import Link  from "next/link";
 import { withRouter } from 'next/router'
+import withAuth from '../lib/withAuth'
 
 class Menu extends React.Component{
   constructor (props) {
     super(props)
     this.state ={
       expanded:true,
-      user: {
-        nom:"belabed",
-        prenom:"mohammed"
-      } // JSON.parse(localStorage.getItem('user'))
+      user: props.loggedInUser
     }
   }
 
@@ -31,10 +29,10 @@ class Menu extends React.Component{
     <div className="sidebar">
       <div className="user-panel mt-3 pb-3 mb-3 d-flex">
         <div className="image">
-          <img src="/adminlte/dist/img/user2-160x160.jpg" className="img-circle elevation-2" alt="User Image" />
+          <img src="/avatar.png" className="img-circle elevation-2" alt="User Image" />
         </div>
         <div className="info">
-          <a href="#" className="d-block">{user.nom +" "+user.prenom}</a>
+          <a href="#" className="d-block">{user.firstname +" "+user.lastname}</a>
         </div>
       </div>
       <nav className="mt-2">
@@ -258,4 +256,4 @@ class Menu extends React.Component{
   }
 }
 
-export default withRouter(Menu);
+export default withAuth(withRouter(Menu));

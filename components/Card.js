@@ -2,7 +2,7 @@ import React from 'react'
 
 class Card extends React.Component{
   constructor (props) {
-    super(props)  
+    super(props)
   }
 
   render () {
@@ -14,9 +14,11 @@ class Card extends React.Component{
           <div className="card-body table-responsive p-0" key={2} >
             {this.props.children}
           </div>
-          <div className="card-footer clearfix" key={3}> 
+          {false &&
+          <div className="card-footer clearfix" key={3}>
           </div>
-      </div> 
+          }
+      </div>
     )
   }
 }

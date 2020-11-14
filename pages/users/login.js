@@ -7,6 +7,8 @@ import { Mutation } from 'react-apollo'
 import withData from '../../lib/withData'
 import {Form} from 'react-bootstrap'
 import { setCookie} from "../../lib/session";
+import { withFlashMessages } from 'next-flash-messages'
+import Router from 'next/router'
 
 class Login extends React.Component {
   constructor (props) {
@@ -33,13 +35,9 @@ class Login extends React.Component {
                 loginMutation().then((result)=>{
                   let data = result.data.login
                   if(data.statut_code == 1){
-                    alert("vous êtes connecté")
-
-                    //localStorage.setItem('user', JSON.stringify(data.user) )
+                    this.props.flashMessages.set('Vous êtes connecté.', 'success')
                     setCookie('token', data.token )
-                    console.log(data.token)
-                    //window.flash('L\'utilisateur a bien été modifié.', 'success')
-                    window.location ="/" ;
+                    Router.push("/") ;
                   }
                   else alert("mot de passe incorrect")
                 })
@@ -80,16 +78,6 @@ class Login extends React.Component {
             </div>
           </Form>
 
-          <div class="social-auth-links text-center mb-3">
-            <p>- OU -</p>
-            <a href="#" class="btn btn-block btn-primary">
-              <i class="fab fa-facebook mr-2"></i> Se connecter avec Facebook
-            </a>
-            <a href="#" class="btn btn-block btn-danger">
-              <i class="fab fa-google-plus mr-2"></i> Se connecter avec Google
-            </a>
-          </div>
-
           <p class="mb-1">
             <Link href="/users/forgot-password">Mot de passe oublié ?</Link>
           </p>
@@ -101,4 +89,4 @@ class Login extends React.Component {
   }
 }
 
-export default withData(Login)
+export default withFlashMessages(withData(Login))

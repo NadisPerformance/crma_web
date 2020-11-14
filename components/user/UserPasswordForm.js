@@ -15,7 +15,7 @@ class UserForm extends React.Component{
     const {user} = this.props
     if(user){
       delete user.role ;
-      this.state.user = user
+      //this.state.user = user
     }
     this.onChange()
   }
